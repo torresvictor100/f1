@@ -16,9 +16,9 @@ public class DriversService {
 
     private final DriversFacade driversFacade;
 
-    public MRDataItensDTO getDriversForYears(String years){
+    public DriverTableDTO getDriversForYears(String years){
 
-        return driversFacade.getF1DriversForYears(years);
+        return driversFacade.getF1DriversForYears(years).getMrData().getDriverTable();
     }
 
 }

@@ -14,7 +14,7 @@ public class DriversFacade {
 
     public MRDataItensDTO getF1DriversForYears(String years){
 
-        MRDataItensDTO mrDataDTO = requestUtil.get("/"+years+"/drivers.json", MRDataItensDTO.class);
+        MRDataItensDTO mrDataDTO = requestUtil.get("/"+years+"/drivers.json?limit=150", MRDataItensDTO.class);
 
         return mrDataDTO;
     }

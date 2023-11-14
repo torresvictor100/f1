@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 @RequiredArgsConstructor
 public class RequestUtil {
-    
+
     @Value("${uri.base.liferay.local}")
     private String baseUrl;
 

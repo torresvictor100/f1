@@ -26,7 +26,7 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get driver for years", responseCode = "200")
     })
-    public ResponseEntity<MRDataItensDTO> getDriverForYears(@PathVariable String years){
+    public ResponseEntity<DriverTableDTO> getDriverForYears(@PathVariable String years){
         return ResponseEntity.ok(driversService.getDriversForYears(years));
     }
 }
