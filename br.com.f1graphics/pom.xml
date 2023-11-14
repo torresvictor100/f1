@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.5</version>
+		<version>2.7.17</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.f1graphics</groupId>
 	<artifactId>br.com.f1graphics</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>br.com.f1graphics</name>
-	<description>website to download f1 graphics </description>
+	<description>site to download f1 graphics</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
