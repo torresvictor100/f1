@@ -19,7 +19,7 @@ public class DriversController {
 
     private final DriversService driversService;
 
-    @GetMapping("/drivers/{years}")
+    @GetMapping("/{years}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
             @ApiResponse(description = "get driver for years", responseCode = "200")
