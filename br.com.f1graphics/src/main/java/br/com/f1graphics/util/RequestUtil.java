@@ -1,21 +1,25 @@
 package br.com.f1graphics.util;
 
-import br.com.f1graphics.configuration.F1WebClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 @RequiredArgsConstructor
 public class RequestUtil {
-
-    private final F1WebClient f1WebClient;
+    
+    @Value("${uri.base.liferay.local}")
+    private String baseUrl;
 
     public <T> T get(String endpoint, Class<T> entity) {
-        return f1WebClient.getLiferayWebClient().get()
+
+        WebClient webClient = WebClient.create(baseUrl);
+        return webClient.get()
                 .uri(endpoint)
-                .retrieve()
-                .bodyToMono(entity)
-                .block();
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve().bodyToMono(entity).block();
     }
 
 

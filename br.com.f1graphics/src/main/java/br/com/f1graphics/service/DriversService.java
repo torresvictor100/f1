@@ -3,6 +3,7 @@ package br.com.f1graphics.service;
 import br.com.f1graphics.dto.request.DriverDTO;
 import br.com.f1graphics.dto.request.DriverTableDTO;
 import br.com.f1graphics.dto.request.MRDataDTO;
+import br.com.f1graphics.dto.request.MRDataItensDTO;
 import br.com.f1graphics.facade.DriversFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,11 +14,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class DriversService {
 
-    private static DriversFacade driversFacade;
+    private final DriversFacade driversFacade;
 
-    public DriverTableDTO getDriversForYears(String years){
+    public MRDataItensDTO getDriversForYears(String years){
 
-        return driversFacade.getF1DriversForYears(years).getDriverTable();
+        return driversFacade.getF1DriversForYears(years);
     }
 
 }
