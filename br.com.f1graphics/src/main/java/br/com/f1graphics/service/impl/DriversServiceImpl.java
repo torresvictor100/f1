@@ -18,7 +18,7 @@ public class DriversServiceImpl implements DriversService {
 
     private final DriversFacade driversFacade;
 
-    private final RacesService raceService;
+    private final RacesService racesService;
 
     private static F1GraphicsFactory factory;
 
@@ -40,15 +40,14 @@ public class DriversServiceImpl implements DriversService {
 
         return getDriversSeason(getDriverForDriverId(driverIdMain),
                 getDriverForDriverId(driverIdComparation),
-                raceService.getListNamesRacesForSeason(season), season);
+                racesService.getListNamesRacesForSeason(season), season);
     }
 
 
     private ChampionshipResponseDTO getDriversSeason(DriverRequestDTO driverMain, DriverRequestDTO driverComparation
             , ListNamesRacesResponseDTO listNamesRacingDTO , String season){
 
-        RaceTableDriverIdRequestDTO driveMainResults = getDriverResultsForDriverId(driverMain.getDriverId(), season);
-        RaceTableDriverIdRequestDTO driverComparationResults = getDriverResultsForDriverId(driverComparation.getDriverId(), season);
+        RaceTableRoundRequestDTO raceTable = racesService.getResultSpintRacesForDriverSeason(season,driverMain.getDriverId());
 
         return factory.createChampionshipResponseDTO(season);
     }
