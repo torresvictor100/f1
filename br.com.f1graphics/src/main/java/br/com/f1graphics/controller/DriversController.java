@@ -40,12 +40,14 @@ public class DriversController {
         return ResponseEntity.ok(driversService.getDriverForDriverId(driverId));
     }
 
-    @GetMapping("/drivers/{driverIdMain}/{driverIdComparation}")
+    @GetMapping("/drivers/{driverIdMain}/{driverIdComparation}/{years}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
             @ApiResponse(description = "get driver for years", responseCode = "200")
     })
-    public ResponseEntity<DriverDTO> getDriverForDriverId(@PathVariable String driverIdMain, @PathVariable String driverIdComparation){
-        return ResponseEntity.ok(driversService.getDriversSeason(driverIdMain, driverIdComparation));
+    public ResponseEntity<DriverDTO> getDriverForDriverId(@PathVariable String driverIdMain,
+                                                          @PathVariable String driverIdComparation,
+                                                          @PathVariable String years){
+        return ResponseEntity.ok(driversService.getDriversSeason(driverIdMain, driverIdComparation, years));
     }
 }

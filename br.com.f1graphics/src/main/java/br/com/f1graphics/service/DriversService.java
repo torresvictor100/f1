@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.sql.Driver;
+
 @RequiredArgsConstructor
 @Service
 @Slf4j
@@ -26,7 +28,12 @@ public class DriversService {
                 .getMrData().getDriverTable().getDrivers().get(0);
     }
 
-    public DriverDTO getDriversSeason(String driverIdMain,String driverIdComparation){
+    public DriverDTO getDriversSeason(String driverIdMain,String driverIdComparation, String years){
+
+        return getDriversSeason(getDriverForDriverId(driverIdMain), getDriverForDriverId(driverIdComparation));
+    }
+
+    private DriverDTO getDriversSeason(DriverDTO driverMain, DriverDTO driverComparation){
         return null;
     }
 
