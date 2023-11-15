@@ -13,8 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ListNamesRacingDTO  implements Serializable, DTO {
+public class RaceDTO implements Serializable, DTO {
 
-    private List<String> listNamesRacingDTO;
+    private String season;
+    private String round;
+    private String url;
+    private String raceName;
+    private CircuitDTO circuit;
+    private String date;
+    private String time;
+    private List<ResultDTO> results;
 
 }

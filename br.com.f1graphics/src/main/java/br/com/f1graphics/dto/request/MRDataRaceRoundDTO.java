@@ -13,9 +13,17 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DriverResponseDTO implements Serializable, DTO {
+public class MRDataRaceRoundDTO implements Serializable, DTO {
 
-    @JsonProperty("MRData")
-    private MRDataDriverDTO mrData;
+    private String xmlns;
+    private String series;
+    private String url;
+    private String limit;
+    private String offset;
+    private String total;
+
+    @JsonProperty("DriverTable")
+    private RaceTableRoundDTO driverTable;
+
 
 }

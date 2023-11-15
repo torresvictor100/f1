@@ -21,20 +21,5 @@ public class DriverTableDTO implements Serializable, DTO {
     @JsonProperty("Drivers")
     private List<DriverDTO> drivers;
 
-    public String getSeason() {
-        return season;
-    }
-
-    public void setSeason(String season) {
-        this.season = season;
-    }
-
-    public List<DriverDTO> getDrivers() {
-        return drivers;
-    }
-
-    public void setDrivers(List<DriverDTO> drivers) {
-        this.drivers = drivers;
-    }
 
 }
