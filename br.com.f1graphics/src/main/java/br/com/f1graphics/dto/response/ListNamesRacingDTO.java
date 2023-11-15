@@ -1,4 +1,4 @@
-package br.com.f1graphics.dto.request;
+package br.com.f1graphics.dto.response;
 
 import br.com.f1graphics.DTO;
 import lombok.AllArgsConstructor;

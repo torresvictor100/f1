@@ -13,14 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataDriverDTO implements Serializable, DTO {
-
-    private String xmlns;
-    private String series;
-    private String url;
-    private String limit;
-    private String offset;
-    private String total;
+public class MRDataDriverDTO extends MRDataDTO implements Serializable, DTO {
 
     @JsonProperty("DriverTable")
     private DriverTableDTO driverTable;

@@ -1,6 +1,6 @@
 package br.com.f1graphics.controller;
 
-import br.com.f1graphics.dto.request.ListNamesRacingDTO;
+import br.com.f1graphics.dto.response.ListNamesRacingDTO;
 import br.com.f1graphics.service.objects.RacesService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

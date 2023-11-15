@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataRaceRoundItensDTO implements Serializable, DTO {
+public class MRDataRaceRoundItensDTO extends MRDataItensDTO implements Serializable, DTO {
 
     @JsonProperty("MRData")
     private MRDataRaceRoundDTO mrData;

@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataRaceDriverIdItensDTO implements Serializable, DTO {
+public class MRDataRaceDriverIdItensDTO extends MRDataItensDTO implements Serializable, DTO {
 
     @JsonProperty("MRData")
     private MRDataRaceDriverIdDTO mrData;

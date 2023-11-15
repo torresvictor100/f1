@@ -1,6 +1,6 @@
 package br.com.f1graphics.service.impl;
 
-import br.com.f1graphics.dto.request.ListNamesRacingDTO;
+import br.com.f1graphics.dto.response.ListNamesRacingDTO;
 import br.com.f1graphics.dto.request.RaceDTO;
 import br.com.f1graphics.facade.RacesFacade;
 import br.com.f1graphics.service.objects.RacesService;

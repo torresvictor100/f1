@@ -14,12 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RaceTableDriverIdDTO implements Serializable, DTO {
+public class RaceTableDriverIdDTO extends RaceTableDTO implements Serializable, DTO {
 
-    private String season;
     private String driverId;
-
-    @JsonProperty("Races")
-    private List<RaceDTO> races;
 
 }
