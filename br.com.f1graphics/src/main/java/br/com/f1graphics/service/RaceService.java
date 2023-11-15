@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class RaceService {
 
-    public ListNamesRacingDTO getListNamesRaceForYears(String years){
+    public ListNamesRacingDTO getListNamesRaceForSeason(String season){
 
         return null;
     }

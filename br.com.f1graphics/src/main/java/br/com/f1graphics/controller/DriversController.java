@@ -20,19 +20,19 @@ public class DriversController {
 
     private final DriversService driversService;
 
-    @GetMapping("/{years}")
+    @GetMapping("/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
-            @ApiResponse(description = "get driver for years", responseCode = "200")
+            @ApiResponse(description = "get driver for season", responseCode = "200")
     })
-    public ResponseEntity<DriverTableDTO> getDriversForYears(@PathVariable String years){
-        return ResponseEntity.ok(driversService.getDriversForYears(years));
+    public ResponseEntity<DriverTableDTO> getDriversForSeason(@PathVariable String season){
+        return ResponseEntity.ok(driversService.getDriversForSeason(season));
     }
 
     @GetMapping("/driver/{driverId}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
-            @ApiResponse(description = "get driver for years", responseCode = "200")
+            @ApiResponse(description = "get driver for driverId", responseCode = "200")
     })
     public ResponseEntity<DriverDTO> getDriverForDriverId(@PathVariable String driverId){
         return ResponseEntity.ok(driversService.getDriverForDriverId(driverId));
@@ -40,14 +40,14 @@ public class DriversController {
 
 
 
-    @GetMapping("/drivers/{driverIdMain}/{driverIdComparation}/{years}")
+    @GetMapping("/drivers/{driverIdMain}/{driverIdComparation}/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
-            @ApiResponse(description = "get driver for years", responseCode = "200")
+            @ApiResponse(description = "get driver for season", responseCode = "200")
     })
     public ResponseEntity<DriverDTO> getDriversSeason(@PathVariable String driverIdMain,
                                                           @PathVariable String driverIdComparation,
-                                                          @PathVariable String years){
-        return ResponseEntity.ok(driversService.getDriversSeason(driverIdMain, driverIdComparation, years));
+                                                          @PathVariable String season){
+        return ResponseEntity.ok(driversService.getDriversSeason(driverIdMain, driverIdComparation, season));
     }
 }

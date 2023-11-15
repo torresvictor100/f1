@@ -20,13 +20,13 @@ public class RaceController {
 
     private RaceService raceService;
 
-    @GetMapping("/{years}")
+    @GetMapping("/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
             @ApiResponse(description = "get driver for years", responseCode = "200")
     })
-    public ResponseEntity<ListNamesRacingDTO> getListNameRaceDTO(@PathVariable String years){
+    public ResponseEntity<ListNamesRacingDTO> getListNameRaceDTO(@PathVariable String season){
 
-        return ResponseEntity.ok(raceService.getListNamesRaceForYears(years));
+        return ResponseEntity.ok(raceService.getListNamesRaceForSeason(season));
     }
 }
