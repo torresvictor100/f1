@@ -18,22 +18,22 @@ public class RacesServiceImpl implements RacesService {
 
     private final RacesFacade raceFacade;
 
-    private ListNamesRacesResponseDTO listNamesRacingDTO = new ListNamesRacesResponseDTO();
+    private ListNamesRacesResponseDTO listNamesRaces = new ListNamesRacesResponseDTO();
 
-    public ListNamesRacesResponseDTO getListNamesRaceForSeason(String season){
+    public ListNamesRacesResponseDTO getListNamesRacesForSeason(String season){
 
-        return getListNamesRacingDTO(raceFacade.getMRDataRacePositionItensDTOForSeason(season).getMrData().getRaceTable().getRaces());
+        return getListNamesRacesDTO(raceFacade.getMRDataRacePositionItensDTOForSeason(season).getMrData().getRaceTable().getRaces());
     }
 
-    private ListNamesRacesResponseDTO getListNamesRacingDTO(List<RaceRequestDTO> races){
+    private ListNamesRacesResponseDTO getListNamesRacesDTO(List<RaceRequestDTO> races){
 
         List<String> namesRace = new ArrayList<>();
 
         for (RaceRequestDTO race : races){
             namesRace.add(race.getRaceName());
         }
-        listNamesRacingDTO.setListNamesRacingDTO(namesRace);
+        listNamesRaces.setListNamesRacesDTO(namesRace);
 
-        return listNamesRacingDTO;
+        return listNamesRaces;
     }
 }

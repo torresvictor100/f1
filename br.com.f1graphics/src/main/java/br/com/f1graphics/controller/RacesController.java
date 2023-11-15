@@ -26,6 +26,6 @@ public class RacesController {
     })
     public ResponseEntity<ListNamesRacesResponseDTO> getListNameRacesDTO(@PathVariable String season){
 
-        return ResponseEntity.ok(racesService.getListNamesRaceForSeason(season));
+        return ResponseEntity.ok(racesService.getListNamesRacesForSeason(season));
     }
 }

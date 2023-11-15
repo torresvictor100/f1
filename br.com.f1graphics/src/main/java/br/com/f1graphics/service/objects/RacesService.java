@@ -4,7 +4,7 @@ import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
 
 public interface RacesService {
 
-    ListNamesRacesResponseDTO getListNamesRaceForSeason(String season);
+    ListNamesRacesResponseDTO getListNamesRacesForSeason(String season);
 
 
 }

@@ -36,7 +36,7 @@ public class DriversServiceImpl implements DriversService {
 
         return getDriversSeason(getDriverForDriverId(driverIdMain),
                 getDriverForDriverId(driverIdComparation),
-                raceService.getListNamesRaceForSeason(season), season);
+                raceService.getListNamesRacesForSeason(season), season);
     }
 
 
