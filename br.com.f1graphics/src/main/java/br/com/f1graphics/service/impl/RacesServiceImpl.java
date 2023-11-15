@@ -1,5 +1,6 @@
 package br.com.f1graphics.service.impl;
 
+import br.com.f1graphics.dto.factory.F1GraphicsFactory;
 import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
 import br.com.f1graphics.dto.request.RaceRequestDTO;
 import br.com.f1graphics.facade.RacesFacade;

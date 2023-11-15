@@ -44,7 +44,7 @@ public class DriversController {
     @GetMapping("/drivers/{driverIdMain}/{driverIdComparation}/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
-            @ApiResponse(description = "get championship for drivers    ", responseCode = "200")
+            @ApiResponse(description = "get championship for drivers ", responseCode = "200")
     })
     public ResponseEntity<ChampionshipResponseDTO> getDriversSeason(@PathVariable String driverIdMain,
                                                                     @PathVariable String driverIdComparation,

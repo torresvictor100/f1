@@ -1,5 +1,6 @@
 package br.com.f1graphics.service.impl;
 
+import br.com.f1graphics.dto.factory.F1GraphicsFactory;
 import br.com.f1graphics.dto.request.*;
 import br.com.f1graphics.dto.response.ChampionshipResponseDTO;
 import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
@@ -18,6 +19,8 @@ public class DriversServiceImpl implements DriversService {
     private final DriversFacade driversFacade;
 
     private final RacesService raceService;
+
+    private static F1GraphicsFactory factory;
 
     public DriverTableRequestDTO getDriversForSeason(String season){
         return driversFacade.getF1DriversForSeason(season)
@@ -45,10 +48,9 @@ public class DriversServiceImpl implements DriversService {
             , ListNamesRacesResponseDTO listNamesRacingDTO , String season){
 
         RaceTableDriverIdRequestDTO driveMainResults = getDriverResultsForDriverId(driverMain.getDriverId(), season);
-
         RaceTableDriverIdRequestDTO driverComparationResults = getDriverResultsForDriverId(driverComparation.getDriverId(), season);
 
-        return null;
+        return factory.createChampionshipResponseDTO(season);
     }
 
 
