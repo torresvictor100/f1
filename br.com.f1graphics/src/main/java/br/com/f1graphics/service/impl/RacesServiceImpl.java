@@ -1,8 +1,9 @@
-package br.com.f1graphics.service;
+package br.com.f1graphics.service.impl;
 
 import br.com.f1graphics.dto.request.ListNamesRacingDTO;
 import br.com.f1graphics.dto.request.RaceDTO;
-import br.com.f1graphics.facade.RaceFacade;
+import br.com.f1graphics.facade.RacesFacade;
+import br.com.f1graphics.service.objects.RacesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class RaceService {
+public class RacesServiceImpl implements RacesService {
 
-    private final RaceFacade raceFacade;
-
+    private final RacesFacade raceFacade;
 
     private ListNamesRacingDTO listNamesRacingDTO = new ListNamesRacingDTO();
 

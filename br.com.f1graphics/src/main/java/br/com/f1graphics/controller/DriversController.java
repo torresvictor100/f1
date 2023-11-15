@@ -2,7 +2,7 @@ package br.com.f1graphics.controller;
 
 import br.com.f1graphics.dto.request.DriverDTO;
 import br.com.f1graphics.dto.request.DriverTableDTO;
-import br.com.f1graphics.service.DriversService;
+import br.com.f1graphics.service.objects.DriversService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class DriversController {
     @GetMapping("/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
-            @ApiResponse(description = "get driver for season", responseCode = "200")
+            @ApiResponse(description = "get drivers for season", responseCode = "200")
     })
     public ResponseEntity<DriverTableDTO> getDriversForSeason(@PathVariable String season){
         return ResponseEntity.ok(driversService.getDriversForSeason(season));
@@ -43,7 +43,7 @@ public class DriversController {
     @GetMapping("/drivers/{driverIdMain}/{driverIdComparation}/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
-            @ApiResponse(description = "get driver for season", responseCode = "200")
+            @ApiResponse(description = "get comparation drivers for season", responseCode = "200")
     })
     public ResponseEntity<DriverDTO> getDriversSeason(@PathVariable String driverIdMain,
                                                           @PathVariable String driverIdComparation,

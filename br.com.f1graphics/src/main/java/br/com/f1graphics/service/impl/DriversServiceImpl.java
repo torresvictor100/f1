@@ -1,22 +1,21 @@
-package br.com.f1graphics.service;
+package br.com.f1graphics.service.impl;
 
 import br.com.f1graphics.dto.request.*;
 import br.com.f1graphics.facade.DriversFacade;
+import br.com.f1graphics.service.objects.DriversService;
+import br.com.f1graphics.service.objects.RacesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.sql.Driver;
-import java.util.List;
-
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class DriversService {
+public class DriversServiceImpl implements DriversService {
 
     private final DriversFacade driversFacade;
 
-    private final RaceService raceService;
+    private final RacesService raceService;
 
     public DriverTableDTO getDriversForSeason(String season){
         return driversFacade.getF1DriversForSeason(season)

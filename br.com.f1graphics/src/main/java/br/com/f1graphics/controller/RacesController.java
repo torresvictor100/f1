@@ -1,8 +1,7 @@
 package br.com.f1graphics.controller;
 
-import br.com.f1graphics.dto.request.DriverDTO;
 import br.com.f1graphics.dto.request.ListNamesRacingDTO;
-import br.com.f1graphics.service.RaceService;
+import br.com.f1graphics.service.objects.RacesService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -16,17 +15,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Slf4j
 @CrossOrigin(origins = "*")
-public class RaceController {
+public class RacesController {
 
-    private final RaceService raceService;
+    private final RacesService racesService;
 
     @GetMapping("/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
             @ApiResponse(description = "get driver for season", responseCode = "200")
     })
-    public ResponseEntity<ListNamesRacingDTO> getListNameRaceDTO(@PathVariable String season){
+    public ResponseEntity<ListNamesRacingDTO> getListNameRacesDTO(@PathVariable String season){
 
-        return ResponseEntity.ok(raceService.getListNamesRaceForSeason(season));
+        return ResponseEntity.ok(racesService.getListNamesRaceForSeason(season));
     }
 }
