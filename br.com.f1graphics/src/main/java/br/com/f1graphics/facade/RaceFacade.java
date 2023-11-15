@@ -12,7 +12,7 @@ public class RaceFacade {
 
     private final RequestUtil requestUtil;
 
-    public MRDataRacePositionItensDTO getListNamesRaceForSeason(String season){
+    public MRDataRacePositionItensDTO getMRDataRacePositionItensDTOForSeason(String season){
 
         return requestUtil.get("/"+season+"/results/1.json"
                 , MRDataRacePositionItensDTO.class);

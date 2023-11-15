@@ -1,6 +1,7 @@
 package br.com.f1graphics.dto.request;
 
 import br.com.f1graphics.DTO;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,8 @@ public class RaceTablePositionDTO implements Serializable, DTO {
 
     private String season;
     private String position;
+
+    @JsonProperty("Races")
     private List<RaceDTO> races;
 
 }

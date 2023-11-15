@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 public class RaceController {
 
-    private RaceService raceService;
+    private final RaceService raceService;
 
     @GetMapping("/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
-            @ApiResponse(description = "get driver for years", responseCode = "200")
+            @ApiResponse(description = "get driver for season", responseCode = "200")
     })
     public ResponseEntity<ListNamesRacingDTO> getListNameRaceDTO(@PathVariable String season){
 

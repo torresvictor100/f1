@@ -1,6 +1,7 @@
 package br.com.f1graphics.dto.request;
 
 import br.com.f1graphics.DTO;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,11 @@ public class FastestLapDTO implements Serializable, DTO {
 
     private String rank;
     private String lap;
+
+    @JsonProperty("Time")
     private TimeDTO time;
+
+    @JsonProperty("AverageSpeed")
     private AverageSpeedDTO averageSpeed;
 
 }

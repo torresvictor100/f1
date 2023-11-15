@@ -22,8 +22,8 @@ public class MRDataRacePositionDTO implements Serializable, DTO {
     private String offset;
     private String total;
 
-    @JsonProperty("DriverTable")
-    private RaceTablePositionDTO driverTable;
+    @JsonProperty("RaceTable")
+    private RaceTablePositionDTO raceTable;
 
 
 }
