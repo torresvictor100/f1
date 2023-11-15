@@ -1,5 +1,6 @@
 package br.com.f1graphics.controller;
 
+import br.com.f1graphics.dto.request.DriverDTO;
 import br.com.f1graphics.dto.request.DriverTableDTO;
 import br.com.f1graphics.dto.request.MRDataDTO;
 import br.com.f1graphics.dto.request.MRDataItensDTO;
@@ -26,7 +27,16 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get driver for years", responseCode = "200")
     })
-    public ResponseEntity<DriverTableDTO> getDriverForYears(@PathVariable String years){
+    public ResponseEntity<DriverTableDTO> getDriversForYears(@PathVariable String years){
         return ResponseEntity.ok(driversService.getDriversForYears(years));
+    }
+
+    @GetMapping("/driver/{driverId}")
+    @ResponseStatus(code = HttpStatus.OK)
+    @Operation(responses = {
+            @ApiResponse(description = "get driver for years", responseCode = "200")
+    })
+    public ResponseEntity<DriverDTO> getDriverForDriverId(@PathVariable String driverId){
+        return ResponseEntity.ok(driversService.getDriverForDriverId(driverId));
     }
 }
