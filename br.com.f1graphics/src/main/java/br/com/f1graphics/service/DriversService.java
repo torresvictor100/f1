@@ -16,6 +16,8 @@ public class DriversService {
 
     private final DriversFacade driversFacade;
 
+    private final RaceService raceService;
+
     public DriverTableDTO getDriversForYears(String years){
         return driversFacade.getF1DriversForYears(years)
                 .getMrData().getDriverTable();
@@ -28,14 +30,14 @@ public class DriversService {
 
     public DriverDTO getDriversSeason(String driverIdMain,String driverIdComparation, String years){
 
-        return getDriversSeason(getDriverForDriverId(driverIdMain), getDriverForDriverId(driverIdComparation));
+        return getDriversSeason(getDriverForDriverId(driverIdMain),
+                getDriverForDriverId(driverIdComparation),
+                raceService.getListNamesRaceForYears(years));
     }
 
-    public ListaRacingDTO getListaRacingDTO(String years){
 
-    }
 
-    private DriverDTO getDriversSeason(DriverDTO driverMain, DriverDTO driverComparation){
+    private DriverDTO getDriversSeason(DriverDTO driverMain, DriverDTO driverComparation, ListNamesRacingDTO listNamesRacingDTO){
         return null;
     }
 
