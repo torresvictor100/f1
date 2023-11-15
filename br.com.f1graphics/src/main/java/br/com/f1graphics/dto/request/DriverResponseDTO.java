@@ -16,13 +16,13 @@ import java.io.Serializable;
 public class DriverResponseDTO implements Serializable, DTO {
 
     @JsonProperty("MRData")
-    private MRDataDTO mrData;
+    private MRDataDriverDTO mrData;
 
-    public MRDataDTO getMrData() {
+    public MRDataDriverDTO getMrData() {
         return mrData;
     }
 
-    public void setMrData(MRDataDTO mrData) {
+    public void setMrData(MRDataDriverDTO mrData) {
         this.mrData = mrData;
     }
 }

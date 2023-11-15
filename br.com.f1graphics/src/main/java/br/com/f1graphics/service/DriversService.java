@@ -1,15 +1,13 @@
 package br.com.f1graphics.service;
 
-import br.com.f1graphics.dto.request.DriverDTO;
-import br.com.f1graphics.dto.request.DriverTableDTO;
-import br.com.f1graphics.dto.request.MRDataDTO;
-import br.com.f1graphics.dto.request.MRDataItensDTO;
+import br.com.f1graphics.dto.request.*;
 import br.com.f1graphics.facade.DriversFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.Driver;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -33,8 +31,13 @@ public class DriversService {
         return getDriversSeason(getDriverForDriverId(driverIdMain), getDriverForDriverId(driverIdComparation));
     }
 
+    public ListaRacingDTO getListaRacingDTO(String years){
+
+    }
+
     private DriverDTO getDriversSeason(DriverDTO driverMain, DriverDTO driverComparation){
         return null;
     }
+
 
 }

@@ -2,8 +2,6 @@ package br.com.f1graphics.controller;
 
 import br.com.f1graphics.dto.request.DriverDTO;
 import br.com.f1graphics.dto.request.DriverTableDTO;
-import br.com.f1graphics.dto.request.MRDataDTO;
-import br.com.f1graphics.dto.request.MRDataItensDTO;
 import br.com.f1graphics.service.DriversService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,6 +36,17 @@ public class DriversController {
     })
     public ResponseEntity<DriverDTO> getDriverForDriverId(@PathVariable String driverId){
         return ResponseEntity.ok(driversService.getDriverForDriverId(driverId));
+    }
+
+    @GetMapping("/drivers/{driverIdMain}/{driverIdComparation}/{years}")
+    @ResponseStatus(code = HttpStatus.OK)
+    @Operation(responses = {
+            @ApiResponse(description = "get driver for years", responseCode = "200")
+    })
+    public ResponseEntity<DriverDTO> getListaRacingDTO(@PathVariable String driverIdMain,
+                                                          @PathVariable String driverIdComparation,
+                                                          @PathVariable String years){
+        return ResponseEntity.ok(driversService.getDriversSeason(driverIdMain, driverIdComparation, years));
     }
 
     @GetMapping("/drivers/{driverIdMain}/{driverIdComparation}/{years}")

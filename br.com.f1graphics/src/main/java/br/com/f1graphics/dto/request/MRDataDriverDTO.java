@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataDTO implements Serializable, DTO {
+public class MRDataDriverDTO implements Serializable, DTO {
 
     private String xmlns;
     private String series;
