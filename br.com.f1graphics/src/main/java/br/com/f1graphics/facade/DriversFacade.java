@@ -1,6 +1,9 @@
 package br.com.f1graphics.facade;
 
 import br.com.f1graphics.dto.request.MRDataDriverItensDTO;
+import br.com.f1graphics.dto.request.MRDataRaceDriverIdItensDTO;
+import br.com.f1graphics.dto.request.MRDataRaceRoundDTO;
+import br.com.f1graphics.dto.request.MRDataRaceRoundItensDTO;
 import br.com.f1graphics.util.RequestUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,6 +18,12 @@ public class DriversFacade {
 
         return requestUtil.get("/"+season+"/drivers.json?limit=150"
                 , MRDataDriverItensDTO.class);
+    }
+
+    public MRDataRaceDriverIdItensDTO getDriverResultsForDriverId(String season, String driver){
+
+        return requestUtil.get("/"+driver+"/drivers/"+season+"/results.json"
+                , MRDataRaceDriverIdItensDTO.class);
     }
 
     public MRDataDriverItensDTO getDriverForDriverId(String driverId){

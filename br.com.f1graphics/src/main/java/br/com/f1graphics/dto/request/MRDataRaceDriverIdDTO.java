@@ -1,3 +1,4 @@
+
 package br.com.f1graphics.dto.request;
 
 import br.com.f1graphics.DTO;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataRaceRoundDTO implements Serializable, DTO {
+public class MRDataRaceDriverIdDTO implements Serializable, DTO {
 
     private String xmlns;
     private String series;
@@ -23,7 +24,7 @@ public class MRDataRaceRoundDTO implements Serializable, DTO {
     private String total;
 
     @JsonProperty("RaceTable")
-    private RaceTableRoundDTO raceTable;
+    private RaceTableDriverIdDTO raceTable;
 
 
 }

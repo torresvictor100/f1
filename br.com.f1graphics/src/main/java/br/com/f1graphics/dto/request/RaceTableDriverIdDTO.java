@@ -8,22 +8,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataRaceRoundDTO implements Serializable, DTO {
+public class RaceTableDriverIdDTO implements Serializable, DTO {
 
-    private String xmlns;
-    private String series;
-    private String url;
-    private String limit;
-    private String offset;
-    private String total;
+    private String season;
+    private String driverId;
 
-    @JsonProperty("RaceTable")
-    private RaceTableRoundDTO raceTable;
-
+    @JsonProperty("Races")
+    private List<RaceDTO> races;
 
 }

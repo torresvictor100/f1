@@ -28,16 +28,25 @@ public class DriversService {
                 .getMrData().getDriverTable().getDrivers().get(0);
     }
 
+    public RaceTableDriverIdDTO getDriverResultsForDriverId(String driverId, String driver){
+        return driversFacade.getDriverResultsForDriverId(driverId, driver).getMrData().getRaceTable();
+    }
+
     public DriverDTO getDriversSeason(String driverIdMain,String driverIdComparation, String season){
 
         return getDriversSeason(getDriverForDriverId(driverIdMain),
                 getDriverForDriverId(driverIdComparation),
-                raceService.getListNamesRaceForSeason(season));
+                raceService.getListNamesRaceForSeason(season), season);
     }
 
 
+    private DriverDTO getDriversSeason(DriverDTO driverMain, DriverDTO driverComparation
+            , ListNamesRacingDTO listNamesRacingDTO , String season){
 
-    private DriverDTO getDriversSeason(DriverDTO driverMain, DriverDTO driverComparation, ListNamesRacingDTO listNamesRacingDTO){
+        RaceTableDriverIdDTO driveMainResults = getDriverResultsForDriverId(driverMain.getDriverId(), season);
+
+        RaceTableDriverIdDTO driverComparationResults = getDriverResultsForDriverId(driverComparation.getDriverId(), season);
+
         return null;
     }
 
