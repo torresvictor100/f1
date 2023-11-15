@@ -8,21 +8,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DriverDTO implements Serializable, DTO {
+public class DriverTableRequestDTO implements Serializable, DTO {
 
-    @JsonProperty("driverId")
-    private String driverId;
-    private String url;
-    private String givenName;
-    private String familyName;
-    private String dateOfBirth;
-    private String nationality;
+    private String season;
+
+    @JsonProperty("Drivers")
+    private List<DriverRequestDTO> drivers;
+
 
 }
-
-

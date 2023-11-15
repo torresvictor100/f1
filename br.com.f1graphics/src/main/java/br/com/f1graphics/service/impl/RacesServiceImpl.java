@@ -1,7 +1,7 @@
 package br.com.f1graphics.service.impl;
 
-import br.com.f1graphics.dto.response.ListNamesRacingDTO;
-import br.com.f1graphics.dto.request.RaceDTO;
+import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
+import br.com.f1graphics.dto.request.RaceRequestDTO;
 import br.com.f1graphics.facade.RacesFacade;
 import br.com.f1graphics.service.objects.RacesService;
 import lombok.RequiredArgsConstructor;
@@ -18,18 +18,18 @@ public class RacesServiceImpl implements RacesService {
 
     private final RacesFacade raceFacade;
 
-    private ListNamesRacingDTO listNamesRacingDTO = new ListNamesRacingDTO();
+    private ListNamesRacesResponseDTO listNamesRacingDTO = new ListNamesRacesResponseDTO();
 
-    public ListNamesRacingDTO getListNamesRaceForSeason(String season){
+    public ListNamesRacesResponseDTO getListNamesRaceForSeason(String season){
 
         return getListNamesRacingDTO(raceFacade.getMRDataRacePositionItensDTOForSeason(season).getMrData().getRaceTable().getRaces());
     }
 
-    private ListNamesRacingDTO getListNamesRacingDTO(List<RaceDTO> races){
+    private ListNamesRacesResponseDTO getListNamesRacingDTO(List<RaceRequestDTO> races){
 
         List<String> namesRace = new ArrayList<>();
 
-        for (RaceDTO race : races){
+        for (RaceRequestDTO race : races){
             namesRace.add(race.getRaceName());
         }
         listNamesRacingDTO.setListNamesRacingDTO(namesRace);

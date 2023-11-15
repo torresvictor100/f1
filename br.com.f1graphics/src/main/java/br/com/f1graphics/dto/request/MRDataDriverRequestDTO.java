@@ -1,6 +1,7 @@
 package br.com.f1graphics.dto.request;
 
 import br.com.f1graphics.DTO;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +13,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AverageSpeedDTO implements Serializable, DTO {
+public class MRDataDriverRequestDTO extends MRDataRequestRequestDTO implements Serializable, DTO {
 
-    private String units;
-    private String speed;
+    @JsonProperty("DriverTable")
+    private DriverTableRequestDTO driverTable;
+
+
 }

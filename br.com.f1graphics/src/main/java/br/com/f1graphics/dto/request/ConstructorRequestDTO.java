@@ -1,7 +1,6 @@
 package br.com.f1graphics.dto.request;
 
 import br.com.f1graphics.DTO;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,10 +12,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataRaceRoundDTO extends MRDataDTO implements Serializable, DTO {
+public class ConstructorRequestDTO implements Serializable, DTO {
 
-    @JsonProperty("RaceTable")
-    private RaceTableRoundDTO raceTable;
-
+    private String constructorId;
+    private String url;
+    private String name;
+    private String nationality;
 
 }

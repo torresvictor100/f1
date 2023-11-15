@@ -1,7 +1,7 @@
 package br.com.f1graphics.controller;
 
-import br.com.f1graphics.dto.request.DriverDTO;
-import br.com.f1graphics.dto.request.DriverTableDTO;
+import br.com.f1graphics.dto.request.DriverRequestDTO;
+import br.com.f1graphics.dto.request.DriverTableRequestDTO;
 import br.com.f1graphics.service.objects.DriversService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,7 +25,7 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get drivers for season", responseCode = "200")
     })
-    public ResponseEntity<DriverTableDTO> getDriversForSeason(@PathVariable String season){
+    public ResponseEntity<DriverTableRequestDTO> getDriversForSeason(@PathVariable String season){
         return ResponseEntity.ok(driversService.getDriversForSeason(season));
     }
 
@@ -34,7 +34,7 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get driver for driverId", responseCode = "200")
     })
-    public ResponseEntity<DriverDTO> getDriverForDriverId(@PathVariable String driverId){
+    public ResponseEntity<DriverRequestDTO> getDriverForDriverId(@PathVariable String driverId){
         return ResponseEntity.ok(driversService.getDriverForDriverId(driverId));
     }
 
@@ -45,9 +45,9 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get comparation drivers for season", responseCode = "200")
     })
-    public ResponseEntity<DriverDTO> getDriversSeason(@PathVariable String driverIdMain,
-                                                          @PathVariable String driverIdComparation,
-                                                          @PathVariable String season){
+    public ResponseEntity<DriverRequestDTO> getDriversSeason(@PathVariable String driverIdMain,
+                                                             @PathVariable String driverIdComparation,
+                                                             @PathVariable String season){
         return ResponseEntity.ok(driversService.getDriversSeason(driverIdMain, driverIdComparation, season));
     }
 }

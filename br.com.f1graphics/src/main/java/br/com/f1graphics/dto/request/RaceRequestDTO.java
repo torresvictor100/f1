@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RaceDTO implements Serializable, DTO {
+public class RaceRequestDTO implements Serializable, DTO {
 
     private String season;
     private String round;
@@ -22,11 +22,11 @@ public class RaceDTO implements Serializable, DTO {
     private String raceName;
 
     @JsonProperty("Circuit")
-    private CircuitDTO circuit;
+    private CircuitRequestDTO circuit;
     private String date;
     private String time;
 
     @JsonProperty("Results")
-    private List<ResultDTO> results;
+    private List<ResultRequestDTO> results;
 
 }

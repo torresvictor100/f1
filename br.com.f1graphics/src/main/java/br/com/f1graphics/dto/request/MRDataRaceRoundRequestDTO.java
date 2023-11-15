@@ -8,14 +8,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RaceTableDriverIdDTO extends RaceTableDTO implements Serializable, DTO {
+public class MRDataRaceRoundRequestDTO extends MRDataRequestRequestDTO implements Serializable, DTO {
 
-    private String driverId;
+    @JsonProperty("RaceTable")
+    private RaceTableRoundRequestDTO raceTable;
+
 
 }

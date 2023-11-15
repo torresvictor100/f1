@@ -1,16 +1,16 @@
 package br.com.f1graphics.service.objects;
 
-import br.com.f1graphics.dto.request.DriverDTO;
-import br.com.f1graphics.dto.request.DriverTableDTO;
-import br.com.f1graphics.dto.request.RaceTableDriverIdDTO;
+import br.com.f1graphics.dto.request.DriverRequestDTO;
+import br.com.f1graphics.dto.request.DriverTableRequestDTO;
+import br.com.f1graphics.dto.request.RaceTableDriverIdRequestDTO;
 
 public interface DriversService {
 
-    DriverTableDTO getDriversForSeason(String season);
+    DriverTableRequestDTO getDriversForSeason(String season);
 
-    DriverDTO getDriverForDriverId(String driverId);
+    DriverRequestDTO getDriverForDriverId(String driverId);
 
-    RaceTableDriverIdDTO getDriverResultsForDriverId(String driverId, String driver);
+    RaceTableDriverIdRequestDTO getDriverResultsForDriverId(String driverId, String driver);
 
-    DriverDTO getDriversSeason(String driverIdMain,String driverIdComparation, String season);
+    DriverRequestDTO getDriversSeason(String driverIdMain, String driverIdComparation, String season);
 }

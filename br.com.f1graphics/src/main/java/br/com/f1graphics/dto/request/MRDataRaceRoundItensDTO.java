@@ -13,9 +13,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataRaceRoundItensDTO extends MRDataItensDTO implements Serializable, DTO {
+public class MRDataRaceRoundItensDTO extends MRDataItensRequestDTO implements Serializable, DTO {
 
     @JsonProperty("MRData")
-    private MRDataRaceRoundDTO mrData;
+    private MRDataRaceRoundRequestDTO mrData;
 
 }

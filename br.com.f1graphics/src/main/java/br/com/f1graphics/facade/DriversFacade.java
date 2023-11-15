@@ -1,9 +1,7 @@
 package br.com.f1graphics.facade;
 
-import br.com.f1graphics.dto.request.MRDataDriverItensDTO;
-import br.com.f1graphics.dto.request.MRDataRaceDriverIdItensDTO;
-import br.com.f1graphics.dto.request.MRDataRaceRoundDTO;
-import br.com.f1graphics.dto.request.MRDataRaceRoundItensDTO;
+import br.com.f1graphics.dto.request.MRDataDriverItensRequestDTO;
+import br.com.f1graphics.dto.request.MRDataRaceDriverIdItensRequestDTO;
 import br.com.f1graphics.util.RequestUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,21 +12,21 @@ public class DriversFacade {
 
     private final RequestUtil requestUtil;
 
-    public MRDataDriverItensDTO getF1DriversForSeason(String season){
+    public MRDataDriverItensRequestDTO getF1DriversForSeason(String season){
 
         return requestUtil.get("/"+season+"/drivers.json?limit=150"
-                , MRDataDriverItensDTO.class);
+                , MRDataDriverItensRequestDTO.class);
     }
 
-    public MRDataRaceDriverIdItensDTO getDriverResultsForDriverId(String season, String driver){
+    public MRDataRaceDriverIdItensRequestDTO getDriverResultsForDriverId(String season, String driver){
 
         return requestUtil.get("/"+driver+"/drivers/"+season+"/results.json"
-                , MRDataRaceDriverIdItensDTO.class);
+                , MRDataRaceDriverIdItensRequestDTO.class);
     }
 
-    public MRDataDriverItensDTO getDriverForDriverId(String driverId){
+    public MRDataDriverItensRequestDTO getDriverForDriverId(String driverId){
 
         return requestUtil.get("/drivers/"+driverId+".json?limit=150"
-                , MRDataDriverItensDTO.class);
+                , MRDataDriverItensRequestDTO.class);
     }
 }

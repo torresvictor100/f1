@@ -1,19 +1,15 @@
 package br.com.f1graphics.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-public abstract class RaceTableDTO {
+public abstract class RaceTableRequestDTO {
 
     String season;
 
     @JsonProperty("Races")
-    List<RaceDTO> races;
+    List<RaceRequestDTO> races;
 
     public String getSeason() {
         return season;
@@ -23,11 +19,11 @@ public abstract class RaceTableDTO {
         this.season = season;
     }
 
-    public List<RaceDTO> getRaces() {
+    public List<RaceRequestDTO> getRaces() {
         return races;
     }
 
-    public void setRaces(List<RaceDTO> races) {
+    public void setRaces(List<RaceRequestDTO> races) {
         this.races = races;
     }
 }

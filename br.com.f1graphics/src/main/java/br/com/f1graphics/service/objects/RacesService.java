@@ -1,10 +1,10 @@
 package br.com.f1graphics.service.objects;
 
-import br.com.f1graphics.dto.response.ListNamesRacingDTO;
+import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
 
 public interface RacesService {
 
-    ListNamesRacingDTO getListNamesRaceForSeason(String season);
+    ListNamesRacesResponseDTO getListNamesRaceForSeason(String season);
 
 
 }

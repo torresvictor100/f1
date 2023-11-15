@@ -13,10 +13,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataRacePositionDTO extends MRDataDTO implements Serializable, DTO {
+public class CircuitRequestDTO implements Serializable, DTO {
 
-    @JsonProperty("RaceTable")
-    private RaceTablePositionDTO raceTable;
+    private String circuitId;
+    private String url;
+    private String circuitName;
 
+    @JsonProperty("Location")
+    private LocationRequestDTO location;
 
 }

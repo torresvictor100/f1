@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ResultDTO implements Serializable, DTO {
+public class ResultRequestDTO implements Serializable, DTO {
 
     private String number;
     private String position;
@@ -21,18 +21,18 @@ public class ResultDTO implements Serializable, DTO {
     private String points;
 
     @JsonProperty("Driver")
-    private DriverDTO driver;
+    private DriverRequestDTO driver;
 
     @JsonProperty("Constructor")
-    private ConstructorDTO constructor;
+    private ConstructorRequestDTO constructor;
     private String grid;
     private String laps;
     private String status;
 
     @JsonProperty("Time")
-    private TimeDTO time;
+    private TimeRequestDTO time;
 
     @JsonProperty("FastestLap")
-    private FastestLapDTO fastestLap;
+    private FastestLapRequestDTO fastestLap;
 
 }

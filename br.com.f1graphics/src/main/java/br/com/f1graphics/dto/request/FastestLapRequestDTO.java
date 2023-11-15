@@ -13,15 +13,15 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FastestLapDTO implements Serializable, DTO {
+public class FastestLapRequestDTO implements Serializable, DTO {
 
     private String rank;
     private String lap;
 
     @JsonProperty("Time")
-    private TimeDTO time;
+    private TimeRequestDTO time;
 
     @JsonProperty("AverageSpeed")
-    private AverageSpeedDTO averageSpeed;
+    private AverageSpeedRequestDTO averageSpeed;
 
 }

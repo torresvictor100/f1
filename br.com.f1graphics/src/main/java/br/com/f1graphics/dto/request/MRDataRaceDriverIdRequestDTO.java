@@ -14,10 +14,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataRaceDriverIdDTO extends MRDataDTO implements Serializable, DTO {
+public class MRDataRaceDriverIdRequestDTO extends MRDataRequestRequestDTO implements Serializable, DTO {
 
     @JsonProperty("RaceTable")
-    private RaceTableDriverIdDTO raceTable;
+    private RaceTableDriverIdRequestDTO raceTable;
 
 
 }
