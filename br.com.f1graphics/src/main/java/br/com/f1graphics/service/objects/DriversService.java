@@ -3,6 +3,7 @@ package br.com.f1graphics.service.objects;
 import br.com.f1graphics.dto.request.DriverRequestDTO;
 import br.com.f1graphics.dto.request.DriverTableRequestDTO;
 import br.com.f1graphics.dto.request.RaceTableDriverIdRequestDTO;
+import br.com.f1graphics.dto.response.ChampionshipResponseDTO;
 
 public interface DriversService {
 
@@ -12,5 +13,5 @@ public interface DriversService {
 
     RaceTableDriverIdRequestDTO getDriverResultsForDriverId(String driverId, String driver);
 
-    DriverRequestDTO getDriversSeason(String driverIdMain, String driverIdComparation, String season);
+    ChampionshipResponseDTO getDriversSeason(String driverIdMain, String driverIdComparation, String season);
 }

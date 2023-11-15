@@ -1,6 +1,7 @@
 package br.com.f1graphics.service.impl;
 
 import br.com.f1graphics.dto.request.*;
+import br.com.f1graphics.dto.response.ChampionshipResponseDTO;
 import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
 import br.com.f1graphics.facade.DriversFacade;
 import br.com.f1graphics.service.objects.DriversService;
@@ -32,7 +33,7 @@ public class DriversServiceImpl implements DriversService {
         return driversFacade.getDriverResultsForDriverId(driverId, driver).getMrData().getRaceTable();
     }
 
-    public DriverRequestDTO getDriversSeason(String driverIdMain, String driverIdComparation, String season){
+    public ChampionshipResponseDTO getDriversSeason(String driverIdMain, String driverIdComparation, String season){
 
         return getDriversSeason(getDriverForDriverId(driverIdMain),
                 getDriverForDriverId(driverIdComparation),
@@ -40,7 +41,7 @@ public class DriversServiceImpl implements DriversService {
     }
 
 
-    private DriverRequestDTO getDriversSeason(DriverRequestDTO driverMain, DriverRequestDTO driverComparation
+    private ChampionshipResponseDTO getDriversSeason(DriverRequestDTO driverMain, DriverRequestDTO driverComparation
             , ListNamesRacesResponseDTO listNamesRacingDTO , String season){
 
         RaceTableDriverIdRequestDTO driveMainResults = getDriverResultsForDriverId(driverMain.getDriverId(), season);
