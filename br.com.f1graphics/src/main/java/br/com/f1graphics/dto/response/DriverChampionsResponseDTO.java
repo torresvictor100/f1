@@ -28,8 +28,11 @@ public class DriverChampionsResponseDTO implements Serializable, DTO {
     private String dateOfBirth;
     private String nationality;
 
-    @JsonProperty("ResultChampionshipTableResponseDTO")
-    private ResultChampionshipTableResponseDTO resultChampionshipTableResponseDTO;
+    @JsonProperty("ResultChampionshipResponseDTO")
+    private ResultChampionshipResponseDTO resultChampionshipResponseDTO;
+
+    @JsonProperty("ResultRace")
+    private ResultRaceResponseDTO resultRaceResponse;
 
 }
 

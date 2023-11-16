@@ -73,13 +73,40 @@ public class DriversServiceImpl implements DriversService {
         private RaceChampionsResponseDTO getRaceChampionsResponseDTO(String season, ListDriversIdRequestDTO listDriversId, String namesRace, int round){
 
 
-        return  factory.createRaceChampionsResponseDTO(getRaceResultsForRound(season,round), getRaceResultsForRound(season,round).getCircuit(), null);
+        RaceResponseDTO race = getRaceResultsForRound(season,round);
+
+        List<DriverChampionsResponseDTO> driverListChampionsResponse = new ArrayList<>();
+
+            for (String driversId: listDriversId.getListDriversIdRequestDTO()) {
+                driverListChampionsResponse.add(getDriverChampionsResponseDTO(driversId, race));
+            }
+
+        return  factory.createRaceChampionsResponseDTO(race, race.getCircuit(), driverListChampionsResponse);
 
     }
 
+        private DriverChampionsResponseDTO getDriverChampionsResponseDTO(String driversId, RaceResponseDTO race){
+
+        int resultInt = 0;
+
+        for(ResultResponseDTO result :race.getResults()){
+
+            if(race.getResults().get(resultInt).getDriver().getDriverId().equals(driversId)){
+                return factory.createDriverChampionsResponseDTO(race.getResults().get(resultInt),getResultRaceResponseDTO(race.getResults().get(resultInt)), null);
+            }
+            resultInt++;
+            }
+
+        return null;
+        }
+
+        private ResultRaceResponseDTO getResultRaceResponseDTO(ResultResponseDTO resultRaceResponseDTO){
+
+        return factory.createResultRaceResponseDTO(resultRaceResponseDTO);
+        }
+
         public RaceResponseDTO getRaceResultsForRound(String season , int round){
 
-           RaceRequestDTO raceRequestDTO= driversFacade.getRaceResultsForRound(season, String.valueOf(round)).getMrData().getRaceTable().getRaces().get(0);
 
         return factory.createRaceResponseDTO(driversFacade.getRaceResultsForRound(season, String.valueOf(round)).getMrData().getRaceTable().getRaces().get(0));
     }

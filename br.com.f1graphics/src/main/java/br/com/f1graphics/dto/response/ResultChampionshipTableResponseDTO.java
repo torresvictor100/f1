@@ -14,8 +14,7 @@ import java.io.Serializable;
 @Builder
 public class ResultChampionshipTableResponseDTO implements Serializable {
 
-    @JsonProperty("ResultChampionshipResponseDTO")
-    private ResultChampionshipResponseDTO resultChampionshipResponseDTO;
+
 
     @JsonProperty("ResultRaceResponseDTO")
     private ResultRaceResponseDTO resultRaceResponseDTO;
