@@ -325,8 +325,21 @@ public class F1GraphicsFactory {
         validateAndSetIfNotNull(resultRaceResponse.getGrid(), resultRaceResponse::setGrid);
         validateAndSetIfNotNull(resultResponseDTO.getPosition(), resultRaceResponse::setPosition);
         validateAndSetIfNotNull(resultResponseDTO.getFastestLap(), resultRaceResponse::setFastestLap);
-        
+
         return resultRaceResponse;
+    }
+
+    public static ResultChampionshipResponseDTO createResultChampionshipResponse(String raceName, String pointsChampionship
+            ,String pointsChampionshipRaces,String pointsChampionshipSprintRaces){
+
+        ResultChampionshipResponseDTO resultChampionshipResponse = new ResultChampionshipResponseDTO();
+
+        validateAndSetIfNotNull(raceName, resultChampionshipResponse::setRaceName);
+        validateAndSetIfNotNull(pointsChampionship, resultChampionshipResponse::setPointsChampionship);
+        validateAndSetIfNotNull(pointsChampionshipRaces, resultChampionshipResponse::setPointsChampionshipRaces);
+        validateAndSetIfNotNull(pointsChampionshipSprintRaces, resultChampionshipResponse::setPointsChampionshipSprintRaces);
+
+        return resultChampionshipResponse;
     }
 
     public static <T> void validateAndSetIfNotNull(T source, Consumer<T> setter) {

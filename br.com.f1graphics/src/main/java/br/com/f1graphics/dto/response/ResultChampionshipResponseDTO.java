@@ -13,7 +13,6 @@ import java.io.Serializable;
 @Builder
 public class ResultChampionshipResponseDTO implements Serializable {
 
-    private String season;
     private String raceName;
     private String pointsChampionship;
     private String pointsChampionshipRaces;
