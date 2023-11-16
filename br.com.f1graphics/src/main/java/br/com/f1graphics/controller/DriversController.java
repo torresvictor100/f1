@@ -1,7 +1,6 @@
 package br.com.f1graphics.controller;
 
-import br.com.f1graphics.dto.request.DriverRequestDTO;
-import br.com.f1graphics.dto.request.DriverTableRequestDTO;
+import br.com.f1graphics.dto.request.ListDriversIdRequestDTO;
 import br.com.f1graphics.dto.response.ChampionshipResponseDTO;
 import br.com.f1graphics.dto.response.DriverResponseDTO;
 import br.com.f1graphics.dto.response.DriverTableResponseDTO;
@@ -48,9 +47,8 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get championship for drivers ", responseCode = "200")
     })
-    public ResponseEntity<ChampionshipResponseDTO> getDriversSeason(@PathVariable String driverIdMain,
-                                                                    @PathVariable String driverIdComparation,
-                                                                    @PathVariable String season){
-        return ResponseEntity.ok(driversService.getDriversSeason(driverIdMain, driverIdComparation, season));
+    public ResponseEntity<ChampionshipResponseDTO> getDriversSeason(@PathVariable String season,
+                                                                    @RequestBody ListDriversIdRequestDTO listDriversId){
+        return ResponseEntity.ok(driversService.getDriversSeason(season, listDriversId));
     }
 }

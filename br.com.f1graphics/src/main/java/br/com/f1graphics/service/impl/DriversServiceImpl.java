@@ -42,18 +42,14 @@ public class DriversServiceImpl implements DriversService {
     }
 
     @Override
-    public ChampionshipResponseDTO getDriversSeason(String driverIdMain, String driverIdComparation, String season){
+    public ChampionshipResponseDTO getDriversSeason(String season, ListDriversIdRequestDTO listDriversId){
 
-        return getDriversSeason(getDriverForDriverId(driverIdMain),
-                getDriverForDriverId(driverIdComparation),
-                racesService.getListNamesRacesForSeason(season), season);
+        return getDriversSeason(season, listDriversId,racesService.getListNamesRacesForSeason(season));
     }
 
 
-    private ChampionshipResponseDTO getDriversSeason(DriverResponseDTO driverMain, DriverResponseDTO driverComparation
-            , ListNamesRacesResponseDTO listNamesRacingDTO , String season){
-
-
+    private ChampionshipResponseDTO getDriversSeason(String season, ListDriversIdRequestDTO listDriversId,ListNamesRacesResponseDTO listNamesRacingDTO){
+        
         return factory.createChampionshipResponseDTO(season);
     }
 
