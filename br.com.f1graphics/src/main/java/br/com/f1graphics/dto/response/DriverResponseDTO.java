@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,14 +15,14 @@ import java.util.List;
 @Builder
 public class DriverResponseDTO implements Serializable, DTO {
 
-    @JsonProperty("Constructor")
-    private ConstructorResponseDTO constructor;
+    @JsonProperty("driverId")
+    private String driverId;
     private String url;
     private String givenName;
     private String familyName;
     private String dateOfBirth;
     private String nationality;
-    private String driverId;
-    @JsonProperty("Results")
-    private List<ResultResponseDTO> results;
+
 }
+
+

@@ -7,11 +7,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class TimeResponseDTO implements Serializable, DTO {
+
     private String millis;
     private String time;
+
 }

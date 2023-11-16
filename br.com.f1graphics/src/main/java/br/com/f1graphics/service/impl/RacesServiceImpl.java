@@ -22,6 +22,7 @@ public class RacesServiceImpl implements RacesService {
 
     private ListNamesRacesResponseDTO listNamesRaces = new ListNamesRacesResponseDTO();
 
+    @Override
     public ListNamesRacesResponseDTO getListNamesRacesForSeason(String season){
 
         return getListNamesRacesDTO(raceFacade.getMRDataRacePositionItensDTOForSeason(season).getMrData().getRaceTable().getRaces());
