@@ -35,9 +35,9 @@ public class DriversServiceImpl implements DriversService {
     }
 
     @Override
-    public RaceTableResponseDTO getDriverResultsForDriverId(String driverId, String driver){
+    public RaceTableResponseDTO getDriverResultsForDriverId(String season, String driver){
 
-        return factory.createRaceTableResponseDTO(driversFacade.getDriverResultsForDriverId(driverId, driver)
+        return factory.createRaceTableResponseDTO(driversFacade.getDriverResultsForDriverId(season, driver)
                 .getMrData().getRaceTable());
     }
 
@@ -50,12 +50,22 @@ public class DriversServiceImpl implements DriversService {
 
     private ChampionshipResponseDTO getChampionshipResponseDTO(String season, ListDriversIdRequestDTO listDriversId
             ,ListNamesRacesResponseDTO listNamesRacingDTO){
+        for (String driverIds:listDriversId.getListDriversIdRequestDTO()){
+
+            RaceTableResponseDTO raceTableResponseDTO = getDriverResultsForDriverId(driverIds, season);
+
+            System.out.println(raceTableResponseDTO.getRound());
+        }
+
+
 
         return factory.createChampionshipResponseDTO(season, String.valueOf(listNamesRacingDTO.getListNamesRacesDTO().size()), null);
     }
 
 
-    private ChampionshipResponseDTO getRaceChampionsResponseDTO(){
+    private RaceChampionsResponseDTO getRaceChampionsResponseDTO(){
+
+
 
         return null;
     }

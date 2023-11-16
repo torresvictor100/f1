@@ -20,8 +20,10 @@ public class DriversFacade {
 
     public MRDataRaceDriverIdItensRequestDTO getDriverResultsForDriverId(String season, String driver){
 
-        return requestUtil.get("/"+driver+"/drivers/"+season+"/results.json"
+        MRDataRaceDriverIdItensRequestDTO rRDataRaceDriverIdItensRequestDTO = requestUtil.get("/"+driver+"/drivers/"+season+"/results.json"
                 , MRDataRaceDriverIdItensRequestDTO.class);
+
+        return rRDataRaceDriverIdItensRequestDTO;
     }
 
     public MRDataDriverItensRequestDTO getDriverForDriverId(String driverId){
