@@ -73,7 +73,7 @@ public class DriversServiceImpl implements DriversService {
         private RaceChampionsResponseDTO getRaceChampionsResponseDTO(String season, ListDriversIdRequestDTO listDriversId, String namesRace, int round){
 
 
-        return  factory.createRaceChampionsResponseDTO(getRaceResultsForRound(season,round), null, null);
+        return  factory.createRaceChampionsResponseDTO(getRaceResultsForRound(season,round), getRaceResultsForRound(season,round).getCircuit(), null);
 
     }
 
