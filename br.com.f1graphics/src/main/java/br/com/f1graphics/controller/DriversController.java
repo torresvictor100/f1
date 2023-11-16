@@ -48,8 +48,8 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get championship for drivers ", responseCode = "200")
     })
-    public ResponseEntity<ChampionshipResponseDTO> getDriversSeason(@PathVariable String season,
+    public ResponseEntity<ChampionshipResponseDTO> getDriversChampionship(@PathVariable String season,
                                                                     @RequestBody ListDriversIdRequestDTO listDriversId){
-        return ResponseEntity.ok(driversService.getDriversSeason(season, listDriversId));
+        return ResponseEntity.ok(driversService.getDriversChampionship(season, listDriversId));
     }
 }
