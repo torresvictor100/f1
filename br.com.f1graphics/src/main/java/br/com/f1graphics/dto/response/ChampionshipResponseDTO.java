@@ -20,7 +20,7 @@ public class ChampionshipResponseDTO implements Serializable, DTO {
 
     private String totalGPs;
 
-    @JsonProperty("Races")
-    private List<RaceResponseDTO> races;
+    @JsonProperty("raceChampions")
+    private List<RaceChampionsResponseDTO> raceChampions;
 
 }
