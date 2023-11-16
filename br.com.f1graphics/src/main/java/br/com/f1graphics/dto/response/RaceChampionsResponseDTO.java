@@ -16,10 +16,10 @@ import java.util.List;
 @Builder
 public class RaceChampionsResponseDTO implements Serializable, DTO {
 
+
     private String round;
     private String url;
     private String raceName;
-    private String points;
     private String laps;
 
     @JsonProperty("Circuit")

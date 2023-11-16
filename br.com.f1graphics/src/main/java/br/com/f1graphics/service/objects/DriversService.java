@@ -3,10 +3,7 @@ package br.com.f1graphics.service.objects;
 import br.com.f1graphics.dto.request.DriverRequestDTO;
 import br.com.f1graphics.dto.request.DriverTableRequestDTO;
 import br.com.f1graphics.dto.request.ListDriversIdRequestDTO;
-import br.com.f1graphics.dto.response.ChampionshipResponseDTO;
-import br.com.f1graphics.dto.response.DriverResponseDTO;
-import br.com.f1graphics.dto.response.DriverTableResponseDTO;
-import br.com.f1graphics.dto.response.RaceTableResponseDTO;
+import br.com.f1graphics.dto.response.*;
 
 public interface DriversService {
 
@@ -17,4 +14,6 @@ public interface DriversService {
     RaceTableResponseDTO getDriverResultsForDriverId(String driverId, String driver);
 
     ChampionshipResponseDTO getChampionshipResponseDTO(String season , ListDriversIdRequestDTO listDriversId);
+
+    public RaceResponseDTO getRaceResultsForRound(String season , int round);
 }

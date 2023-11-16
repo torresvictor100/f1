@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 @Slf4j
@@ -50,24 +53,35 @@ public class DriversServiceImpl implements DriversService {
 
     private ChampionshipResponseDTO getChampionshipResponseDTO(String season, ListDriversIdRequestDTO listDriversId
             ,ListNamesRacesResponseDTO listNamesRacingDTO){
-        for (String driverIds:listDriversId.getListDriversIdRequestDTO()){
 
-            RaceTableResponseDTO raceTableResponseDTO = getDriverResultsForDriverId(driverIds, season);
+        int round =0;
+        List<RaceChampionsResponseDTO> racesDTOChampionsResponse = new ArrayList<>();
 
-            System.out.println(raceTableResponseDTO.getRound());
+        for (String namesRacing:listNamesRacingDTO.getListNamesRacesDTO()){
+
+            RaceChampionsResponseDTO raceChampionsResponse = getRaceChampionsResponseDTO(season ,listDriversId, namesRacing, round) ;
+            racesDTOChampionsResponse.add(raceChampionsResponse);
+
+            round =  1 + Integer.valueOf(round);
+
         }
 
-
-
-        return factory.createChampionshipResponseDTO(season, String.valueOf(listNamesRacingDTO.getListNamesRacesDTO().size()), null);
+        return factory.createChampionshipResponseDTO(season, String.valueOf(listNamesRacingDTO.getListNamesRacesDTO().size()),racesDTOChampionsResponse);
     }
 
 
-    private RaceChampionsResponseDTO getRaceChampionsResponseDTO(){
+        private RaceChampionsResponseDTO getRaceChampionsResponseDTO(String season, ListDriversIdRequestDTO listDriversId, String namesRace, int round){
 
 
+        return  factory.createRaceChampionsResponseDTO(getRaceResultsForRound(season,round), null, null);
 
-        return null;
+    }
+
+        public RaceResponseDTO getRaceResultsForRound(String season , int round){
+
+           RaceRequestDTO raceRequestDTO= driversFacade.getRaceResultsForRound(season, String.valueOf(round)).getMrData().getRaceTable().getRaces().get(0);
+
+        return factory.createRaceResponseDTO(driversFacade.getRaceResultsForRound(season, String.valueOf(round)).getMrData().getRaceTable().getRaces().get(0));
     }
 
 

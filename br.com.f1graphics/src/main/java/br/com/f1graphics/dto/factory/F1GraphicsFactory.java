@@ -42,7 +42,6 @@ public class F1GraphicsFactory {
         validateAndSetIfNotNull(round, raceChampions::setRound);
         validateAndSetIfNotNull(url, raceChampions::setUrl);
         validateAndSetIfNotNull(raceName, raceChampions::setRaceName);
-        validateAndSetIfNotNull(points, raceChampions::setPoints);
         validateAndSetIfNotNull(laps, raceChampions::setLaps);
         validateAndSetIfNotNull(circuit, raceChampions::setCircuit);
         validateAndSetIfNotNull(date, raceChampions::setDate);
@@ -90,6 +89,22 @@ public class F1GraphicsFactory {
 
 
         return listRaceResponse;
+    }
+
+    public static RaceResponseDTO createRaceResponseDTO(RaceRequestDTO raceRequest){
+
+        RaceResponseDTO raceResponse = new RaceResponseDTO();
+
+        validateAndSetIfNotNull(raceRequest.getSeason(), raceResponse::setSeason);
+        validateAndSetIfNotNull(raceRequest.getRound(), raceResponse::setRound);
+        validateAndSetIfNotNull(raceRequest.getUrl(), raceResponse::setUrl);
+        validateAndSetIfNotNull(raceRequest.getRaceName(), raceResponse::setRaceName);
+        validateAndSetIfNotNull(raceRequest.getCircuit(), circuit -> raceResponse.setCircuit(createCircuitResponseDTO(circuit)));
+        validateAndSetIfNotNull(raceRequest.getDate(), raceResponse::setDate);
+        validateAndSetIfNotNull(raceRequest.getTime(), raceResponse::setTime);
+        validateAndSetIfNotNull(raceRequest.getResults(), results -> raceResponse.setResults(createResultsListResponseDTO(results)));
+
+        return raceResponse;
     }
 
     public static List<ResultResponseDTO> createResultsListResponseDTO(List<ResultRequestDTO> resultListRequest){
@@ -213,6 +228,22 @@ public class F1GraphicsFactory {
 
 
         return raceTableResponse;
+    }
+
+    public static RaceChampionsResponseDTO createRaceChampionsResponseDTO(RaceResponseDTO raceResponseDTO
+            , CircuitResponseDTO circuit, List<DriverChampionsResponseDTO> listDriverChampions){
+
+        RaceChampionsResponseDTO raceChampionsResponse = new RaceChampionsResponseDTO();
+
+        validateAndSetIfNotNull(raceResponseDTO.getRaceName(), raceChampionsResponse::setRaceName);
+        validateAndSetIfNotNull(raceResponseDTO.getUrl(), raceChampionsResponse::setUrl);
+        validateAndSetIfNotNull(raceResponseDTO.getRound(), raceChampionsResponse::setRound);
+        validateAndSetIfNotNull(circuit, raceChampionsResponse::setCircuit);
+        validateAndSetIfNotNull(raceResponseDTO.getDate(), raceChampionsResponse::setDate);
+        validateAndSetIfNotNull(raceResponseDTO.getTime(), raceChampionsResponse::setTime);
+        validateAndSetIfNotNull(listDriverChampions, raceChampionsResponse::setDriversResults);
+
+        return raceChampionsResponse;
     }
 
     public static RaceTableResponseDTO createRaceTableResponseDTO(RaceTablePositionRequestDTO raceTableRequest){
