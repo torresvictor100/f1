@@ -182,4 +182,17 @@ public class F1GraphicsFactory {
         raceTableResponse.setRound(raceTableRequest.getPosition());
         return raceTableResponse;
     }
+
+    public static DriverTableResponseDTO createDriverTableResponseDTO(DriverTableRequestDTO driverTableRequest){
+
+        DriverTableResponseDTO driverTableResponse = new DriverTableResponseDTO();
+        List<DriverResponseDTO> driverResponseList = new ArrayList<>();
+
+        for(DriverRequestDTO driverRequest:driverTableRequest.getDrivers()){
+            driverResponseList.add(createDriverResponse(driverRequest));
+        }
+        driverTableResponse.setDrivers(driverResponseList);
+
+        return driverTableResponse;
+    }
 }

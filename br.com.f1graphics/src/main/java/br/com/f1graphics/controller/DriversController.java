@@ -3,6 +3,8 @@ package br.com.f1graphics.controller;
 import br.com.f1graphics.dto.request.DriverRequestDTO;
 import br.com.f1graphics.dto.request.DriverTableRequestDTO;
 import br.com.f1graphics.dto.response.ChampionshipResponseDTO;
+import br.com.f1graphics.dto.response.DriverResponseDTO;
+import br.com.f1graphics.dto.response.DriverTableResponseDTO;
 import br.com.f1graphics.service.objects.DriversService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,7 +28,7 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get drivers for season", responseCode = "200")
     })
-    public ResponseEntity<DriverTableRequestDTO> getDriversForSeason(@PathVariable String season){
+    public ResponseEntity<DriverTableResponseDTO> getDriversForSeason(@PathVariable String season){
         return ResponseEntity.ok(driversService.getDriversForSeason(season));
     }
 
@@ -35,7 +37,7 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get driver for driverId", responseCode = "200")
     })
-    public ResponseEntity<DriverRequestDTO> getDriverForDriverId(@PathVariable String driverId){
+    public ResponseEntity<DriverResponseDTO> getDriverForDriverId(@PathVariable String driverId){
         return ResponseEntity.ok(driversService.getDriverForDriverId(driverId));
     }
 
