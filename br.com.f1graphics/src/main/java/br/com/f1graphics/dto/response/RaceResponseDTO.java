@@ -29,6 +29,6 @@ public class RaceResponseDTO implements Serializable, DTO {
     private String time;
 
     @JsonProperty("Results")
-    private List<ResultRequestDTO> results;
+    private List<ResultResponseDTO> results;
 
 }

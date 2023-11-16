@@ -57,7 +57,7 @@ public class F1GraphicsFactory {
             raceResponse.setCircuit(createCircuitResponseDTO(raceRequest.getCircuit()));
             raceResponse.setDate(raceRequest.getDate());
             raceResponse.setTime(raceRequest.getTime());
-            raceResponse.setResults(createResultsResponseDTO(raceRequest.getResults()));
+            raceResponse.setResults(createResultsListResponseDTO(raceRequest.getResults()));
 
             listRaceResponse.add(raceResponse);
         }
@@ -67,12 +67,90 @@ public class F1GraphicsFactory {
         return listRaceResponse;
     }
 
-    public static List<ResultRequestDTO> createResultsResponseDTO(List<ResultRequestDTO> resultRequest){
-        ResultResponseDTO resultResponse = new ResultResponseDTO();
+    public static List<ResultResponseDTO> createResultsListResponseDTO(List<ResultRequestDTO> resultListRequest){
+
+        List<ResultResponseDTO> resultListResponse = new ArrayList<>();
+
+        for (ResultRequestDTO resultRequest : resultListRequest){
+
+            ResultResponseDTO resultResponse = new ResultResponseDTO();
 
 
+            resultResponse.setLaps(resultRequest.getLaps());
+            resultResponse.setGrid(resultRequest.getGrid());
+            resultResponse.setNumber(resultRequest.getNumber());
+            resultResponse.setPosition(resultRequest.getPosition());
+            resultResponse.setPositionText(resultRequest.getPositionText());
+            resultResponse.setPoints(resultRequest.getPoints());
+            resultResponse.setStatus(resultRequest.getStatus());
+            resultResponse.setDriver(createDriverResponse(resultRequest.getDriver()));
+            resultResponse.setConstructor(createConstructorResponse(resultRequest.getConstructor()));
+            resultResponse.setTime(createTimeResponse(resultRequest.getTime()));
+            resultResponse.setFastestLap(createFastestLapResponseDTO(resultRequest.getFastestLap()));
 
-    return null;
+
+            resultListResponse.add(resultResponse);
+
+        }
+
+    return resultListResponse;
+    }
+
+    public static FastestLapResponseDTO createFastestLapResponseDTO(FastestLapRequestDTO fastestLapRequest){
+        FastestLapResponseDTO fastestLapResponse = new FastestLapResponseDTO();
+        fastestLapResponse.setLap(fastestLapRequest.getLap());
+        fastestLapResponse.setLap(fastestLapRequest.getLap());
+        fastestLapResponse.setTime(createTimeResponse(fastestLapRequest.getTime()));
+        fastestLapResponse.setAverageSpeed(createAverageSpeedResponseDTO(fastestLapRequest.getAverageSpeed()));
+
+        return fastestLapResponse;
+    }
+
+    public static AverageSpeedResponseDTO createAverageSpeedResponseDTO(AverageSpeedRequestDTO averageSpeedRequest){
+
+        AverageSpeedResponseDTO averageSpeedResponse = new AverageSpeedResponseDTO();
+
+        averageSpeedResponse.setSpeed(averageSpeedRequest.getSpeed());
+        averageSpeedResponse.setUnits(averageSpeedRequest.getUnits());
+
+        return averageSpeedResponse;
+
+    }
+
+    public static ConstructorResponseDTO createConstructorResponse(ConstructorRequestDTO constructorRequest){
+
+        ConstructorResponseDTO constructorResponse = new ConstructorResponseDTO();
+
+        constructorResponse.setConstructorId(constructorRequest.getConstructorId());
+        constructorResponse.setUrl(constructorRequest.getUrl());
+        constructorResponse.setName(constructorRequest.getName());
+        constructorResponse.setNationality(constructorRequest.getNationality());
+
+        return constructorResponse;
+    }
+
+    public static DriverResponseDTO createDriverResponse(DriverRequestDTO driverRequest){
+        DriverResponseDTO driverResponse = new DriverResponseDTO();
+
+        driverResponse.setDriverId(driverRequest.getDriverId());
+        driverResponse.setUrl(driverRequest.getUrl());
+        driverResponse.setGivenName(driverRequest.getGivenName());
+        driverResponse.setFamilyName(driverRequest.getFamilyName());
+        driverResponse.setDateOfBirth(driverRequest.getDateOfBirth());
+        driverResponse.setNationality(driverRequest.getNationality());
+
+        return driverResponse;
+    }
+
+    public static TimeResponseDTO createTimeResponse(TimeRequestDTO timeRequest){
+
+        TimeResponseDTO timeResponse = new TimeResponseDTO();
+
+        timeResponse.setTime(timeRequest.getTime());
+        timeResponse.setMillis(timeRequest.getTime());
+
+        return timeResponse;
+
     }
 
     public static RaceTableResponseDTO createRaceTableResponseDTO(RaceTableDriverIdRequestDTO raceTableRequest){
