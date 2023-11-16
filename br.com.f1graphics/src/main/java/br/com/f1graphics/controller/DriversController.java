@@ -5,6 +5,7 @@ import br.com.f1graphics.dto.response.ChampionshipResponseDTO;
 import br.com.f1graphics.dto.response.DriverResponseDTO;
 import br.com.f1graphics.dto.response.DriverTableResponseDTO;
 import br.com.f1graphics.service.objects.DriversService;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +43,7 @@ public class DriversController {
 
 
 
-    @GetMapping("/drivers/{driverIdMain}/{driverIdComparation}/{season}")
+    @GetMapping("/championship/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
             @ApiResponse(description = "get championship for drivers ", responseCode = "200")

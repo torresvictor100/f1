@@ -49,7 +49,7 @@ public class DriversServiceImpl implements DriversService {
 
 
     private ChampionshipResponseDTO getDriversSeason(String season, ListDriversIdRequestDTO listDriversId,ListNamesRacesResponseDTO listNamesRacingDTO){
-        
+
         return factory.createChampionshipResponseDTO(season);
     }
 
