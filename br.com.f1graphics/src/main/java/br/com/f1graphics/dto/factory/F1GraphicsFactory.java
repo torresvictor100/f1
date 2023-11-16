@@ -30,6 +30,26 @@ public class F1GraphicsFactory {
         return locationResponse;
     }
 
+    public static RaceChampionsResponseDTO createRaceChampionsResponseDTO(String round, String url, String raceName
+            , String points, String laps, CircuitResponseDTO circuit, String date
+            , String time, List<DriverChampionsResponseDTO> driversResults){
+
+        RaceChampionsResponseDTO raceChampions = new RaceChampionsResponseDTO();
+
+        raceChampions.setRound(round);
+        raceChampions.setUrl(url);
+        raceChampions.setRaceName(raceName);
+        raceChampions.setPoints(points);
+        raceChampions.setLaps(laps);
+        raceChampions.setCircuit(circuit);
+        raceChampions.setDate(date);
+        raceChampions.setTime(time);
+        raceChampions.setDriversResults(driversResults);
+
+        return raceChampions;
+    }
+
+
     public static CircuitResponseDTO createCircuitResponseDTO(CircuitRequestDTO circuitRequest){
 
         CircuitResponseDTO circuitResponse = new CircuitResponseDTO();
