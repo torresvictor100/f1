@@ -50,6 +50,6 @@ public class DriversController {
     })
     public ResponseEntity<ChampionshipResponseDTO> getDriversChampionship(@PathVariable String season,
                                                                     @RequestBody ListDriversIdRequestDTO listDriversId){
-        return ResponseEntity.ok(driversService.getDriversChampionship(season, listDriversId));
+        return ResponseEntity.ok(driversService.getChampionshipResponseDTO(season, listDriversId));
     }
 }

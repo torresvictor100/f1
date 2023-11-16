@@ -8,10 +8,12 @@ import java.util.List;
 
 public class F1GraphicsFactory {
 
-    public static ChampionshipResponseDTO createChampionshipResponseDTO(String season){
+    public static ChampionshipResponseDTO createChampionshipResponseDTO(String season , String totalGPs, List<RaceChampionsResponseDTO> raceChampions){
 
          ChampionshipResponseDTO championship = new ChampionshipResponseDTO();
          championship.setSeason(season);
+         championship.setTotalGPs(totalGPs);
+         championship.setRaceChampions(raceChampions);
 
         return championship;
     }
