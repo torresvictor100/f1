@@ -329,8 +329,8 @@ public class F1GraphicsFactory {
         return resultRaceResponse;
     }
 
-    public static ResultChampionshipResponseDTO createResultChampionshipResponse(String raceName, String pointsChampionship
-            ,String pointsChampionshipRaces,String pointsChampionshipSprintRaces){
+    public static ResultChampionshipResponseDTO createResultChampionshipResponse(String raceName, Double pointsChampionship
+            ,Double pointsChampionshipRaces,Double pointsChampionshipSprintRaces){
 
         ResultChampionshipResponseDTO resultChampionshipResponse = new ResultChampionshipResponseDTO();
 

@@ -22,9 +22,9 @@ public class DriversServiceImpl implements DriversService {
 
     private final RacesService racesService;
 
-    private String pointsChampionship = "0.0";
-    private String pointsChampionshipRaces = "0.0";
-    private String pointsChampionshipSprintRaces = "0.0";
+    private Double pointsChampionship = 0.0;
+    private Double pointsChampionshipRaces = 0.0;
+    private Double pointsChampionshipSprintRaces = 0.0;
 
     private static F1GraphicsFactory factory;
 
@@ -96,9 +96,11 @@ public class DriversServiceImpl implements DriversService {
 
         int resultInt = 0;
 
+
         for(ResultResponseDTO result :race.getResults()){
 
             if(race.getResults().get(resultInt).getDriver().getDriverId().equals(driversId)){
+
                 return factory.createDriverChampionsResponseDTO(race.getResults().get(resultInt)
                         ,getResultRaceResponseDTO(race.getResults().get(resultInt))
                         , getResultChampionshipResponseDTO(race.getRaceName(),pointsChampionship
@@ -115,8 +117,8 @@ public class DriversServiceImpl implements DriversService {
             return factory.createResultRaceResponseDTO(resultRaceResponseDTO);
         }
 
-    private ResultChampionshipResponseDTO getResultChampionshipResponseDTO(String raceName, String pointsChampionship
-            ,String pointsChampionshipRaces,String pointsChampionshipSprintRaces ){
+    private ResultChampionshipResponseDTO getResultChampionshipResponseDTO(String raceName, Double pointsChampionship
+            ,Double pointsChampionshipRaces,Double pointsChampionshipSprintRaces){
 
 
         return factory.createResultChampionshipResponse(raceName,pointsChampionship

@@ -14,8 +14,8 @@ import java.io.Serializable;
 public class ResultChampionshipResponseDTO implements Serializable {
 
     private String raceName;
-    private String pointsChampionship;
-    private String pointsChampionshipRaces;
-    private String pointsChampionshipSprintRaces;
+    private Double pointsChampionship;
+    private Double pointsChampionshipRaces;
+    private Double pointsChampionshipSprintRaces;
 
 }
