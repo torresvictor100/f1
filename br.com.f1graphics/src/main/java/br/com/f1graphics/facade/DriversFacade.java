@@ -14,29 +14,29 @@ public class DriversFacade {
 
     private final RequestUtil requestUtil;
 
-    public MRDataRaceRoundItensDTO getRaceResultsForRound(String season, String round){
+    public MRDataRaceRoundItensDTO getRaceResultsForRound(String season, String round) {
 
-        return requestUtil.get("/"+season+"/"+round+"/results.json"
+        return requestUtil.get("/" + season + "/" + round + "/results.json"
                 , MRDataRaceRoundItensDTO.class);
     }
 
-    public MRDataDriverItensRequestDTO getF1DriversForSeason(String season){
+    public MRDataDriverItensRequestDTO getF1DriversForSeason(String season) {
 
-        return requestUtil.get("/"+season+"/drivers.json?limit=150"
+        return requestUtil.get("/" + season + "/drivers.json?limit=150"
                 , MRDataDriverItensRequestDTO.class);
     }
 
-    public MRDataRaceDriverIdItensRequestDTO getDriverResultsForDriverId(String season, String driver){
+    public MRDataRaceDriverIdItensRequestDTO getDriverResultsForDriverId(String season, String driver) {
 
-        MRDataRaceDriverIdItensRequestDTO rRDataRaceDriverIdItensRequestDTO = requestUtil.get("/"+driver+"/drivers/"+season+"/results.json"
+        MRDataRaceDriverIdItensRequestDTO rRDataRaceDriverIdItensRequestDTO = requestUtil.get("/" + driver + "/drivers/" + season + "/results.json"
                 , MRDataRaceDriverIdItensRequestDTO.class);
 
         return rRDataRaceDriverIdItensRequestDTO;
     }
 
-    public MRDataDriverItensRequestDTO getDriverForDriverId(String driverId){
+    public MRDataDriverItensRequestDTO getDriverForDriverId(String driverId) {
 
-        return requestUtil.get("/drivers/"+driverId+".json?limit=150"
+        return requestUtil.get("/drivers/" + driverId + ".json?limit=150"
                 , MRDataDriverItensRequestDTO.class);
     }
 }

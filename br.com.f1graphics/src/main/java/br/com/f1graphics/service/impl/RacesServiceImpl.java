@@ -25,7 +25,7 @@ public class RacesServiceImpl implements RacesService {
     private ListNamesRacesResponseDTO listNamesRaces = new ListNamesRacesResponseDTO();
 
     @Override
-    public ListNamesRacesResponseDTO getListNamesRacesForSeason(String season){
+    public ListNamesRacesResponseDTO getListNamesRacesForSeason(String season) {
 
         return getListNamesRacesDTO(raceFacade
                 .getMRDataRacePositionItensDTOForSeason(season).getMrData().getRaceTable().getRaces());
@@ -38,11 +38,11 @@ public class RacesServiceImpl implements RacesService {
                 .getResultSpintRacesForDriverSeason(season, drivers).getMrData().getRaceTable());
     }
 
-    private ListNamesRacesResponseDTO getListNamesRacesDTO(List<RaceRequestDTO> races){
+    private ListNamesRacesResponseDTO getListNamesRacesDTO(List<RaceRequestDTO> races) {
 
         List<String> namesRace = new ArrayList<>();
 
-        for (RaceRequestDTO race : races){
+        for (RaceRequestDTO race : races) {
             namesRace.add(race.getRaceName());
         }
         listNamesRaces.setListNamesRacesDTO(namesRace);

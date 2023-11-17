@@ -28,7 +28,7 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get drivers for season", responseCode = "200")
     })
-    public ResponseEntity<DriverTableResponseDTO> getDriversForSeason(@PathVariable String season){
+    public ResponseEntity<DriverTableResponseDTO> getDriversForSeason(@PathVariable String season) {
         return ResponseEntity.ok(driversService.getDriversForSeason(season));
     }
 
@@ -37,10 +37,9 @@ public class DriversController {
     @Operation(responses = {
             @ApiResponse(description = "get driver for driverId", responseCode = "200")
     })
-    public ResponseEntity<DriverResponseDTO> getDriverForDriverId(@PathVariable String driverId){
+    public ResponseEntity<DriverResponseDTO> getDriverForDriverId(@PathVariable String driverId) {
         return ResponseEntity.ok(driversService.getDriverForDriverId(driverId));
     }
-
 
 
     @GetMapping("/championship/{season}")
@@ -49,7 +48,7 @@ public class DriversController {
             @ApiResponse(description = "get championship for drivers ", responseCode = "200")
     })
     public ResponseEntity<ChampionshipResponseDTO> getDriversChampionship(@PathVariable String season,
-                                                                    @RequestBody ListDriversIdRequestDTO listDriversId){
+                                                                          @RequestBody ListDriversIdRequestDTO listDriversId) {
         return ResponseEntity.ok(driversService.getChampionshipResponseDTO(season, listDriversId));
     }
 }

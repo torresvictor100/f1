@@ -12,15 +12,15 @@ public class RacesFacade {
 
     private final RequestUtil requestUtil;
 
-    public MRDataRacePositionItensRequestDTO getMRDataRacePositionItensDTOForSeason(String season){
+    public MRDataRacePositionItensRequestDTO getMRDataRacePositionItensDTOForSeason(String season) {
 
-        return requestUtil.get("/"+season+"/results/1.json"
+        return requestUtil.get("/" + season + "/results/1.json"
                 , MRDataRacePositionItensRequestDTO.class);
     }
 
-    public MRDataRaceRoundItensDTO getResultSpintRacesForDriverSeason(String season, String driversId){
+    public MRDataRaceRoundItensDTO getResultSpintRacesForDriverSeason(String season, String driversId) {
 
-        return requestUtil.get("/"+season+"/drivers/"+driversId+"/sprint.json"
+        return requestUtil.get("/" + season + "/drivers/" + driversId + "/sprint.json"
                 , MRDataRaceRoundItensDTO.class);
     }
 

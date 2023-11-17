@@ -15,7 +15,6 @@ import java.io.Serializable;
 @Builder
 public class DriverRequestDTO implements Serializable, DTO {
 
-    @JsonProperty("driverId")
     private String driverId;
     private String url;
     private String givenName;

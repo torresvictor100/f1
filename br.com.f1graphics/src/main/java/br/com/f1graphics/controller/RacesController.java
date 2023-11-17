@@ -24,7 +24,7 @@ public class RacesController {
     @Operation(responses = {
             @ApiResponse(description = "get driver for season", responseCode = "200")
     })
-    public ResponseEntity<ListNamesRacesResponseDTO> getListNameRacesDTO(@PathVariable String season){
+    public ResponseEntity<ListNamesRacesResponseDTO> getListNameRacesDTO(@PathVariable String season) {
 
         return ResponseEntity.ok(racesService.getListNamesRacesForSeason(season));
     }

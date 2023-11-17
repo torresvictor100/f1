@@ -13,7 +13,7 @@ public interface DriversService {
 
     RaceTableResponseDTO getDriverResultsForDriverId(String driverId, String driver);
 
-    ChampionshipResponseDTO getChampionshipResponseDTO(String season , ListDriversIdRequestDTO listDriversId);
+    ChampionshipResponseDTO getChampionshipResponseDTO(String season, ListDriversIdRequestDTO listDriversId);
 
-    public RaceResponseDTO getRaceResultsForRound(String season , int round);
+    public RaceResponseDTO getRaceResultsForRound(String season, int round);
 }

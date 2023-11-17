@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 public class F1GraphicsFactory {
 
-    public static ChampionshipResponseDTO createChampionshipResponseDTO(String season , String totalGPs, List<RaceChampionsResponseDTO> raceChampions){
+    public static ChampionshipResponseDTO createChampionshipResponseDTO(String season, String totalGPs, List<RaceChampionsResponseDTO> raceChampions) {
 
         ChampionshipResponseDTO championship = new ChampionshipResponseDTO();
         validateAndSetIfNotNull(season, championship::setSeason);
@@ -20,7 +20,7 @@ public class F1GraphicsFactory {
         return championship;
     }
 
-    public static LocationResponseDTO createLocationResponseDTO(LocationRequestDTO locationRequest){
+    public static LocationResponseDTO createLocationResponseDTO(LocationRequestDTO locationRequest) {
 
         LocationResponseDTO locationResponse = new LocationResponseDTO();
 
@@ -35,7 +35,7 @@ public class F1GraphicsFactory {
 
     public static RaceChampionsResponseDTO createRaceChampionsResponseDTO(String round, String url, String raceName
             , String points, String laps, CircuitResponseDTO circuit, String date
-            , String time, List<DriverChampionsResponseDTO> driversResults){
+            , String time, List<DriverChampionsResponseDTO> driversResults) {
 
         RaceChampionsResponseDTO raceChampions = new RaceChampionsResponseDTO();
 
@@ -53,7 +53,7 @@ public class F1GraphicsFactory {
     }
 
 
-    public static CircuitResponseDTO createCircuitResponseDTO(CircuitRequestDTO circuitRequest){
+    public static CircuitResponseDTO createCircuitResponseDTO(CircuitRequestDTO circuitRequest) {
 
         CircuitResponseDTO circuitResponse = new CircuitResponseDTO();
 
@@ -66,11 +66,11 @@ public class F1GraphicsFactory {
         return circuitResponse;
     }
 
-    public static List<RaceResponseDTO> createListRaceResponseDTO(List<RaceRequestDTO> listRaceRequest){
+    public static List<RaceResponseDTO> createListRaceResponseDTO(List<RaceRequestDTO> listRaceRequest) {
 
         List<RaceResponseDTO> listRaceResponse = new ArrayList<>();
 
-        for (RaceRequestDTO raceRequest : listRaceRequest){
+        for (RaceRequestDTO raceRequest : listRaceRequest) {
 
             RaceResponseDTO raceResponse = new RaceResponseDTO();
 
@@ -87,11 +87,10 @@ public class F1GraphicsFactory {
         }
 
 
-
         return listRaceResponse;
     }
 
-    public static RaceResponseDTO createRaceResponseDTO(RaceRequestDTO raceRequest){
+    public static RaceResponseDTO createRaceResponseDTO(RaceRequestDTO raceRequest) {
 
         RaceResponseDTO raceResponse = new RaceResponseDTO();
 
@@ -107,11 +106,11 @@ public class F1GraphicsFactory {
         return raceResponse;
     }
 
-    public static List<ResultResponseDTO> createResultsListResponseDTO(List<ResultRequestDTO> resultListRequest){
+    public static List<ResultResponseDTO> createResultsListResponseDTO(List<ResultRequestDTO> resultListRequest) {
 
         List<ResultResponseDTO> resultListResponse = new ArrayList<>();
 
-        for (ResultRequestDTO resultRequest : resultListRequest){
+        for (ResultRequestDTO resultRequest : resultListRequest) {
 
             ResultResponseDTO resultResponse = new ResultResponseDTO();
 
@@ -131,43 +130,42 @@ public class F1GraphicsFactory {
                     resultResponse.setTime(createTimeResponse(time)));
             validateAndSetIfNotNull(resultRequest.getFastestLap(), fastestLap ->
                     resultResponse.setFastestLap(createFastestLapResponseDTO(fastestLap)));
-
 
 
             resultListResponse.add(resultResponse);
 
         }
 
-    return resultListResponse;
+        return resultListResponse;
     }
 
-    public static ResultResponseDTO createResultsResponseDTO(ResultRequestDTO resultRequest){
+    public static ResultResponseDTO createResultsResponseDTO(ResultRequestDTO resultRequest) {
 
 
-            ResultResponseDTO resultResponse = new ResultResponseDTO();
+        ResultResponseDTO resultResponse = new ResultResponseDTO();
 
 
-            validateAndSetIfNotNull(resultRequest.getLaps(), resultResponse::setLaps);
-            validateAndSetIfNotNull(resultRequest.getGrid(), resultResponse::setGrid);
-            validateAndSetIfNotNull(resultRequest.getNumber(), resultResponse::setNumber);
-            validateAndSetIfNotNull(resultRequest.getPosition(), resultResponse::setPosition);
-            validateAndSetIfNotNull(resultRequest.getPositionText(), resultResponse::setPositionText);
-            validateAndSetIfNotNull(resultRequest.getPoints(), resultResponse::setPoints);
-            validateAndSetIfNotNull(resultRequest.getStatus(), resultResponse::setStatus);
-            validateAndSetIfNotNull(resultRequest.getDriver(), driver ->
-                    resultResponse.setDriver(createDriverResponse(driver)));
-            validateAndSetIfNotNull(resultRequest.getConstructor(), constructor ->
-                    resultResponse.setConstructor(createConstructorResponse(constructor)));
-            validateAndSetIfNotNull(resultRequest.getTime(), time ->
-                    resultResponse.setTime(createTimeResponse(time)));
-            validateAndSetIfNotNull(resultRequest.getFastestLap(), fastestLap ->
-                    resultResponse.setFastestLap(createFastestLapResponseDTO(fastestLap)));
+        validateAndSetIfNotNull(resultRequest.getLaps(), resultResponse::setLaps);
+        validateAndSetIfNotNull(resultRequest.getGrid(), resultResponse::setGrid);
+        validateAndSetIfNotNull(resultRequest.getNumber(), resultResponse::setNumber);
+        validateAndSetIfNotNull(resultRequest.getPosition(), resultResponse::setPosition);
+        validateAndSetIfNotNull(resultRequest.getPositionText(), resultResponse::setPositionText);
+        validateAndSetIfNotNull(resultRequest.getPoints(), resultResponse::setPoints);
+        validateAndSetIfNotNull(resultRequest.getStatus(), resultResponse::setStatus);
+        validateAndSetIfNotNull(resultRequest.getDriver(), driver ->
+                resultResponse.setDriver(createDriverResponse(driver)));
+        validateAndSetIfNotNull(resultRequest.getConstructor(), constructor ->
+                resultResponse.setConstructor(createConstructorResponse(constructor)));
+        validateAndSetIfNotNull(resultRequest.getTime(), time ->
+                resultResponse.setTime(createTimeResponse(time)));
+        validateAndSetIfNotNull(resultRequest.getFastestLap(), fastestLap ->
+                resultResponse.setFastestLap(createFastestLapResponseDTO(fastestLap)));
 
 
         return resultResponse;
     }
 
-    public static FastestLapResponseDTO createFastestLapResponseDTO(FastestLapRequestDTO fastestLapRequest){
+    public static FastestLapResponseDTO createFastestLapResponseDTO(FastestLapRequestDTO fastestLapRequest) {
         FastestLapResponseDTO fastestLapResponse = new FastestLapResponseDTO();
 
         validateAndSetIfNotNull(fastestLapRequest.getLap(), fastestLapResponse::setLap);
@@ -181,7 +179,7 @@ public class F1GraphicsFactory {
         return fastestLapResponse;
     }
 
-    public static AverageSpeedResponseDTO createAverageSpeedResponseDTO(AverageSpeedRequestDTO averageSpeedRequest){
+    public static AverageSpeedResponseDTO createAverageSpeedResponseDTO(AverageSpeedRequestDTO averageSpeedRequest) {
 
         AverageSpeedResponseDTO averageSpeedResponse = new AverageSpeedResponseDTO();
 
@@ -193,7 +191,7 @@ public class F1GraphicsFactory {
 
     }
 
-    public static ConstructorResponseDTO createConstructorResponse(ConstructorRequestDTO constructorRequest){
+    public static ConstructorResponseDTO createConstructorResponse(ConstructorRequestDTO constructorRequest) {
 
         ConstructorResponseDTO constructorResponse = new ConstructorResponseDTO();
 
@@ -206,7 +204,7 @@ public class F1GraphicsFactory {
         return constructorResponse;
     }
 
-    public static DriverResponseDTO createDriverResponse(DriverRequestDTO driverRequest){
+    public static DriverResponseDTO createDriverResponse(DriverRequestDTO driverRequest) {
         DriverResponseDTO driverResponse = new DriverResponseDTO();
 
         validateAndSetIfNotNull(driverRequest.getDriverId(), driverResponse::setDriverId);
@@ -220,7 +218,7 @@ public class F1GraphicsFactory {
         return driverResponse;
     }
 
-    public static TimeResponseDTO createTimeResponse(TimeRequestDTO timeRequest){
+    public static TimeResponseDTO createTimeResponse(TimeRequestDTO timeRequest) {
 
         TimeResponseDTO timeResponse = new TimeResponseDTO();
 
@@ -232,7 +230,7 @@ public class F1GraphicsFactory {
 
     }
 
-    public static RaceTableResponseDTO createRaceTableResponseDTO(RaceTableDriverIdRequestDTO raceTableRequest){
+    public static RaceTableResponseDTO createRaceTableResponseDTO(RaceTableDriverIdRequestDTO raceTableRequest) {
 
         RaceTableResponseDTO raceTableResponse = new RaceTableResponseDTO();
 
@@ -244,7 +242,7 @@ public class F1GraphicsFactory {
         return raceTableResponse;
     }
 
-    public static RaceTableResponseDTO createRaceTableResponseDTO(RaceTableRoundRequestDTO raceTableRequest){
+    public static RaceTableResponseDTO createRaceTableResponseDTO(RaceTableRoundRequestDTO raceTableRequest) {
 
         RaceTableResponseDTO raceTableResponse = new RaceTableResponseDTO();
 
@@ -257,7 +255,7 @@ public class F1GraphicsFactory {
     }
 
     public static RaceChampionsResponseDTO createRaceChampionsResponseDTO(RaceResponseDTO raceResponseDTO
-            , CircuitResponseDTO circuit, List<DriverChampionsResponseDTO> driversResults){
+            , CircuitResponseDTO circuit, List<DriverChampionsResponseDTO> driversResults) {
 
         RaceChampionsResponseDTO raceChampionsResponse = new RaceChampionsResponseDTO();
 
@@ -272,7 +270,7 @@ public class F1GraphicsFactory {
         return raceChampionsResponse;
     }
 
-    public static RaceTableResponseDTO createRaceTableResponseDTO(RaceTablePositionRequestDTO raceTableRequest){
+    public static RaceTableResponseDTO createRaceTableResponseDTO(RaceTablePositionRequestDTO raceTableRequest) {
 
         RaceTableResponseDTO raceTableResponse = new RaceTableResponseDTO();
 
@@ -284,12 +282,12 @@ public class F1GraphicsFactory {
         return raceTableResponse;
     }
 
-    public static DriverTableResponseDTO createDriverTableResponseDTO(DriverTableRequestDTO driverTableRequest){
+    public static DriverTableResponseDTO createDriverTableResponseDTO(DriverTableRequestDTO driverTableRequest) {
 
         DriverTableResponseDTO driverTableResponse = new DriverTableResponseDTO();
         List<DriverResponseDTO> driverResponseList = new ArrayList<>();
 
-        for(DriverRequestDTO driverRequest:driverTableRequest.getDrivers()){
+        for (DriverRequestDTO driverRequest : driverTableRequest.getDrivers()) {
             driverResponseList.add(createDriverResponse(driverRequest));
         }
         validateAndSetIfNotNull(driverResponseList, driverTableResponse::setDrivers);
@@ -298,7 +296,7 @@ public class F1GraphicsFactory {
     }
 
     public static DriverChampionsResponseDTO createDriverChampionsResponseDTO(ResultResponseDTO resultRequestDTO, ResultRaceResponseDTO
-            resultRaceResponse, ResultChampionshipResponseDTO resultChampionshipResponse){
+            resultRaceResponse, ResultChampionshipResponseDTO resultChampionshipResponse) {
 
         DriverChampionsResponseDTO driverChampionsResponse = new DriverChampionsResponseDTO();
 
@@ -317,7 +315,7 @@ public class F1GraphicsFactory {
     }
 
 
-    public static ResultRaceResponseDTO createResultRaceResponseDTO(ResultResponseDTO resultResponseDTO){
+    public static ResultRaceResponseDTO createResultRaceResponseDTO(ResultResponseDTO resultResponseDTO) {
 
         ResultRaceResponseDTO resultRaceResponse = new ResultRaceResponseDTO();
 
@@ -330,7 +328,7 @@ public class F1GraphicsFactory {
     }
 
     public static ResultChampionshipResponseDTO createResultChampionshipResponse(String raceName, Double pointsChampionship
-            ,Double pointsChampionshipRaces,Double pointsChampionshipSprintRaces){
+            , Double pointsChampionshipRaces, Double pointsChampionshipSprintRaces) {
 
         ResultChampionshipResponseDTO resultChampionshipResponse = new ResultChampionshipResponseDTO();
 
