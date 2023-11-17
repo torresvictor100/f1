@@ -1,8 +1,6 @@
 package br.com.f1graphics.dto.response;
 
-import br.com.f1graphics.DTO;
-import br.com.f1graphics.dto.request.AverageSpeedRequestDTO;
-import br.com.f1graphics.dto.request.TimeRequestDTO;
+import br.com.f1graphics.dto.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

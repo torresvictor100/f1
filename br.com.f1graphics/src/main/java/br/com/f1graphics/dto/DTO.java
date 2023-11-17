@@ -1,4 +1,4 @@
-package br.com.f1graphics;
+package br.com.f1graphics.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
