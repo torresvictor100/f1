@@ -11,7 +11,7 @@ public interface DriversService {
 
     DriverResponseDTO getDriverForDriverId(String driverId);
 
-    RaceTableResponseDTO getDriverResultsForDriverId(String driverId, String driver);
+    RaceTableResponseDTO getDriverResultsForDriverId(String driverId, String driver );
 
     ChampionshipResponseDTO getChampionshipResponseDTO(String season, ListDriversIdRequestDTO listDriversId);
 

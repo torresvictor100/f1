@@ -24,4 +24,10 @@ public class RacesFacade {
                 , MRDataRaceRoundItensDTO.class);
     }
 
+    public MRDataRaceRoundItensDTO getResultSpintRaces(String season, String round) {
+
+        return requestUtil.get("/" + season + "/" + round + "/sprint.json"
+                , MRDataRaceRoundItensDTO.class);
+    }
+
 }

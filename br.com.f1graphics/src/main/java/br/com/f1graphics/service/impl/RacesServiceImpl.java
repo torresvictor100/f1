@@ -38,6 +38,13 @@ public class RacesServiceImpl implements RacesService {
                 .getResultSpintRacesForDriverSeason(season, drivers).getMrData().getRaceTable());
     }
 
+    @Override
+    public RaceTableResponseDTO getResultSpintRaces(String season, String round) {
+
+        return factory.createRaceTableResponseDTO(raceFacade
+                .getResultSpintRaces(season, round).getMrData().getRaceTable());
+    }
+
     private ListNamesRacesResponseDTO getListNamesRacesDTO(List<RaceRequestDTO> races) {
 
         List<String> namesRace = new ArrayList<>();
