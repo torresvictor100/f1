@@ -365,6 +365,7 @@ public class F1GraphicsFactory {
         driverChampionsResponse.setResultChampionshipResponseDTO(resultChampionshipResponse);
 
 
+
         return driverChampionsResponse;
     }
 
@@ -374,6 +375,7 @@ public class F1GraphicsFactory {
         ResultRaceResponseDTO resultRaceResponse = new ResultRaceResponseDTO();
 
         validateAndSetIfNotNull(resultResponseDTO.getTime(), resultRaceResponse::setTime);
+        validateAndSetIfNotNull(resultResponseDTO.getPoints(), resultRaceResponse::setPoints);
         validateAndSetIfNotNull(resultRaceResponse.getGrid(), resultRaceResponse::setGrid);
         validateAndSetIfNotNull(resultResponseDTO.getPosition(), resultRaceResponse::setPosition);
         validateAndSetIfNotNull(resultResponseDTO.getFastestLap(), resultRaceResponse::setFastestLap);

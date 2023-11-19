@@ -15,6 +15,7 @@ import java.io.Serializable;
 public class ResultRaceResponseDTO implements Serializable, DTO {
 
     private String position;
+    private String points;
     private String grid;
     @JsonProperty("Time")
     private TimeResponseDTO time;
