@@ -118,7 +118,10 @@ public class DriversServiceImpl implements DriversService {
 
             driverListChampionsResponse.add(getDriverChampionsResponseDTO(driversId, race, MapPointsChampionship
                         , MapPointsChampionshipRaces , MapPointsChampionshipSprintRaces, racesSprint));
+
         }
+
+
         return factory.createRaceChampionsResponseDTO(race, race.getCircuit(), driverListChampionsResponse);
 
     }
@@ -161,10 +164,15 @@ public class DriversServiceImpl implements DriversService {
                             ,0.0, MapPointsChampionship);
 
                 }
+
+                ResultChampionshipResponseDTO resultChampionshipResponseDTO =  getResultChampionshipResponseDTO(race.getRaceName(), MapPointsChampionship.get(driversId)
+                        , MapPointsChampionshipRaces.get(driversId), mapPointsChampionshipSprintRaces.get(driversId));
+
+                ResultRaceResponseDTO raceResponseDTO = getResultRaceResponseDTO(race.getResults().get(resultInt));
+
                 return factory.createDriverChampionsResponseDTO(race.getResults().get(resultInt)
-                        , getResultRaceResponseDTO(race.getResults().get(resultInt))
-                        , getResultChampionshipResponseDTO(race.getRaceName(), MapPointsChampionship.get(driversId)
-                                , MapPointsChampionshipRaces.get(driversId), mapPointsChampionshipSprintRaces.get(driversId)));
+                        , raceResponseDTO
+                        , resultChampionshipResponseDTO);
             }
 
         }

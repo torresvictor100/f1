@@ -349,8 +349,8 @@ public class F1GraphicsFactory {
         return driverTableResponse;
     }
 
-    public static DriverChampionsResponseDTO createDriverChampionsResponseDTO(ResultResponseDTO resultRequestDTO, ResultRaceResponseDTO
-            resultRaceResponse, ResultChampionshipResponseDTO resultChampionshipResponse) {
+    public static DriverChampionsResponseDTO createDriverChampionsResponseDTO(ResultResponseDTO resultRequestDTO
+            , ResultRaceResponseDTO resultRaceResponse, ResultChampionshipResponseDTO resultChampionshipResponse) {
 
         DriverChampionsResponseDTO driverChampionsResponse = new DriverChampionsResponseDTO();
 
