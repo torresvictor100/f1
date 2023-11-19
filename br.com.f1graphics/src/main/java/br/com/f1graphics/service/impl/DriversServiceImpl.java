@@ -1,10 +1,7 @@
 package br.com.f1graphics.service.impl;
 
 import br.com.f1graphics.dto.factory.F1GraphicsFactory;
-import br.com.f1graphics.dto.request.ListDriversIdRequestDTO;
-import br.com.f1graphics.dto.request.MRDataRaceRoundItensDTO;
-import br.com.f1graphics.dto.request.RaceRequestDTO;
-import br.com.f1graphics.dto.request.RaceTableRoundRequestDTO;
+import br.com.f1graphics.dto.request.*;
 import br.com.f1graphics.dto.response.*;
 import br.com.f1graphics.facade.DriversFacade;
 import br.com.f1graphics.service.objects.DriversService;
@@ -77,13 +74,13 @@ public class DriversServiceImpl implements DriversService {
             , ListNamesRacesResponseDTO listNamesRacingDTO, Map<String, Double> MapPointsChampionship
             , Map<String, Double> MapPointsChampionshipRaces , Map<String, Double> MapPointsChampionshipSprintRaces) {
 
-        int round = 0;
+        int round = 1;
         List<RaceChampionsResponseDTO> racesDTOChampionsResponse = new ArrayList<>();
 
         for (String namesRacing : listNamesRacingDTO.getListNamesRacesDTO()) {
 
             RaceChampionsResponseDTO raceChampionsResponse = getRaceChampionsResponseDTO(season
-                    , listDriversId, namesRacing, round, MapPointsChampionship,
+                    , listDriversId, round, MapPointsChampionship,
                     MapPointsChampionshipRaces,MapPointsChampionshipSprintRaces );
             racesDTOChampionsResponse.add(raceChampionsResponse);
 
@@ -97,7 +94,7 @@ public class DriversServiceImpl implements DriversService {
 
 
     private RaceChampionsResponseDTO getRaceChampionsResponseDTO(String season
-            , ListDriversIdRequestDTO listDriversId, String namesRace, int round , Map<String, Double> MapPointsChampionship
+            , ListDriversIdRequestDTO listDriversId, int round , Map<String, Double> MapPointsChampionship
             , Map<String, Double> MapPointsChampionshipRaces , Map<String, Double> MapPointsChampionshipSprintRaces) {
 
 
@@ -105,49 +102,62 @@ public class DriversServiceImpl implements DriversService {
 
         List<DriverChampionsResponseDTO> driverListChampionsResponse = new ArrayList<>();
 
-        RaceTableResponseDTO mrDataRaceRoundItensDTO = racesService.getResultSpintRaces(season,String.valueOf(race.getRound()));
-        RaceResponseDTO raceSprint = new RaceResponseDTO();
+        Map<String, RaceSprintResponseDTO> racesSprint = new HashMap<>();
 
-        if(mrDataRaceRoundItensDTO.getRaces().size() != 0){
-            raceSprint = racesService.getResultSpintRaces(season,String.valueOf(round)).getRaces().get(0);
-        }
-
-
+        RaceSprintTableResponseDTO raceSprint = new RaceSprintTableResponseDTO();
 
 
         for (String driversId : listDriversId.getListDriversIdRequestDTO()) {
-            driverListChampionsResponse.add(getDriverChampionsResponseDTO(driversId, race, MapPointsChampionship
-                        , MapPointsChampionshipRaces , MapPointsChampionshipSprintRaces, raceSprint));
-        }
 
+
+            if(racesSprint.get(race.getRaceName()+"_"+driversId) == null){
+                raceSprint = racesService.getResultSpintRacesForDriverSeason(season,driversId);
+            }
+
+            racesSprint = addRaceToMap(racesSprint,driversId, raceSprint);
+
+            driverListChampionsResponse.add(getDriverChampionsResponseDTO(driversId, race, MapPointsChampionship
+                        , MapPointsChampionshipRaces , MapPointsChampionshipSprintRaces, racesSprint));
+        }
         return factory.createRaceChampionsResponseDTO(race, race.getCircuit(), driverListChampionsResponse);
 
     }
 
+    private Map<String, RaceSprintResponseDTO> addRaceToMap(Map<String, RaceSprintResponseDTO> raceMap, String driversId, RaceSprintTableResponseDTO races) {
+
+        for(RaceSprintResponseDTO race : races.getRaces()){
+            raceMap.put(race.getRaceName() + "_" + driversId, race);
+        }
+        return raceMap;
+    }
+
     private DriverChampionsResponseDTO getDriverChampionsResponseDTO(String driversId, RaceResponseDTO race
             , Map<String, Double> MapPointsChampionship, Map<String, Double> MapPointsChampionshipRaces
-            , Map<String, Double> mapPointsChampionshipSprintRaces,RaceResponseDTO raceSprint) {
+            , Map<String, Double> mapPointsChampionshipSprintRaces,Map<String, RaceSprintResponseDTO> racesSprint) {
 
-        int resultInt = 0;
 
-        for (ResultResponseDTO result : race.getResults()) {
+        for (int resultInt = 0; resultInt < race.getResults().size(); resultInt++)  {
 
             if (race.getResults().get(resultInt).getDriver().getDriverId().equals(driversId)) {
 
+                ResultResponseDTO resultRace = race.getResults().get(resultInt);
+                RaceSprintResponseDTO raceSprint = racesSprint.get(race.getRaceName()+"_"+driversId);
 
-                MapPointsChampionshipRaces = setNewPointForRace(driversId,Double.valueOf(race.getResults().get(resultInt).getPoints())
-                        , MapPointsChampionshipRaces);
+                MapPointsChampionshipRaces = setNewPointForRace(driversId ,Double.valueOf(resultRace.getPoints()), MapPointsChampionshipRaces);
 
-                if (raceSprint.getResults() != null && raceSprint.getResults().get(resultInt).getDriver().getDriverId().equals(driversId)) {
-                    mapPointsChampionshipSprintRaces = setNewPointForRace(driversId,Double.valueOf(race.getResults().get(resultInt).getPoints())
+                if (raceSprint != null ) {
+
+                    ResultResponseDTO resultsRaceSprint = raceSprint.getSprintResults().get(0);
+
+                    mapPointsChampionshipSprintRaces = setNewPointForRace(driversId,Double.valueOf(resultsRaceSprint.getPoints())
                             , mapPointsChampionshipSprintRaces);
 
-                    MapPointsChampionship = getPointsChampionship(driversId,Double.valueOf(race.getResults().get(resultInt).getPoints())
-                            ,Double.valueOf(raceSprint.getResults().get(resultInt).getPoints()), MapPointsChampionship);
+                    MapPointsChampionship = getPointsChampionship(driversId,Double.valueOf(resultRace.getPoints())
+                            ,Double.valueOf(resultsRaceSprint.getPoints()), MapPointsChampionship);
 
                 }else {
 
-                    MapPointsChampionship = getPointsChampionship(driversId,Double.valueOf(race.getResults().get(resultInt).getPoints())
+                    MapPointsChampionship = getPointsChampionship(driversId,Double.valueOf(resultRace.getPoints())
                             ,0.0, MapPointsChampionship);
 
                 }
@@ -156,7 +166,7 @@ public class DriversServiceImpl implements DriversService {
                         , getResultChampionshipResponseDTO(race.getRaceName(), MapPointsChampionship.get(driversId)
                                 , MapPointsChampionshipRaces.get(driversId), mapPointsChampionshipSprintRaces.get(driversId)));
             }
-            resultInt++;
+
         }
 
         return null;

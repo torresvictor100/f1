@@ -90,6 +90,31 @@ public class F1GraphicsFactory {
         return listRaceResponse;
     }
 
+    public static List<RaceSprintResponseDTO> createListRaceSprintResponseDTO(List<RaceSprintRequestDTO> listRaceSprintRequest) {
+
+        List<RaceSprintResponseDTO> listRaceResponse = new ArrayList<>();
+
+        for (RaceSprintRequestDTO raceRequest : listRaceSprintRequest) {
+
+            RaceSprintResponseDTO raceResponse = new RaceSprintResponseDTO();
+
+            validateAndSetIfNotNull(raceRequest.getSeason(), raceResponse::setSeason);
+            validateAndSetIfNotNull(raceRequest.getRound(), raceResponse::setRound);
+            validateAndSetIfNotNull(raceRequest.getUrl(), raceResponse::setUrl);
+            validateAndSetIfNotNull(raceRequest.getRaceName(), raceResponse::setRaceName);
+            validateAndSetIfNotNull(raceRequest.getCircuit(), circuit -> raceResponse.setCircuit(createCircuitResponseDTO(circuit)));
+            validateAndSetIfNotNull(raceRequest.getDate(), raceResponse::setDate);
+            validateAndSetIfNotNull(raceRequest.getTime(), raceResponse::setTime);
+            validateAndSetIfNotNull(raceRequest.getSprintResults(), results -> raceResponse.setSprintResults(createResultsListResponseDTO(results)));
+
+            listRaceResponse.add(raceResponse);
+        }
+
+
+        return listRaceResponse;
+    }
+
+
     public static RaceResponseDTO createRaceResponseDTO(RaceRequestDTO raceRequest) {
 
         RaceResponseDTO raceResponse = new RaceResponseDTO();
@@ -102,6 +127,22 @@ public class F1GraphicsFactory {
         validateAndSetIfNotNull(raceRequest.getDate(), raceResponse::setDate);
         validateAndSetIfNotNull(raceRequest.getTime(), raceResponse::setTime);
         validateAndSetIfNotNull(raceRequest.getResults(), results -> raceResponse.setResults(createResultsListResponseDTO(results)));
+
+        return raceResponse;
+    }
+
+    public static RaceSprintResponseDTO createRaceSprintResponseDTO(RaceSprintRequestDTO raceRequest) {
+
+        RaceSprintResponseDTO raceResponse = new RaceSprintResponseDTO();
+
+        validateAndSetIfNotNull(raceRequest.getSeason(), raceResponse::setSeason);
+        validateAndSetIfNotNull(raceRequest.getRound(), raceResponse::setRound);
+        validateAndSetIfNotNull(raceRequest.getUrl(), raceResponse::setUrl);
+        validateAndSetIfNotNull(raceRequest.getRaceName(), raceResponse::setRaceName);
+        validateAndSetIfNotNull(raceRequest.getCircuit(), circuit -> raceResponse.setCircuit(createCircuitResponseDTO(circuit)));
+        validateAndSetIfNotNull(raceRequest.getDate(), raceResponse::setDate);
+        validateAndSetIfNotNull(raceRequest.getTime(), raceResponse::setTime);
+        validateAndSetIfNotNull(raceRequest.getSprintResults(), results -> raceResponse.setSprintResults(createResultsListResponseDTO(results)));
 
         return raceResponse;
     }
@@ -254,6 +295,18 @@ public class F1GraphicsFactory {
         return raceTableResponse;
     }
 
+    public static RaceSprintTableResponseDTO createRaceSprintTableResponseDTO(RaceSprintTableRoundRequestDTO raceSprintTableRequest) {
+
+        RaceSprintTableResponseDTO raceTableResponse = new RaceSprintTableResponseDTO();
+
+        validateAndSetIfNotNull(createListRaceSprintResponseDTO(raceSprintTableRequest.getRaces()), raceTableResponse::setRaces);
+        validateAndSetIfNotNull(raceSprintTableRequest.getSeason(), raceTableResponse::setSeason);
+        validateAndSetIfNotNull(raceSprintTableRequest.getRound(), raceTableResponse::setRound);
+
+
+        return raceTableResponse;
+    }
+
     public static RaceChampionsResponseDTO createRaceChampionsResponseDTO(RaceResponseDTO raceResponseDTO
             , CircuitResponseDTO circuit, List<DriverChampionsResponseDTO> driversResults) {
 
@@ -281,6 +334,7 @@ public class F1GraphicsFactory {
 
         return raceTableResponse;
     }
+
 
     public static DriverTableResponseDTO createDriverTableResponseDTO(DriverTableRequestDTO driverTableRequest) {
 

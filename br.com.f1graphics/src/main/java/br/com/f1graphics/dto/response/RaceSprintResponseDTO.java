@@ -1,4 +1,4 @@
-package br.com.f1graphics.dto.request;
+package br.com.f1graphics.dto.response;
 
 import br.com.f1graphics.dto.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RaceSprintRequestDTO implements Serializable, DTO {
+public class RaceSprintResponseDTO implements Serializable, DTO {
 
     private String season;
     private String round;
@@ -22,11 +22,11 @@ public class RaceSprintRequestDTO implements Serializable, DTO {
     private String raceName;
 
     @JsonProperty("Circuit")
-    private CircuitRequestDTO circuit;
+    private CircuitResponseDTO circuit;
     private String date;
     private String time;
 
     @JsonProperty("SprintResults")
-    private List<ResultRequestDTO> sprintResults;
+    private List<ResultResponseDTO> sprintResults;
 
 }

@@ -1,8 +1,10 @@
 package br.com.f1graphics.service.impl;
 
 import br.com.f1graphics.dto.factory.F1GraphicsFactory;
+import br.com.f1graphics.dto.request.RaceSprintTableRequestDTO;
 import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
 import br.com.f1graphics.dto.request.RaceRequestDTO;
+import br.com.f1graphics.dto.response.RaceSprintTableResponseDTO;
 import br.com.f1graphics.dto.response.RaceTableResponseDTO;
 import br.com.f1graphics.facade.RacesFacade;
 import br.com.f1graphics.service.objects.RacesService;
@@ -32,16 +34,16 @@ public class RacesServiceImpl implements RacesService {
     }
 
     @Override
-    public RaceTableResponseDTO getResultSpintRacesForDriverSeason(String season, String drivers) {
+    public RaceSprintTableResponseDTO getResultSpintRacesForDriverSeason(String season, String drivers) {
 
-        return factory.createRaceTableResponseDTO(raceFacade
+        return factory.createRaceSprintTableResponseDTO(raceFacade
                 .getResultSpintRacesForDriverSeason(season, drivers).getMrData().getRaceTable());
     }
 
     @Override
-    public RaceTableResponseDTO getResultSpintRaces(String season, String round) {
+    public RaceSprintTableResponseDTO getResultSpintRaces(String season, String round) {
 
-        return factory.createRaceTableResponseDTO(raceFacade
+        return factory.createRaceSprintTableResponseDTO(raceFacade
                 .getResultSpintRaces(season, round).getMrData().getRaceTable());
     }
 

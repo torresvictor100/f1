@@ -2,6 +2,7 @@ package br.com.f1graphics.facade;
 
 import br.com.f1graphics.dto.request.MRDataRacePositionItensRequestDTO;
 import br.com.f1graphics.dto.request.MRDataRaceRoundItensDTO;
+import br.com.f1graphics.dto.request.MRDataRaceSprintRoundItensDTO;
 import br.com.f1graphics.util.RequestUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,16 +19,16 @@ public class RacesFacade {
                 , MRDataRacePositionItensRequestDTO.class);
     }
 
-    public MRDataRaceRoundItensDTO getResultSpintRacesForDriverSeason(String season, String driversId) {
+    public MRDataRaceSprintRoundItensDTO getResultSpintRacesForDriverSeason(String season, String driversId) {
 
         return requestUtil.get("/" + season + "/drivers/" + driversId + "/sprint.json"
-                , MRDataRaceRoundItensDTO.class);
+                , MRDataRaceSprintRoundItensDTO.class);
     }
 
-    public MRDataRaceRoundItensDTO getResultSpintRaces(String season, String round) {
+    public MRDataRaceSprintRoundItensDTO getResultSpintRaces(String season, String round) {
 
         return requestUtil.get("/" + season + "/" + round + "/sprint.json"
-                , MRDataRaceRoundItensDTO.class);
+                , MRDataRaceSprintRoundItensDTO.class);
     }
 
 }
