@@ -2,7 +2,7 @@
 import { Portal, Box, useDisclosure } from '@chakra-ui/react';
 import Footer from 'components/footer/FooterAdmin';
 // Layout components
-import Navbar from 'components/navbar/NavbarAdmin';
+import NavbarComparationOfDrivers from 'components/navbar/NavbarComparationOfDrivers';
 import Sidebar from 'components/sidebar/Sidebar';
 import { SidebarContext } from 'contexts/SidebarContext';
 import { useState } from 'react';
@@ -80,9 +80,9 @@ export default function Dashboard(props: { [x: string]: any }) {
 					transitionTimingFunction='linear, linear, ease'>
 					<Portal>
 						<Box>
-							<Navbar
+							<NavbarComparationOfDrivers
 								onOpen={onOpen}
-								logoText={'Horizon UI Dashboard PRO'}
+								logoText={'Comparation of Drivers'}
 								brandText={getActiveRoute(routes)}
 								secondary={getActiveNavbar(routes)}
 								message={getActiveNavbarText(routes)}

@@ -14,7 +14,7 @@ import SignInCentered from 'views/auth/signIn';
 
 const routes = [
 	{
-		name: 'comparation Of Driver',
+		name: 'Comparation of Drivers',
 		layout: '/comparationOfDrivers',
 		path: '/default',
 		icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
