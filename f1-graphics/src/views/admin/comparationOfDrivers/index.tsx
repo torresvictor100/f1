@@ -20,8 +20,10 @@
 
 */
 
+import React, { forwardRef } from 'react';
+
 // Chakra imports
-import { Avatar, Box, Flex, FormLabel, Icon, Select, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
+import { Avatar, Box,StatLabel, Flex, FormLabel,Text, Icon, Select, SimpleGrid,useStyleConfig, useColorModeValue } from '@chakra-ui/react';
 // Assets
 import Mclaren from 'assets/img/comparationOfDrivers/Mclaren.png';
 import RBR from 'assets/img/comparationOfDrivers/Red-Bull-logo.jpg';
@@ -29,9 +31,7 @@ import MaxVerstappen from 'assets/img/comparationOfDrivers/max-verstappen.png';
 import Hamiton from 'assets/img/comparationOfDrivers/Hamiton.jpg';
 // Custom components
 import MiniCalendar from 'components/calendar/MiniCalendar';
-import MiniStatistics from 'components/card/MiniStatistics';
-import IconBox from 'components/icons/IconBox';
-import { MdAddTask, MdAttachMoney, MdBarChart, MdFileCopy } from 'react-icons/md';
+import MiniStatisticsTitle from 'components/card/MiniStatisticsTitle'
 import CheckTable from 'views/admin/rtl/components/CheckTable';
 import ComplexTable from 'views/admin/default/components/ComplexTable';
 import DailyTraffic from 'views/admin/default/components/DailyTraffic';
@@ -41,26 +41,36 @@ import TotalSpent from 'views/admin/default/components/TotalSpent';
 import WeeklyRevenue from 'views/admin/default/components/WeeklyRevenue';
 import tableDataCheck from 'views/admin/default/variables/tableDataCheck';
 import tableDataComplex from 'views/admin/default/variables/tableDataComplex';
+import { CustomCardProps } from 'theme/theme';
 
 export default function UserReports() {
 	// Chakra Color Mode
 	const brandColor = useColorModeValue('brand.500', 'white');
 	const boxBg = useColorModeValue('secondaryGray.300', 'whiteAlpha.100');
+
+	const CustomCard = forwardRef<HTMLDivElement, CustomCardProps>((props, ref) => {
+		const { size, variant, ...rest } = props;
+		const styles = useStyleConfig('Card', { size, variant });
+	  
+		return <Box ref={ref} __css={styles} {...rest} />;
+	  });
+
+	  const textColor2023 = useColorModeValue('secondaryGray.900', 'white');
+	
 	return (
+
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
+
+		
+		<CustomCard py='35px'>
+        {/* Use Chakra UI text utilities or add custom styles here */}
+        <Text fontSize="2xl" fontWeight="bold" textAlign="left" p="-0.5" ml="4" mt="4" color={textColor2023}>
+          Championship 2023
+        </Text>
+      </CustomCard>
+		
 			<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='20px'>
-				<MiniStatistics
-					endContent={
-						<Flex me='-16px' mt='10px'>
-							<FormLabel htmlFor='balance'>
-								<Avatar src={MaxVerstappen} />
-							</FormLabel>
-						</Flex>
-					}
-					name='M. Verstappen'
-					value='549'
-				/>
-				<MiniStatistics
+			<MiniStatisticsTitle
 					endContent={
 						<Flex me='-16px' mt='10px'>
 							<FormLabel htmlFor='balance'>
@@ -68,10 +78,23 @@ export default function UserReports() {
 							</FormLabel>
 						</Flex>
 					}
+					title="Championship Leader Construction"
 					name='Red Bull'
 					value='822'
 				/>
-				<MiniStatistics
+				<MiniStatisticsTitle
+					endContent={
+						<Flex me='-16px' mt='10px'>
+							<FormLabel htmlFor='balance'>
+								<Avatar src={MaxVerstappen} />
+							</FormLabel>
+						</Flex>
+					}
+					title="Championship Leader Driver"
+					name='M. Verstappen'
+					value='549'
+				/>
+				<MiniStatisticsTitle
 					endContent={
 						<Flex me='-16px' mt='10px'>
 							<FormLabel htmlFor='balance'>
@@ -84,10 +107,11 @@ export default function UserReports() {
 							</Select>
 						</Flex>
 					}
+					title="Constructor Points"
 					name='McLaren'
 					value='284'
 				/>
-				<MiniStatistics
+				<MiniStatisticsTitle
 					endContent={
 						<Flex me='-16px' mt='10px'>
 							<FormLabel htmlFor='balance'>
@@ -97,7 +121,8 @@ export default function UserReports() {
 							</Select>
 						</Flex>
 					}
-					name='L.Hamiton'
+					title="Driver Points"
+					name='L. Hamiton'
 					value='232'
 				/>
 			</SimpleGrid>
