@@ -7,17 +7,25 @@ import NFTMarketplace from 'views/admin/marketplace';
 import Profile from 'views/admin/profile';
 import DataTables from 'views/admin/dataTables';
 import RTL from 'views/admin/rtl';
+import ComparationOfDrivers from 'views/admin/comparationOfDrivers';
 
 // Auth Imports
 import SignInCentered from 'views/auth/signIn';
 
 const routes = [
 	{
+		name: 'comparation Of Driver',
+		layout: '/comparationOfDrivers',
+		path: '/default',
+		icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
+		component: ComparationOfDrivers
+	},
+	{
 		name: 'Main Dashboard',
 		layout: '/admin',
 		path: '/default',
 		icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
-		component: MainDashboard
+		component: MainDashboard,
 	},
 	{
 		name: 'NFT Marketplace',
