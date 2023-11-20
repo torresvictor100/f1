@@ -16,8 +16,8 @@ const routes = [
 	{
 		name: 'Comparation of Drivers',
 		layout: '/comparationOfDrivers',
-		path: '/default',
-		icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
+		path: '/admin',
+		icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
 		component: ComparationOfDrivers
 	},
 	{
