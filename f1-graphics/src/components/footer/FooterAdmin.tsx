@@ -41,7 +41,7 @@ export default function Footer() {
 						md: '44px'
 					}}>
 					<Link fontWeight='500' color={textColor} href='mailto:hello@simmmple.com'>
-						Support
+						Developed By João Victor Torres
 					</Link>
 				</ListItem>
 				<ListItem
@@ -53,20 +53,8 @@ export default function Footer() {
 						License
 					</Link>
 				</ListItem>
-				<ListItem
-					me={{
-						base: '20px',
-						md: '44px'
-					}}>
-					<Link fontWeight='500' color={textColor} href='https://simmmple.com/terms-of-service'>
-						Terms of Use
-					</Link>
-				</ListItem>
-				<ListItem>
-					<Link fontWeight='500' color={textColor} href='https://www.blog.simmmple.com/'>
-						Blog
-					</Link>
-				</ListItem>
+			
+				
 			</List>
 		</Flex>
 	);
