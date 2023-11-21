@@ -10,7 +10,9 @@ import { RiArrowUpSFill } from 'react-icons/ri';
 import { lineChartDataTotalSpent, lineChartOptionsTotalSpent } from 'variables/charts';
 import Hamiton from 'assets/img/comparationOfDrivers/Hamiton.jpg';
 import Massa from 'assets/img/comparationOfDrivers/Massa.jpg';
+import Soma from 'assets/img/comparationOfDrivers/Soma.jpg';
 import MiniStatisticsTitle from 'components/card/MiniStatisticsTitle'
+import MiniStatistics from 'components/card/MiniStatistics'
 
 export default function TotalSpent(props: { [x: string]: any }) {
 	const { ...rest } = props;
@@ -65,6 +67,17 @@ export default function TotalSpent(props: { [x: string]: any }) {
 					title="McLaren"
 					name='2º'
 					value='Massa'
+				/>
+				<MiniStatistics
+					endContent={
+						<Flex me='-16px' mt='10px'>
+							<FormLabel htmlFor='balance'backgroundColor={''}>
+								<Avatar src={Soma} />
+							</FormLabel>
+						</Flex>
+					}
+					name=''
+					value=''
 				/>
 			</SimpleGrid>
 		</Card>
