@@ -28,12 +28,16 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const bgFocus = useColorModeValue({ bg: 'secondaryGray.300' }, { bg: 'whiteAlpha.100' });
 	return (
 		<Card justifyContent='center' alignItems='center' flexDirection='column' w='100%' mb='0px' {...rest}>
-			<Text color={textColor} fontSize='34px' textAlign='start' fontWeight='700' lineHeight='100%'>
+			<Text color={textColor} fontSize='54px' textAlign='start' fontWeight='700' lineHeight='100%'>
 						Comparation Drivers
 					</Text>
-					<Text color='secondaryGray.600' fontSize='sm' fontWeight='500' mt='4px' me='12px'>
-							2008
-						</Text>
+						<Flex me='-16px' mt='10px'>
+							<FormLabel htmlFor='balance'>
+								<Text fontSize='34px' color='secondaryGray.600' mt='12px' me='0px'>2008</Text>
+							</FormLabel>
+							<Select id='balance' variant='mini' mt='15px' me='0px' defaultValue='usd'>
+							</Select>
+						</Flex>
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
 					<LineChart chartData={lineChartDataTotalSpent} chartOptions={lineChartOptionsTotalSpent} />
@@ -71,7 +75,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 				<MiniStatistics
 					endContent={
 						<Flex me='-16px' mt='10px'>
-							<FormLabel htmlFor='balance'backgroundColor={''}>
+							<FormLabel htmlFor='balance'backgroundColor={'###'}>
 								<Avatar src={Soma} />
 							</FormLabel>
 						</Flex>
