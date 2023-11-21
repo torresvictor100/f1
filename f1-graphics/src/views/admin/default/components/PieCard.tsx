@@ -47,7 +47,7 @@ export default function Conversion(props: { [x: string]: any }) {
 							Your files
 						</Text>
 					</Flex>
-					<Text fontSize='lg' color={textColor} fontWeight='700'>
+					<Text fontSize='lg' color={'textColor'} fontWeight='700'>
 						63%
 					</Text>
 				</Flex>

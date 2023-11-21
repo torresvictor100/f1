@@ -351,12 +351,12 @@ export const pieChartData = [ 63, 25, 12 ];
 
 export const lineChartDataTotalSpent = [
 	{
-		name: 'Revenue',
-		data: [ 50, 64, 48, 66, 49, 68 ]
+		name: 'Massa',
+		data: [  0, 0,  0, 10, 18, 28, 34, 38, 48, 48, 54, 54, 64, 74, 77, 77, 79, 87, 97]
 	},
 	{
-		name: 'Profit',
-		data: [ 30, 40, 24, 46, 20, 46 ]
+		name: 'Hamilton',
+		data: [ 0, 10, 14, 14, 20, 28, 38, 38, 38, 48, 58, 62, 70, 76, 78, 84, 84, 94, 98]
 	}
 ];
 
@@ -374,7 +374,7 @@ export const lineChartOptionsTotalSpent: any = {
 			color: '#4318FF'
 		}
 	},
-	colors: [ '#4318FF', '#39B8FF' ],
+	colors: [ '#a60203', '#ff8000' ],
 	markers: {
 		size: 0,
 		colors: 'white',
@@ -402,7 +402,24 @@ export const lineChartOptionsTotalSpent: any = {
 	},
 	xaxis: {
 		type: 'numeric',
-		categories: [ 'SEP', 'OCT', 'NOV', 'DEC', 'JAN', 'FEB' ],
+		categories: [  "0", "Australian Grand Prix",
+		"Malaysian Grand Prix",
+		"Bahrain Grand Prix",
+		"Spanish Grand Prix",
+		"Turkish Grand Prix",
+		"Monaco Grand Prix",
+		"Canadian Grand Prix",
+		"French Grand Prix",
+		"British Grand Prix",
+		"German Grand Prix",
+		"Hungarian Grand Prix",
+		"European Grand Prix",
+		"Belgian Grand Prix",
+		"Italian Grand Prix",
+		"Singapore Grand Prix",
+		"Japanese Grand Prix",
+		"Chinese Grand Prix",
+		"Brazilian Grand Prix" ],
 		labels: {
 			style: {
 				colors: '#A3AED0',
