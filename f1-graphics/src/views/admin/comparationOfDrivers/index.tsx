@@ -62,13 +62,12 @@ export default function UserReports() {
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
 
 		
-		<CustomCard py='35px'>
+		<CustomCard py='35px'  mb='10'>
         {/* Use Chakra UI text utilities or add custom styles here */}
-        <Text fontSize="2xl" fontWeight="bold" textAlign="left" p="-0.5" ml="4" mt="4" color={textColor2023}>
+        <Text fontSize="2xl" fontWeight="bold" textAlign="left" p="-0.5"  color={textColor2023} >
           Championship 2023
         </Text>
       </CustomCard>
-		
 			<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='20px'>
 			<MiniStatisticsTitle
 					endContent={
