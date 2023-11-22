@@ -31,7 +31,7 @@ export function SidebarLinks(props: {
 				route: RoutesType,
 				index: number
 			) => {
-				if (route.layout === '/comparationOfDrivers') {
+				if (route.layout === '/comparationOfDrivers' || route.layout === '/home') {
 					return (
 						<NavLink key={index} to={route.layout + route.path}>
 							{route.icon ? (

@@ -6,6 +6,7 @@ import AuthLayout from './layouts/auth';
 import AdminLayout from './layouts/admin';
 import RTLLayout from './layouts/rtl';
 import ComparationOfDriversLayout from './layouts/comparationOfDrivers';
+import Home from './layouts/home';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
 
@@ -18,7 +19,8 @@ ReactDOM.render(
 					<Route path={`/admin`} component={AdminLayout} />
 					<Route path={`/rtl`} component={RTLLayout} />
 					<Route path={`/comparationOfDrivers`} component={ComparationOfDriversLayout} />
-					<Redirect from='/' to='/comparationOfDrivers' />
+					<Route path={`/home`} component={Home} />
+					<Redirect from='/' to='/home' />
 				</Switch>
 			</HashRouter>
 		</React.StrictMode>
