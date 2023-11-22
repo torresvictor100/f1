@@ -2,8 +2,8 @@ package br.com.f1graphics.service.objects;
 
 import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
-import br.com.f1graphics.dto.response.RaceSprintTableResponseDTO;
-import br.com.f1graphics.dto.response.RaceTableResponseDTO;
+import br.com.f1graphics.dto.response.racestable.RaceSprintTableResponseDTO;
+import br.com.f1graphics.dto.response.racestable.RaceTableResponseDTO;
 
 public interface RacesService {
 

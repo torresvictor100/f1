@@ -3,9 +3,11 @@ package br.com.f1graphics.service.impl;
 import br.com.f1graphics.dto.factory.F1GraphicsFactory;
 import br.com.f1graphics.dto.request.ListDriversIdRequestDTO;
 import br.com.f1graphics.dto.response.*;
+import br.com.f1graphics.dto.response.drive.DriverSeasonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceSeaseonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceSprintResponseDTO;
+import br.com.f1graphics.dto.response.racestable.RaceSprintTableResponseDTO;
 import br.com.f1graphics.facade.DriversFacade;
 import br.com.f1graphics.service.objects.RacesService;
 import br.com.f1graphics.service.objects.SeasonsService;
@@ -78,7 +80,7 @@ public class SeasonsServiceImpl implements SeasonsService {
 
         RaceResponseDTO race = racesService.getRaceResultsForRound(season, round);
 
-        List<DriverChampionsResponseDTO> driverListChampionsResponse = new ArrayList<>();
+        List<DriverSeasonResponseDTO> driverListChampionsResponse = new ArrayList<>();
 
         Map<String, RaceSprintResponseDTO> racesSprint = new HashMap<>();
 
@@ -112,9 +114,9 @@ public class SeasonsServiceImpl implements SeasonsService {
         return raceMap;
     }
 
-    private DriverChampionsResponseDTO getDriverChampionsResponseDTO(String driversId, RaceResponseDTO race
+    private DriverSeasonResponseDTO getDriverChampionsResponseDTO(String driversId, RaceResponseDTO race
             , Map<String, Double> MapPointsChampionship, Map<String, Double> MapPointsChampionshipRaces
-            , Map<String, Double> mapPointsChampionshipSprintRaces,Map<String, RaceSprintResponseDTO> racesSprint) {
+            , Map<String, Double> mapPointsChampionshipSprintRaces, Map<String, RaceSprintResponseDTO> racesSprint) {
 
 
         for (int resultInt = 0; resultInt < race.getResults().size(); resultInt++)  {

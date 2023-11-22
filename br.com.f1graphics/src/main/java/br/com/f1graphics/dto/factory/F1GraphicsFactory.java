@@ -10,9 +10,13 @@ import br.com.f1graphics.dto.request.racetable.RaceTableDriverIdRequestDTO;
 import br.com.f1graphics.dto.request.racetable.RaceTablePositionRequestDTO;
 import br.com.f1graphics.dto.request.racetable.RaceTableRoundRequestDTO;
 import br.com.f1graphics.dto.response.*;
+import br.com.f1graphics.dto.response.drive.DriverResponseDTO;
+import br.com.f1graphics.dto.response.drive.DriverSeasonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceSeaseonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceSprintResponseDTO;
+import br.com.f1graphics.dto.response.racestable.RaceSprintTableResponseDTO;
+import br.com.f1graphics.dto.response.racestable.RaceTableResponseDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +50,7 @@ public class F1GraphicsFactory {
 
     public static RaceSeaseonResponseDTO createRaceChampionsResponseDTO(String round, String url, String raceName
             , String points, String laps, CircuitResponseDTO circuit, String date
-            , String time, List<DriverChampionsResponseDTO> driversResults) {
+            , String time, List<DriverSeasonResponseDTO> driversResults) {
 
         RaceSeaseonResponseDTO raceChampions = new RaceSeaseonResponseDTO();
 
@@ -319,7 +323,7 @@ public class F1GraphicsFactory {
     }
 
     public static RaceSeaseonResponseDTO createRaceChampionsResponseDTO(RaceResponseDTO raceResponseDTO
-            , CircuitResponseDTO circuit, List<DriverChampionsResponseDTO> driversResults) {
+            , CircuitResponseDTO circuit, List<DriverSeasonResponseDTO> driversResults) {
 
         RaceSeaseonResponseDTO raceChampionsResponse = new RaceSeaseonResponseDTO();
 
@@ -360,10 +364,10 @@ public class F1GraphicsFactory {
         return driverTableResponse;
     }
 
-    public static DriverChampionsResponseDTO createDriverChampionsResponseDTO(ResultResponseDTO resultRequestDTO
+    public static DriverSeasonResponseDTO createDriverChampionsResponseDTO(ResultResponseDTO resultRequestDTO
             , ResultRaceResponseDTO resultRaceResponse, ResultSeaseonResponseDTO resultChampionshipResponse) {
 
-        DriverChampionsResponseDTO driverChampionsResponse = new DriverChampionsResponseDTO();
+        DriverSeasonResponseDTO driverChampionsResponse = new DriverSeasonResponseDTO();
 
         validateAndSetIfNotNull(resultRequestDTO.getDriver().getDriverId(), driverChampionsResponse::setDriverId);
         validateAndSetIfNotNull(resultRequestDTO.getConstructor(), driverChampionsResponse::setConstructor);
