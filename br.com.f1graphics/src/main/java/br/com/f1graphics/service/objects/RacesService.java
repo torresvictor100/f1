@@ -11,9 +11,9 @@ public interface RacesService {
 
     RaceSprintTableResponseDTO getResultSpintRacesForDriverSeason(String season, String Id);
 
-    RaceSprintTableResponseDTO getResultSpintRaces(String season, String round);
+    RaceSprintTableResponseDTO getRaceSprintTableForRound(String season, String round);
 
-    RaceTableResponseDTO getDriverResultsForDriverId(String driverId, String driver );
+    RaceTableResponseDTO getRaceTableForDriverId(String season, String driverId );
 
     public RaceResponseDTO getRaceResultsForRound(String season, int round);
 }

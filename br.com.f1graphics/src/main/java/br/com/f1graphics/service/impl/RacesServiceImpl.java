@@ -41,14 +41,14 @@ public class RacesServiceImpl implements RacesService {
     }
 
     @Override
-    public RaceSprintTableResponseDTO getResultSpintRaces(String season, String round) {
+    public RaceSprintTableResponseDTO getRaceSprintTableForRound(String season, String round) {
 
         return factory.createRaceSprintTableResponseDTO(raceFacade
                 .getResultSpintRaces(season, round).getMrData().getRaceTable());
     }
 
     @Override
-    public RaceTableResponseDTO getDriverResultsForDriverId(String season, String driver) {
+    public RaceTableResponseDTO getRaceTableForDriverId(String season, String driver) {
 
         return factory.createRaceTableResponseDTO(raceFacade.getDriverResultsForDriverId(season, driver)
                 .getMrData().getRaceTable());
