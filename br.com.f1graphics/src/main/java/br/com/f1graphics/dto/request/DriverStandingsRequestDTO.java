@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,6 +23,6 @@ public class DriverStandingsRequestDTO implements Serializable, DTO {
     @JsonProperty("Driver")
     private DriverRequestDTO driver;
     @JsonProperty("Constructors")
-    private ConstructorRequestDTO constructors;
+    private List<DriverStandingsConstructorsRequestDTO> constructors;
 
 }

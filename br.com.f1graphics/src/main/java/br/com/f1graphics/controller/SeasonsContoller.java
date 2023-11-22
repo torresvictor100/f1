@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RequestMapping(value = "/f1-graphics/season")
+@RequestMapping(value = "/f1-graphics/seasons")
 @RestController
 @Slf4j
 @CrossOrigin(origins = "*")

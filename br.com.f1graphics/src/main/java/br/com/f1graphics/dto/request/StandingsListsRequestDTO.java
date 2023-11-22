@@ -14,9 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StandingsTableRequestDTO implements Serializable, DTO {
+public class StandingsListsRequestDTO implements Serializable, DTO {
 
     private String season;
-    @JsonProperty("StandingsLists")
-    private List<StandingsListsRequestDTO> StandingsListsRequest;
+    private String round;
+    @JsonProperty("DriverStandings")
+    private List<DriverStandingsRequestDTO> driverStandings;
 }
