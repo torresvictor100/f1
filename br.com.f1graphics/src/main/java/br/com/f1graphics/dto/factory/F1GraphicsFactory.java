@@ -1,6 +1,14 @@
 package br.com.f1graphics.dto.factory;
 
 import br.com.f1graphics.dto.request.*;
+import br.com.f1graphics.dto.request.constructions.ConstructorRequestDTO;
+import br.com.f1graphics.dto.request.driversrequest.DriverRequestDTO;
+import br.com.f1graphics.dto.request.races.RaceRequestDTO;
+import br.com.f1graphics.dto.request.races.RaceSprintRequestDTO;
+import br.com.f1graphics.dto.request.racetable.RaceSprintTableRoundRequestDTO;
+import br.com.f1graphics.dto.request.racetable.RaceTableDriverIdRequestDTO;
+import br.com.f1graphics.dto.request.racetable.RaceTablePositionRequestDTO;
+import br.com.f1graphics.dto.request.racetable.RaceTableRoundRequestDTO;
 import br.com.f1graphics.dto.response.*;
 
 import java.util.ArrayList;

@@ -1,9 +1,6 @@
 package br.com.f1graphics.service.impl;
 
 
-import br.com.f1graphics.dto.request.DriverRequestDTO;
-import br.com.f1graphics.dto.request.DriverStandingsRequestDTO;
-import br.com.f1graphics.dto.request.MRDataDriverStandingsItensRequestDTO;
 import br.com.f1graphics.dto.request.StandingsListsRequestDTO;
 import br.com.f1graphics.facade.DriverStandingsFacade;
 import br.com.f1graphics.service.objects.DriverStandingsService;

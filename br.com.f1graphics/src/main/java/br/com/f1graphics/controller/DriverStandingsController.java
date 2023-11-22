@@ -1,12 +1,7 @@
 package br.com.f1graphics.controller;
 
-import br.com.f1graphics.dto.request.DriverStandingsRequestDTO;
-import br.com.f1graphics.dto.request.MRDataDriverStandingsItensRequestDTO;
 import br.com.f1graphics.dto.request.StandingsListsRequestDTO;
-import br.com.f1graphics.dto.response.DriverResponseDTO;
-import br.com.f1graphics.dto.response.DriverTableResponseDTO;
 import br.com.f1graphics.service.objects.DriverStandingsService;
-import br.com.f1graphics.service.objects.DriversService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;

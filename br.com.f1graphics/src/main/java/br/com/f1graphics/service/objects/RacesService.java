@@ -1,7 +1,5 @@
 package br.com.f1graphics.service.objects;
 
-import br.com.f1graphics.dto.request.RaceSprintTableRequestDTO;
-import br.com.f1graphics.dto.request.RaceTableRoundRequestDTO;
 import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
 import br.com.f1graphics.dto.response.RaceResponseDTO;
 import br.com.f1graphics.dto.response.RaceSprintTableResponseDTO;
