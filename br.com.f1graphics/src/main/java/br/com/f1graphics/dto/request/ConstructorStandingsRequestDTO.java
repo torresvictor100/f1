@@ -21,7 +21,7 @@ public class ConstructorStandingsRequestDTO implements Serializable, DTO {
     private String points;
     private String wins;
 
-    @JsonProperty("Constructors")
-    private List<StandingsConstructorsRequestDTO> constructors;
+    @JsonProperty("Constructor")
+    private StandingsConstructorsRequestDTO constructor;
 
 }
