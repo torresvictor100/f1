@@ -10,6 +10,9 @@ import br.com.f1graphics.dto.request.racetable.RaceTableDriverIdRequestDTO;
 import br.com.f1graphics.dto.request.racetable.RaceTablePositionRequestDTO;
 import br.com.f1graphics.dto.request.racetable.RaceTableRoundRequestDTO;
 import br.com.f1graphics.dto.response.*;
+import br.com.f1graphics.dto.response.races.RaceResponseDTO;
+import br.com.f1graphics.dto.response.races.RaceSeaseonResponseDTO;
+import br.com.f1graphics.dto.response.races.RaceSprintResponseDTO;
 
 import java.util.ArrayList;
 import java.util.List;
