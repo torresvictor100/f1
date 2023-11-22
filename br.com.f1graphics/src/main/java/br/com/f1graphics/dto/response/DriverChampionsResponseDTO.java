@@ -29,7 +29,7 @@ public class DriverChampionsResponseDTO implements Serializable, DTO {
     private String nationality;
 
     @JsonProperty("ResultChampionshipResponseDTO")
-    private ResultChampionshipResponseDTO resultChampionshipResponseDTO;
+    private ResultSeaseonResponseDTO resultChampionshipResponseDTO;
 
     @JsonProperty("ResultRace")
     private ResultRaceResponseDTO resultRaceResponse;

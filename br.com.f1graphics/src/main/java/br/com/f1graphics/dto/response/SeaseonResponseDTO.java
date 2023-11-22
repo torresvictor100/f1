@@ -14,13 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ChampionshipResponseDTO implements Serializable, DTO {
+public class SeaseonResponseDTO implements Serializable, DTO {
 
     private String season;
 
     private String totalGPs;
 
     @JsonProperty("raceChampions")
-    private List<RaceChampionsResponseDTO> raceChampions;
+    private List<RaceSeaseonResponseDTO> raceChampions;
 
 }

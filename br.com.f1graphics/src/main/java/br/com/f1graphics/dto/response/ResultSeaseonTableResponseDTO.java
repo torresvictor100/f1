@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ResultChampionshipTableResponseDTO implements Serializable {
+public class ResultSeaseonTableResponseDTO implements Serializable {
 
 
 

@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ResultChampionshipResponseDTO implements Serializable {
+public class ResultSeaseonResponseDTO implements Serializable {
 
     private String raceName;
     private Double pointsChampionship;

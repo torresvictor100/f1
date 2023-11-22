@@ -51,7 +51,7 @@ public class DriversServiceImpl implements DriversService {
     }
 
     @Override
-    public ChampionshipResponseDTO getChampionshipResponseDTO(String season, ListDriversIdRequestDTO listDriversId) {
+    public SeaseonResponseDTO getChampionshipResponseDTO(String season, ListDriversIdRequestDTO listDriversId) {
 
 
 
@@ -70,16 +70,16 @@ public class DriversServiceImpl implements DriversService {
     }
 
 
-    private ChampionshipResponseDTO getChampionshipResponseDTO(String season, ListDriversIdRequestDTO listDriversId
+    private SeaseonResponseDTO getChampionshipResponseDTO(String season, ListDriversIdRequestDTO listDriversId
             , ListNamesRacesResponseDTO listNamesRacingDTO, Map<String, Double> MapPointsChampionship
             , Map<String, Double> MapPointsChampionshipRaces , Map<String, Double> MapPointsChampionshipSprintRaces) {
 
         int round = 1;
-        List<RaceChampionsResponseDTO> racesDTOChampionsResponse = new ArrayList<>();
+        List<RaceSeaseonResponseDTO> racesDTOChampionsResponse = new ArrayList<>();
 
         for (String namesRacing : listNamesRacingDTO.getListNamesRacesDTO()) {
 
-            RaceChampionsResponseDTO raceChampionsResponse = getRaceChampionsResponseDTO(season
+            RaceSeaseonResponseDTO raceChampionsResponse = getRaceChampionsResponseDTO(season
                     , listDriversId, round, MapPointsChampionship,
                     MapPointsChampionshipRaces,MapPointsChampionshipSprintRaces );
             racesDTOChampionsResponse.add(raceChampionsResponse);
@@ -93,7 +93,7 @@ public class DriversServiceImpl implements DriversService {
     }
 
 
-    private RaceChampionsResponseDTO getRaceChampionsResponseDTO(String season
+    private RaceSeaseonResponseDTO getRaceChampionsResponseDTO(String season
             , ListDriversIdRequestDTO listDriversId, int round , Map<String, Double> MapPointsChampionship
             , Map<String, Double> MapPointsChampionshipRaces , Map<String, Double> MapPointsChampionshipSprintRaces) {
 
@@ -165,7 +165,7 @@ public class DriversServiceImpl implements DriversService {
 
                 }
 
-                ResultChampionshipResponseDTO resultChampionshipResponseDTO =  getResultChampionshipResponseDTO(race.getRaceName(), MapPointsChampionship.get(driversId)
+                ResultSeaseonResponseDTO resultChampionshipResponseDTO =  getResultChampionshipResponseDTO(race.getRaceName(), MapPointsChampionship.get(driversId)
                         , MapPointsChampionshipRaces.get(driversId), mapPointsChampionshipSprintRaces.get(driversId));
 
                 ResultRaceResponseDTO raceResponseDTO = getResultRaceResponseDTO(race.getResults().get(resultInt));
@@ -185,7 +185,7 @@ public class DriversServiceImpl implements DriversService {
         return factory.createResultRaceResponseDTO(resultRaceResponseDTO);
     }
 
-    private ResultChampionshipResponseDTO getResultChampionshipResponseDTO(String raceName, Double pointsChampionship
+    private ResultSeaseonResponseDTO getResultChampionshipResponseDTO(String raceName, Double pointsChampionship
             , Double pointsChampionshipRaces, Double pointsChampionshipSprintRaces) {
 
 

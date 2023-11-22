@@ -1,7 +1,5 @@
 package br.com.f1graphics.controller;
 
-import br.com.f1graphics.dto.request.ListDriversIdRequestDTO;
-import br.com.f1graphics.dto.response.ChampionshipResponseDTO;
 import br.com.f1graphics.dto.response.DriverResponseDTO;
 import br.com.f1graphics.dto.response.DriverTableResponseDTO;
 import br.com.f1graphics.service.objects.DriversService;

@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 
 public class F1GraphicsFactory {
 
-    public static ChampionshipResponseDTO createChampionshipResponseDTO(String season, String totalGPs, List<RaceChampionsResponseDTO> raceChampions) {
+    public static SeaseonResponseDTO createChampionshipResponseDTO(String season, String totalGPs, List<RaceSeaseonResponseDTO> raceChampions) {
 
-        ChampionshipResponseDTO championship = new ChampionshipResponseDTO();
+        SeaseonResponseDTO championship = new SeaseonResponseDTO();
         validateAndSetIfNotNull(season, championship::setSeason);
         validateAndSetIfNotNull(totalGPs, championship::setTotalGPs);
         validateAndSetIfNotNull(raceChampions, championship::setRaceChampions);
@@ -33,11 +33,11 @@ public class F1GraphicsFactory {
         return locationResponse;
     }
 
-    public static RaceChampionsResponseDTO createRaceChampionsResponseDTO(String round, String url, String raceName
+    public static RaceSeaseonResponseDTO createRaceChampionsResponseDTO(String round, String url, String raceName
             , String points, String laps, CircuitResponseDTO circuit, String date
             , String time, List<DriverChampionsResponseDTO> driversResults) {
 
-        RaceChampionsResponseDTO raceChampions = new RaceChampionsResponseDTO();
+        RaceSeaseonResponseDTO raceChampions = new RaceSeaseonResponseDTO();
 
         validateAndSetIfNotNull(round, raceChampions::setRound);
         validateAndSetIfNotNull(url, raceChampions::setUrl);
@@ -307,10 +307,10 @@ public class F1GraphicsFactory {
         return raceTableResponse;
     }
 
-    public static RaceChampionsResponseDTO createRaceChampionsResponseDTO(RaceResponseDTO raceResponseDTO
+    public static RaceSeaseonResponseDTO createRaceChampionsResponseDTO(RaceResponseDTO raceResponseDTO
             , CircuitResponseDTO circuit, List<DriverChampionsResponseDTO> driversResults) {
 
-        RaceChampionsResponseDTO raceChampionsResponse = new RaceChampionsResponseDTO();
+        RaceSeaseonResponseDTO raceChampionsResponse = new RaceSeaseonResponseDTO();
 
         validateAndSetIfNotNull(raceResponseDTO.getRaceName(), raceChampionsResponse::setRaceName);
         validateAndSetIfNotNull(raceResponseDTO.getUrl(), raceChampionsResponse::setUrl);
@@ -350,7 +350,7 @@ public class F1GraphicsFactory {
     }
 
     public static DriverChampionsResponseDTO createDriverChampionsResponseDTO(ResultResponseDTO resultRequestDTO
-            , ResultRaceResponseDTO resultRaceResponse, ResultChampionshipResponseDTO resultChampionshipResponse) {
+            , ResultRaceResponseDTO resultRaceResponse, ResultSeaseonResponseDTO resultChampionshipResponse) {
 
         DriverChampionsResponseDTO driverChampionsResponse = new DriverChampionsResponseDTO();
 
@@ -383,10 +383,10 @@ public class F1GraphicsFactory {
         return resultRaceResponse;
     }
 
-    public static ResultChampionshipResponseDTO createResultChampionshipResponse(String raceName, Double pointsChampionship
+    public static ResultSeaseonResponseDTO createResultChampionshipResponse(String raceName, Double pointsChampionship
             , Double pointsChampionshipRaces, Double pointsChampionshipSprintRaces) {
 
-        ResultChampionshipResponseDTO resultChampionshipResponse = new ResultChampionshipResponseDTO();
+        ResultSeaseonResponseDTO resultChampionshipResponse = new ResultSeaseonResponseDTO();
 
         validateAndSetIfNotNull(raceName, resultChampionshipResponse::setRaceName);
         validateAndSetIfNotNull(pointsChampionship, resultChampionshipResponse::setPointsChampionship);

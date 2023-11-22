@@ -1,7 +1,7 @@
 package br.com.f1graphics.controller;
 
 import br.com.f1graphics.dto.request.ListDriversIdRequestDTO;
-import br.com.f1graphics.dto.response.ChampionshipResponseDTO;
+import br.com.f1graphics.dto.response.SeaseonResponseDTO;
 import br.com.f1graphics.service.objects.SeasonsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -26,8 +26,8 @@ public class SeasonsContoller {
     @Operation(responses = {
             @ApiResponse(description = "get season for driversIds ", responseCode = "200")
     })
-    public ResponseEntity<ChampionshipResponseDTO> getSeasonDriversIds(@PathVariable String season,
-                                                                          @RequestBody ListDriversIdRequestDTO listDriversId) {
+    public ResponseEntity<SeaseonResponseDTO> getSeasonDriversIds(@PathVariable String season,
+                                                                  @RequestBody ListDriversIdRequestDTO listDriversId) {
         return ResponseEntity.ok(seasonsService.getSeasonForDriversIds(season, listDriversId));
     }
 }

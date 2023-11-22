@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RaceChampionsResponseDTO implements Serializable, DTO {
+public class RaceSeaseonResponseDTO implements Serializable, DTO {
 
 
     private String round;
