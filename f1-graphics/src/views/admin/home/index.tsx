@@ -4,7 +4,7 @@
  | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
  |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
  |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
+																																																																																	   
 =========================================================
 * Horizon UI - v1.1.0
 =========================================================
@@ -23,7 +23,7 @@
 import React, { forwardRef } from 'react';
 
 // Chakra imports
-import { Avatar, Box,StatLabel, Flex, FormLabel,Text, Icon, Select, SimpleGrid,useStyleConfig, useColorModeValue } from '@chakra-ui/react';
+import { Avatar, Box, StatLabel, Flex, FormLabel, Text, Icon, Select, SimpleGrid, useStyleConfig, useColorModeValue } from '@chakra-ui/react';
 // Assets
 import Mclaren from 'assets/img/comparationOfDrivers/Mclaren.png';
 import RBR from 'assets/img/comparationOfDrivers/Red-Bull-logo.jpg';
@@ -51,25 +51,25 @@ export default function UserReports() {
 	const CustomCard = forwardRef<HTMLDivElement, CustomCardProps>((props, ref) => {
 		const { size, variant, ...rest } = props;
 		const styles = useStyleConfig('Card', { size, variant });
-	  
-		return <Box ref={ref} __css={styles} {...rest} />;
-	  });
 
-	  const textColor2023 = useColorModeValue('secondaryGray.900', 'white');
-	
+		return <Box ref={ref} __css={styles} {...rest} />;
+	});
+
+	const textColor2023 = useColorModeValue('secondaryGray.900', 'white');
+
 	return (
 
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
 
-		
-		<CustomCard py='35px'  mb='10'>
-        {/* Use Chakra UI text utilities or add custom styles here */}
-        <Text fontSize="2xl" fontWeight="bold" textAlign="left" p="-0.5"  color={textColor2023} >
-          Championship 2023
-        </Text>
-      </CustomCard>
+
+			<CustomCard py='35px' mb='10'>
+
+				<Text fontSize="2xl" fontWeight="bold" textAlign="left" p="-0.5" color={textColor2023} >
+					Championship 2023
+				</Text>
+			</CustomCard>
 			<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='20px'>
-			<MiniStatisticsTitle
+				<MiniStatisticsTitle
 					endContent={
 						<Flex me='-16px' mt='10px'>
 							<FormLabel htmlFor='balance'>
@@ -125,8 +125,15 @@ export default function UserReports() {
 					value='232'
 				/>
 			</SimpleGrid>
-			<TotalSpent />
-			
+			<CustomCard py='35px' mb='10'>
+				<Text fontSize="50px" mb="50px" fontWeight="bold" textAlign="left" p="-0.5" color={textColor2023} >
+					F1 Graphics
+				</Text>
+				<Text fontSize="30px" fontWeight="bold" textAlign="left" p="-0.5" color={textColor2023} >
+				This project was developed by an enthusiast passionate about Formula 1 and programming. Its main purpose is to serve as a repository of processed F1 data graphics, providing customization options so that anyone can incorporate these graphics and data into their presentations about this fascinating sport.
+				</Text>
+			</CustomCard>
 		</Box>
+
 	);
 }
