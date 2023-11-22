@@ -16,6 +16,8 @@ public class DriverRequestDTO implements Serializable, DTO {
 
     private String driverId;
     private String url;
+    private String code;
+    private String permanentNumber;
     private String givenName;
     private String familyName;
     private String dateOfBirth;
