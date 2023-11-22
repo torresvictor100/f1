@@ -43,18 +43,7 @@ public class DriversServiceImpl implements DriversService {
                 .getMrData().getDriverTable().getDrivers().get(0));
     }
 
-    @Override
-    public x getDriverResultsForDriverId(String season, String driver) {
 
-        return factory.createRaceTableResponseDTO(driversFacade.getDriverResultsForDriverId(season, driver)
-                .getMrData().getRaceTable());
-    }
-
-    public RaceResponseDTO getRaceResultsForRound(String season, int round) {
-
-        return factory.createRaceResponseDTO(driversFacade.getRaceResultsForRound(season
-                , String.valueOf(round)).getMrData().getRaceTable().getRaces().get(0));
-    }
 
 
 }

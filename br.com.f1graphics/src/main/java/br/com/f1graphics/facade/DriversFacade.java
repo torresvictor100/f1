@@ -14,11 +14,7 @@ public class DriversFacade {
 
     private final RequestUtil requestUtil;
 
-    public MRDataRaceRoundItensDTO getRaceResultsForRound(String season, String round) {
 
-        return requestUtil.get("/" + season + "/" + round + "/results.json"
-                , MRDataRaceRoundItensDTO.class);
-    }
 
     public MRDataDriverItensRequestDTO getF1DriversForSeason(String season) {
 
@@ -26,13 +22,7 @@ public class DriversFacade {
                 , MRDataDriverItensRequestDTO.class);
     }
 
-    public MRDataRaceDriverIdItensRequestDTO getDriverResultsForDriverId(String season, String driver) {
 
-        MRDataRaceDriverIdItensRequestDTO rRDataRaceDriverIdItensRequestDTO = requestUtil.get("/" + driver + "/drivers/" + season + "/results.json"
-                , MRDataRaceDriverIdItensRequestDTO.class);
-
-        return rRDataRaceDriverIdItensRequestDTO;
-    }
 
     public MRDataDriverItensRequestDTO getDriverForDriverId(String driverId) {
 

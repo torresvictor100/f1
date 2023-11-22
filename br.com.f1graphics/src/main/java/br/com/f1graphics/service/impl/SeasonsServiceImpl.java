@@ -73,7 +73,7 @@ public class SeasonsServiceImpl implements SeasonsService {
             , Map<String, Double> MapPointsChampionshipRaces , Map<String, Double> MapPointsChampionshipSprintRaces) {
 
 
-        RaceResponseDTO race = getRaceResultsForRound(season, round);
+        RaceResponseDTO race = racesService.getRaceResultsForRound(season, round);
 
         List<DriverChampionsResponseDTO> driverListChampionsResponse = new ArrayList<>();
 
@@ -166,13 +166,6 @@ public class SeasonsServiceImpl implements SeasonsService {
 
         return factory.createResultChampionshipResponse(raceName, pointsChampionship
                 , pointsChampionshipRaces, pointsChampionshipSprintRaces);
-    }
-
-    public RaceResponseDTO getRaceResultsForRound(String season, int round) {
-
-
-        return factory.createRaceResponseDTO(driversFacade.getRaceResultsForRound(season
-                , String.valueOf(round)).getMrData().getRaceTable().getRaces().get(0));
     }
 
     private Map<String, Double> setNewPointForRace(String driverId, Double points, Map<String, Double> MapPointsChampionship){

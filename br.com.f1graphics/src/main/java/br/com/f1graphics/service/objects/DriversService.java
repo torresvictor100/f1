@@ -9,9 +9,5 @@ public interface DriversService {
 
     DriverResponseDTO getDriverForDriverId(String driverId);
 
-    RaceTableResponseDTO getDriverResultsForDriverId(String driverId, String driver );
 
-
-
-    public RaceResponseDTO getRaceResultsForRound(String season, int round);
 }
