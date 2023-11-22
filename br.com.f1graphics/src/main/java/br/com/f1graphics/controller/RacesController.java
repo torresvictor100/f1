@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RequestMapping(value = "/races")
+@RequestMapping(value = "/f1-graphics/races")
 @RestController
 @Slf4j
 @CrossOrigin(origins = "*")
@@ -19,12 +19,12 @@ public class RacesController {
 
     private final RacesService racesService;
 
-    @GetMapping("/{season}")
+    @GetMapping("/list-names-races-season/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
-            @ApiResponse(description = "get driver for season", responseCode = "200")
+            @ApiResponse(description = "get list names races for season", responseCode = "200")
     })
-    public ResponseEntity<ListNamesRacesResponseDTO> getListNameRacesDTO(@PathVariable String season) {
+    public ResponseEntity<ListNamesRacesResponseDTO> getListNamesRacesForSeason(@PathVariable String season) {
 
         return ResponseEntity.ok(racesService.getListNamesRacesForSeason(season));
     }

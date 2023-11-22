@@ -5,7 +5,7 @@ import br.com.f1graphics.dto.response.ChampionshipResponseDTO;
 import br.com.f1graphics.dto.response.DriverResponseDTO;
 import br.com.f1graphics.dto.response.DriverTableResponseDTO;
 import br.com.f1graphics.service.objects.DriversService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RequestMapping(value = "/drivers")
+    @RequestMapping(value = "/f1-graphics")
 @RestController
 @Slf4j
 @CrossOrigin(origins = "*")
@@ -23,7 +23,7 @@ public class DriversController {
 
     private final DriversService driversService;
 
-    @GetMapping("/{season}")
+    @GetMapping("/drivers-season/{season}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(responses = {
             @ApiResponse(description = "get drivers for season", responseCode = "200")
@@ -41,14 +41,4 @@ public class DriversController {
         return ResponseEntity.ok(driversService.getDriverForDriverId(driverId));
     }
 
-
-    @GetMapping("/championship/{season}")
-    @ResponseStatus(code = HttpStatus.OK)
-    @Operation(responses = {
-            @ApiResponse(description = "get championship for drivers ", responseCode = "200")
-    })
-    public ResponseEntity<ChampionshipResponseDTO> getDriversChampionship(@PathVariable String season,
-                                                                          @RequestBody ListDriversIdRequestDTO listDriversId) {
-        return ResponseEntity.ok(driversService.getChampionshipResponseDTO(season, listDriversId));
-    }
 }
