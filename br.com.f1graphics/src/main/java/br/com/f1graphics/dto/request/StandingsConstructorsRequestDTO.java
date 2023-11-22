@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DriverStandingsConstructorsRequestDTO implements Serializable, DTO {
+public class StandingsConstructorsRequestDTO implements Serializable, DTO {
 
     private String constructorId;
     private String url;

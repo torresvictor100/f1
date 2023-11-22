@@ -14,14 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DriverStandingsRequestDTO implements Serializable, DTO {
+public class ConstructorStandingsRequestDTO implements Serializable, DTO {
 
     private String position;
     private String positionText;
     private String points;
     private String wins;
-    @JsonProperty("Driver")
-    private DriverRequestDTO driver;
+
     @JsonProperty("Constructors")
     private List<StandingsConstructorsRequestDTO> constructors;
 
