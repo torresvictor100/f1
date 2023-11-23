@@ -54,9 +54,9 @@ public class SeasonsServiceImpl implements SeasonsService {
 
         for(RaceResponseDTO race : listRace){
             for (String driverId: listDriversId){
-                mapSeasonValorResult.put("totalSeasonPoints"+race.getRaceName()+driverId,0.0);
-                mapSeasonValorResult.put("racesSeasonPoints"+race.getRaceName(),0.0);
-                mapSeasonValorResult.put("sprintSeasonPoints"+race.getRaceName(),0.0);
+                mapSeasonValorResult.put("totalSeasonPoints"+driverId,0.0);
+                mapSeasonValorResult.put("racesSeasonPoints"+driverId,0.0);
+                mapSeasonValorResult.put("sprintSeasonPoints"+driverId,0.0);
             }
 
         }
@@ -69,9 +69,9 @@ public class SeasonsServiceImpl implements SeasonsService {
 
 
         return factory.createResultChampionshipResponse(raceName
-                , mapSeasonValorResult.get("totalSeasonPoints"+raceName+DriverId)
-                , mapSeasonValorResult.get("racesSeasonPoints"+raceName+DriverId)
-                , mapSeasonValorResult.get("sprintSeasonPoints"+raceName+DriverId));
+                , mapSeasonValorResult.get("totalSeasonPoints"+DriverId)
+                , mapSeasonValorResult.get("racesSeasonPoints"+DriverId)
+                , mapSeasonValorResult.get("sprintSeasonPoints"+DriverId));
     }
 
     private SeaseonResponseDTO getSeasonResponse(String season, ListDriversIdRequestDTO listDriversIds) {
@@ -127,8 +127,10 @@ public class SeasonsServiceImpl implements SeasonsService {
         for(RaceResponseDTO race: listRace) {
 
             Map<String ,DriverSeasonResponseDTO> driverListChampionsResponse = new HashMap<>();
+
             for(String driverId:listDriversIds){
                 if (!driverListChampionsResponse.containsKey(driverId+race.getRaceName())){
+
                     RaceResponseDTO raceFilter = mapRaceTable.get(driverId+race.getRaceName());
                     RaceSprintResponseDTO raceSprintFilter = mapRaceSprint.get(driverId+race.getRaceName());
 
@@ -167,21 +169,21 @@ public class SeasonsServiceImpl implements SeasonsService {
 
         if(race != null){
                 racePoint = Double.valueOf(race.getResults().get(0).getPoints());
-                totalRace = mapSeasonValorResult.get("racesSeasonPoints"+race.getRaceName()+driversId);
+                totalRace = mapSeasonValorResult.get("totalSeasonPoints"+driversId);
                 if(totalRace != null){
                     newTotalRace = totalRace + racePoint;
-                    mapSeasonValorResult.replace("racesSeasonPoints"+race.getRaceName()+driversId , newTotalRace);
+                    mapSeasonValorResult.replace("totalSeasonPoints"+driversId , newTotalRace);
                 }
              if(raceSprint != null){
                 sprintPoint = Double.valueOf(race.getResults().get(0).getPoints());
-                totalRaceSprint = mapSeasonValorResult.get("sprintSeasonPoints"+race.getRaceName()+driversId);
+                totalRaceSprint = mapSeasonValorResult.get("sprintSeasonPoints"+driversId);
                 newRaceSprint = totalRaceSprint + sprintPoint;
-                mapSeasonValorResult.replace("sprintSeasonPoints"+race.getRaceName()+driversId , newRaceSprint);
+                mapSeasonValorResult.replace("sprintSeasonPoints"+driversId , newRaceSprint);
             }
             if(race != null && raceSprint != null){
-                totalSeason = mapSeasonValorResult.get("totalSeasonPoints"+race.getRaceName()+driversId);
+                totalSeason = mapSeasonValorResult.get("totalSeasonPoints"+driversId);
                 newTotalSeason = totalSeason + racePoint + sprintPoint;
-                mapSeasonValorResult.replace("totalSeasonPoints"+race.getRaceName()+driversId , newTotalSeason);
+                mapSeasonValorResult.replace("totalSeasonPoints"+driversId , newTotalSeason);
                             }
 
             resultSeasonResponse  =  getResultSeasonResponse(race.getRaceName(), mapSeasonValorResult
