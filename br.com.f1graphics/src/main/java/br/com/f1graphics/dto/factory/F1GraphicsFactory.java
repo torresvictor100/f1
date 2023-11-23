@@ -2,8 +2,6 @@ package br.com.f1graphics.dto.factory;
 
 import br.com.f1graphics.dto.request.*;
 import br.com.f1graphics.dto.request.constructions.ConstructorRequestDTO;
-import br.com.f1graphics.dto.request.driversrequest.DriverRequestDTO;
-import br.com.f1graphics.dto.request.races.RaceRequestDTO;
 import br.com.f1graphics.dto.request.races.RaceSprintRequestDTO;
 import br.com.f1graphics.dto.request.racetable.RaceSprintTableRoundRequestDTO;
 import br.com.f1graphics.dto.request.racetable.RaceTableDriverIdRequestDTO;
@@ -308,7 +306,7 @@ public class F1GraphicsFactory {
         return driverTableResponseDTO;
     }
 
-    public static DriverSeasonResponseDTO createDriverChampionsResponseDTO(ResultResponseDTO resultRequestDTO
+    public static DriverSeasonResponseDTO createDriverSeasonResponseDTO(ResultResponseDTO resultRequestDTO
             , ResultRaceResponseDTO resultRaceResponse, ResultSeaseonResponseDTO resultChampionshipResponse) {
 
         DriverSeasonResponseDTO driverChampionsResponse = new DriverSeasonResponseDTO();
