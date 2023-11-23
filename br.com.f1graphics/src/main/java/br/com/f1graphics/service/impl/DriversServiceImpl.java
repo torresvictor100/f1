@@ -34,8 +34,8 @@ public class DriversServiceImpl implements DriversService {
 
     @Override
     public DriverResponseDTO getDriverForDriverId(String driverId) {
-        return factory.createDriverResponse(driversFacade.getDriverForDriverId(driverId)
-                .getMrData().getDriverTable().getDrivers().get(0));
+        return driversFacade.getDriverForDriverId(driverId)
+                .getMrData().getDriverTable().getDrivers().get(0);
     }
 
 

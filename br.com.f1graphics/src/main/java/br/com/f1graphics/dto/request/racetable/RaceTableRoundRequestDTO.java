@@ -2,7 +2,7 @@ package br.com.f1graphics.dto.request.racetable;
 
 import br.com.f1graphics.dto.DTO;
 import br.com.f1graphics.dto.request.races.RaceRequestDTO;
-import br.com.f1graphics.dto.request.racetable.RaceTableRequestDTO;
+import br.com.f1graphics.dto.response.races.RaceResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +21,6 @@ public class RaceTableRoundRequestDTO extends RaceTableRequestDTO implements Ser
     private String round;
 
     @JsonProperty("Races")
-    List<RaceRequestDTO> races;
+    List<RaceResponseDTO> races;
 
 }

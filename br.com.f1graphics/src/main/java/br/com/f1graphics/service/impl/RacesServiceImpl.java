@@ -34,6 +34,12 @@ public class RacesServiceImpl implements RacesService {
     }
 
     @Override
+    public List<RaceResponseDTO> getListRaces(String season) {
+
+        return raceFacade.getMRDataRacePositionItensDTOForSeason(season).getMrData().getRaceTable().getRaces();
+    }
+
+    @Override
     public RaceSprintTableResponseDTO getResultSpintRacesForDriverSeason(String season, String drivers) {
 
         return factory.createRaceSprintTableResponseDTO(raceFacade
@@ -55,17 +61,17 @@ public class RacesServiceImpl implements RacesService {
     }
 
     @Override
-    public RaceResponseDTO getRaceResultsForRound(String season, int round) {
+    public br.com.f1graphics.dto.response.races.RaceResponseDTO getRaceResultsForRound(String season, int round) {
 
         return factory.createRaceResponseDTO(raceFacade.getRaceResultsForRound(season
                 , String.valueOf(round)).getMrData().getRaceTable().getRaces().get(0));
     }
 
-    private ListNamesRacesResponseDTO getListNamesRacesDTO(List<RaceRequestDTO> races) {
+    private ListNamesRacesResponseDTO getListNamesRacesDTO(List<RaceResponseDTO> races) {
 
         List<String> namesRace = new ArrayList<>();
 
-        for (RaceRequestDTO race : races) {
+        for (RaceResponseDTO race : races) {
             namesRace.add(race.getRaceName());
         }
         listNamesRaces.setListNamesRacesDTO(namesRace);

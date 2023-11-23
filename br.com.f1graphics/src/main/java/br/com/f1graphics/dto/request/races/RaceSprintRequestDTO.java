@@ -3,6 +3,8 @@ package br.com.f1graphics.dto.request.races;
 import br.com.f1graphics.dto.DTO;
 import br.com.f1graphics.dto.request.CircuitRequestDTO;
 import br.com.f1graphics.dto.request.ResultRequestDTO;
+import br.com.f1graphics.dto.response.CircuitResponseDTO;
+import br.com.f1graphics.dto.response.ResultResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,11 +26,11 @@ public class RaceSprintRequestDTO implements Serializable, DTO {
     private String raceName;
 
     @JsonProperty("Circuit")
-    private CircuitRequestDTO circuit;
+    private CircuitResponseDTO circuit;
     private String date;
     private String time;
 
     @JsonProperty("SprintResults")
-    private List<ResultRequestDTO> sprintResults;
+    private List<ResultResponseDTO> sprintResults;
 
 }

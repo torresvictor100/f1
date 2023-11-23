@@ -1,9 +1,12 @@
 package br.com.f1graphics.service.objects;
 
+import br.com.f1graphics.dto.request.races.RaceRequestDTO;
 import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
 import br.com.f1graphics.dto.response.racestable.RaceSprintTableResponseDTO;
 import br.com.f1graphics.dto.response.racestable.RaceTableResponseDTO;
+
+import java.util.List;
 
 public interface RacesService {
 
@@ -16,4 +19,6 @@ public interface RacesService {
     RaceTableResponseDTO getRaceTableForDriverId(String season, String driverId );
 
     public RaceResponseDTO getRaceResultsForRound(String season, int round);
+
+    List<RaceResponseDTO> getListRaces(String season);
 }
