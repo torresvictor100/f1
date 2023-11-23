@@ -37,8 +37,18 @@ public class SeasonsServiceImpl implements SeasonsService {
 
     @Override
     public SeaseonResponseDTO getSeasonForDriversIds(String season, ListDriversIdRequestDTO listDriversIds) {
-        return getChampionshipResponseDTO(season, listDriversIds, racesService.getListNamesRacesForSeason(season)
-                , criarMapPoints(listDriversIds), criarMapPoints(listDriversIds), criarMapPoints(listDriversIds));
+
+        ListNamesRacesResponseDTO listNamesRacesResponseDTO = racesService.getListNamesRacesForSeason(season);
+
+        Map<String, Double> MapPointsChampionship = criarMapPoints(listDriversIds) ;
+        Map<String, Double> MapPointsChampionshipRaces = criarMapPoints(listDriversIds) ;
+        Map<String, Double> MapPointsChampionshipSprintRaces = criarMapPoints(listDriversIds) ;
+
+        SeaseonResponseDTO seaseonResponseDTO = getChampionshipResponseDTO(season, listDriversIds, listNamesRacesResponseDTO
+                , MapPointsChampionship, MapPointsChampionshipRaces, MapPointsChampionshipSprintRaces);
+
+
+        return seaseonResponseDTO;
     }
 
     private Map<String, Double> criarMapPoints(ListDriversIdRequestDTO listDriversId){
