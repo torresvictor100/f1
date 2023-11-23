@@ -38,9 +38,9 @@ public class RacesFacade {
                 , MRDataRaceRoundItensDTO.class);
     }
 
-    public MRDataRaceDriverIdItensRequestDTO getDriverResultsForDriverId(String season, String driver) {
+    public MRDataRaceDriverIdItensRequestDTO getDriverResultsForDriverId(String season, String driverId) {
 
-        MRDataRaceDriverIdItensRequestDTO rRDataRaceDriverIdItensRequestDTO = requestUtil.get("/" + driver + "/drivers/" + season + "/results.json"
+        MRDataRaceDriverIdItensRequestDTO rRDataRaceDriverIdItensRequestDTO = requestUtil.get("/" + season + "/drivers/" + driverId + "/results.json"
                 , MRDataRaceDriverIdItensRequestDTO.class);
 
         return rRDataRaceDriverIdItensRequestDTO;
