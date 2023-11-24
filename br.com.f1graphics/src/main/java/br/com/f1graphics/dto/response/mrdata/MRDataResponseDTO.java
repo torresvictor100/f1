@@ -1,6 +1,6 @@
-package br.com.f1graphics.dto.response;
+package br.com.f1graphics.dto.response.mrdata;
 
-public abstract class MRDataRequestResponseDTO {
+public abstract class MRDataResponseDTO {
 
     String xmlns;
     String series;

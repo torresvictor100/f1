@@ -1,5 +1,6 @@
-package br.com.f1graphics.dto.response;
+package br.com.f1graphics.dto.response.results;
 
+import br.com.f1graphics.dto.response.results.ResultRaceResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,9 +1,9 @@
 package br.com.f1graphics.facade;
 
-import br.com.f1graphics.dto.response.MRDataRaceDriverIdItensResponseDTO;
-import br.com.f1graphics.dto.response.MRDataRacePositionItensResponseDTO;
+import br.com.f1graphics.dto.response.mrdataitens.MRDataRaceDriverIdItensResponseDTO;
+import br.com.f1graphics.dto.response.mrdataitens.MRDataRacePositionItensResponseDTO;
 import br.com.f1graphics.dto.response.mrdataitens.MRDataRaceRoundItensDTO;
-import br.com.f1graphics.dto.response.MRDataRaceSprintRoundItensResponseDTO;
+import br.com.f1graphics.dto.response.mrdataitens.MRDataRaceSprintRoundItensResponseDTO;
 import br.com.f1graphics.util.RequestUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -1,8 +1,8 @@
 
-package br.com.f1graphics.dto.response;
+package br.com.f1graphics.dto.response.mrdata;
 
 import br.com.f1graphics.dto.DTO;
-import br.com.f1graphics.dto.response.stadingstable.StandingsTableResponseDTO;
+import br.com.f1graphics.dto.response.stadingstable.StandingsTableConstructorResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,10 +15,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MRDataDriverStandingsResponseDTO extends MRDataRequestResponseDTO implements Serializable, DTO {
+public class MRDataConstructorStandingsResponseDTO extends MRDataResponseDTO implements Serializable, DTO {
 
     @JsonProperty("StandingsTable")
-    private StandingsTableResponseDTO standingsTable;
+    private StandingsTableConstructorResponseDTO standingsTable;
 
 
 

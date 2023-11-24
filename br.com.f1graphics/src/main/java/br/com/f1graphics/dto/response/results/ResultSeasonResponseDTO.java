@@ -1,4 +1,4 @@
-package br.com.f1graphics.dto.response;
+package br.com.f1graphics.dto.response.results;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

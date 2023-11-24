@@ -1,10 +1,9 @@
 package br.com.f1graphics.service.objects;
 
-import br.com.f1graphics.dto.response.RaceSprintTableRoundResponseDTO;
+import br.com.f1graphics.dto.response.racetable.RaceSprintTableRoundResponseDTO;
 import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
-import br.com.f1graphics.dto.response.RaceTableDriverIdResponseDTO;
+import br.com.f1graphics.dto.response.racetable.RaceTableDriverIdResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
-import br.com.f1graphics.dto.response.racestable.RaceTableResponseDTO;
 
 import java.util.List;
 

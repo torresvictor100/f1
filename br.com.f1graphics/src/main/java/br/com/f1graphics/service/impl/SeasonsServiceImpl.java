@@ -2,9 +2,9 @@ package br.com.f1graphics.service.impl;
 
 import br.com.f1graphics.dto.factory.F1GraphicsFactory;
 import br.com.f1graphics.dto.request.ListDriversIdRequestDTO;
-import br.com.f1graphics.dto.response.ResultRaceResponseDTO;
-import br.com.f1graphics.dto.response.ResultResponseDTO;
-import br.com.f1graphics.dto.response.ResultSeasonResponseDTO;
+import br.com.f1graphics.dto.response.results.ResultRaceResponseDTO;
+import br.com.f1graphics.dto.response.results.ResultResponseDTO;
+import br.com.f1graphics.dto.response.results.ResultSeasonResponseDTO;
 import br.com.f1graphics.dto.response.SeasonResponseDTO;
 import br.com.f1graphics.dto.response.drive.DriverSeasonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;

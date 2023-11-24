@@ -4,6 +4,9 @@ import br.com.f1graphics.dto.response.*;
 import br.com.f1graphics.dto.response.drive.DriverSeasonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceSeasonResponseDTO;
+import br.com.f1graphics.dto.response.results.ResultRaceResponseDTO;
+import br.com.f1graphics.dto.response.results.ResultResponseDTO;
+import br.com.f1graphics.dto.response.results.ResultSeasonResponseDTO;
 
 import java.util.List;
 import java.util.function.Consumer;

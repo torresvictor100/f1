@@ -1,7 +1,7 @@
 package br.com.f1graphics.dto.response.drive;
 
 import br.com.f1graphics.dto.DTO;
-import br.com.f1graphics.dto.response.RaceTableResponseDTO;
+import br.com.f1graphics.dto.response.racetable.RaceTableResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
