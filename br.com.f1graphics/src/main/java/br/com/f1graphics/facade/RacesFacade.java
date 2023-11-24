@@ -2,8 +2,8 @@ package br.com.f1graphics.facade;
 
 import br.com.f1graphics.dto.response.MRDataRaceDriverIdItensResponseDTO;
 import br.com.f1graphics.dto.response.MRDataRacePositionItensResponseDTO;
-import br.com.f1graphics.dto.request.mrdataitens.MRDataRaceRoundItensDTO;
-import br.com.f1graphics.dto.request.mrdataitens.MRDataRaceSprintRoundItensDTO;
+import br.com.f1graphics.dto.response.mrdataitens.MRDataRaceRoundItensDTO;
+import br.com.f1graphics.dto.response.MRDataRaceSprintRoundItensResponseDTO;
 import br.com.f1graphics.util.RequestUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -20,16 +20,16 @@ public class RacesFacade {
                 , MRDataRacePositionItensResponseDTO.class);
     }
 
-    public MRDataRaceSprintRoundItensDTO getResultSpintRacesForDriverSeason(String season, String driversId) {
+    public MRDataRaceSprintRoundItensResponseDTO getResultSpintRacesForDriverSeason(String season, String driversId) {
 
         return requestUtil.get("/" + season + "/drivers/" + driversId + "/sprint.json"
-                , MRDataRaceSprintRoundItensDTO.class);
+                , MRDataRaceSprintRoundItensResponseDTO.class);
     }
 
-    public MRDataRaceSprintRoundItensDTO getResultSpintRaces(String season, String round) {
+    public MRDataRaceSprintRoundItensResponseDTO getResultSpintRaces(String season, String round) {
 
         return requestUtil.get("/" + season + "/" + round + "/sprint.json"
-                , MRDataRaceSprintRoundItensDTO.class);
+                , MRDataRaceSprintRoundItensResponseDTO.class);
     }
 
     public MRDataRaceRoundItensDTO getRaceResultsForRound(String season, String round) {

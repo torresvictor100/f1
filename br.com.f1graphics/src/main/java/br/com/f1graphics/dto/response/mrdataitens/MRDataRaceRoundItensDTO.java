@@ -1,4 +1,4 @@
-package br.com.f1graphics.dto.request.mrdataitens;
+package br.com.f1graphics.dto.response.mrdataitens;
 
 import br.com.f1graphics.dto.DTO;
 import br.com.f1graphics.dto.response.MRDataRaceRoundResponseDTO;

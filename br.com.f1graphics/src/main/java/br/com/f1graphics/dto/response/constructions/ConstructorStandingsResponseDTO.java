@@ -1,4 +1,4 @@
-package br.com.f1graphics.dto.request.constructions;
+package br.com.f1graphics.dto.response.constructions;
 
 import br.com.f1graphics.dto.DTO;
 import br.com.f1graphics.dto.response.StandingsConstructorsResponseDTO;
@@ -14,7 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ConstructorStandingsRequestDTO implements Serializable, DTO {
+public class ConstructorStandingsResponseDTO implements Serializable, DTO {
 
     private String position;
     private String positionText;
