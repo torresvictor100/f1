@@ -1,15 +1,16 @@
 package br.com.f1graphics.dto.request.races;
 
+import br.com.f1graphics.dto.response.races.RaceSprintResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public abstract class RaceSprintTableRequestDTO {
+public abstract class RaceSprintTableResponseDTO {
 
     String season;
 
     @JsonProperty("Races")
-    List<RaceSprintRequestDTO> races;
+    List<RaceSprintResponseDTO> races;
 
     public String getSeason() {
         return season;
@@ -19,11 +20,11 @@ public abstract class RaceSprintTableRequestDTO {
         this.season = season;
     }
 
-    public List<RaceSprintRequestDTO> getRaces() {
+    public List<RaceSprintResponseDTO> getRaces() {
         return races;
     }
 
-    public void setRaces(List<RaceSprintRequestDTO> races) {
+    public void setRaces(List<RaceSprintResponseDTO> races) {
         this.races = races;
     }
 }

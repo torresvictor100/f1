@@ -1,6 +1,6 @@
 package br.com.f1graphics.facade;
 
-import br.com.f1graphics.dto.request.mrdataitens.MRDataRaceDriverIdItensRequestDTO;
+import br.com.f1graphics.dto.response.MRDataRaceDriverIdItensResponseDTO;
 import br.com.f1graphics.dto.request.mrdataitens.MRDataRacePositionItensRequestDTO;
 import br.com.f1graphics.dto.request.mrdataitens.MRDataRaceRoundItensDTO;
 import br.com.f1graphics.dto.request.mrdataitens.MRDataRaceSprintRoundItensDTO;
@@ -38,12 +38,12 @@ public class RacesFacade {
                 , MRDataRaceRoundItensDTO.class);
     }
 
-    public MRDataRaceDriverIdItensRequestDTO getDriverResultsForDriverId(String season, String driverId) {
+    public MRDataRaceDriverIdItensResponseDTO getDriverResultsForDriverId(String season, String driverId) {
 
-        MRDataRaceDriverIdItensRequestDTO rRDataRaceDriverIdItensRequestDTO = requestUtil.get("/" + season + "/drivers/" + driverId + "/results.json"
-                , MRDataRaceDriverIdItensRequestDTO.class);
+        MRDataRaceDriverIdItensResponseDTO mrRDataRaceDriverIdItensRequestDTO = requestUtil.get("/" + season + "/drivers/" + driverId + "/results.json"
+                , MRDataRaceDriverIdItensResponseDTO.class);
 
-        return rRDataRaceDriverIdItensRequestDTO;
+        return mrRDataRaceDriverIdItensRequestDTO;
     }
 
 }

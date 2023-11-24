@@ -1,10 +1,9 @@
 package br.com.f1graphics.service.impl;
 
-import br.com.f1graphics.dto.factory.F1GraphicsFactory;
+import br.com.f1graphics.dto.response.RaceSprintTableRoundResponseDTO;
 import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
-import br.com.f1graphics.dto.request.races.RaceRequestDTO;
+import br.com.f1graphics.dto.response.RaceTableDriverIdResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
-import br.com.f1graphics.dto.response.racestable.RaceSprintTableResponseDTO;
 import br.com.f1graphics.dto.response.racestable.RaceTableResponseDTO;
 import br.com.f1graphics.facade.RacesFacade;
 import br.com.f1graphics.service.objects.RacesService;
@@ -22,7 +21,7 @@ public class RacesServiceImpl implements RacesService {
 
     private final RacesFacade raceFacade;
 
-    private static F1GraphicsFactory factory;
+
 
     private ListNamesRacesResponseDTO listNamesRaces = new ListNamesRacesResponseDTO();
 
@@ -40,31 +39,28 @@ public class RacesServiceImpl implements RacesService {
     }
 
     @Override
-    public RaceSprintTableResponseDTO getResultSpintRacesForDriverSeason(String season, String drivers) {
+    public RaceSprintTableRoundResponseDTO getResultSpintRacesForDriverSeason(String season, String drivers) {
 
-        return factory.createRaceSprintTableResponseDTO(raceFacade
-                .getResultSpintRacesForDriverSeason(season, drivers).getMrData().getRaceTable());
+        return raceFacade.getResultSpintRacesForDriverSeason(season, drivers).getMrData().getRaceTable();
     }
 
     @Override
-    public RaceSprintTableResponseDTO getRaceSprintTableForRound(String season, String round) {
+    public RaceSprintTableRoundResponseDTO getRaceSprintTableForRound(String season, String round) {
 
-        return factory.createRaceSprintTableResponseDTO(raceFacade
-                .getResultSpintRaces(season, round).getMrData().getRaceTable());
+        return raceFacade.getResultSpintRaces(season, round).getMrData().getRaceTable();
     }
 
     @Override
-    public RaceTableResponseDTO getRaceTableForDriverId(String season, String driver) {
+    public RaceTableDriverIdResponseDTO getRaceTableForDriverId(String season, String driver) {
 
-        return factory.createRaceTableResponseDTO(raceFacade.getDriverResultsForDriverId(season, driver)
-                .getMrData().getRaceTable());
+        return raceFacade.getDriverResultsForDriverId(season, driver).getMrData().getRaceTable();
     }
 
     @Override
-    public br.com.f1graphics.dto.response.races.RaceResponseDTO getRaceResultsForRound(String season, int round) {
+    public RaceResponseDTO getRaceResultsForRound(String season, int round) {
 
-        return factory.createRaceResponseDTO(raceFacade.getRaceResultsForRound(season
-                , String.valueOf(round)).getMrData().getRaceTable().getRaces().get(0));
+        return raceFacade.getRaceResultsForRound(season
+                , String.valueOf(round)).getMrData().getRaceTable().getRaces().get(0);
     }
 
     private ListNamesRacesResponseDTO getListNamesRacesDTO(List<RaceResponseDTO> races) {

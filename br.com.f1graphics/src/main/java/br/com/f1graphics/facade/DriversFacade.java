@@ -13,7 +13,7 @@ public class DriversFacade {
 
 
 
-    public MRDataDriverItensRequestDTO getF1DriversForSeason(String season) {
+    public MRDataDriverItensRequestDTO getDriversForSeason(String season) {
 
         return requestUtil.get("/" + season + "/drivers.json?limit=150"
                 , MRDataDriverItensRequestDTO.class);

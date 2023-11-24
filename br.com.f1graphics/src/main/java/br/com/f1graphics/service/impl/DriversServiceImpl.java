@@ -17,14 +17,11 @@ public class DriversServiceImpl implements DriversService {
 
     private final DriversFacade driversFacade;
 
-    private final RacesService racesService;
-    private static F1GraphicsFactory factory;
-
     @Override
     public DriverTableResponseDTO getDriversForSeason(String season) {
 
-        return factory.createDriverTableResponseDTO(driversFacade.getF1DriversForSeason(season)
-                .getMrData().getDriverTable());
+        return driversFacade
+                .getDriversForSeason(season).getMrData().getDriverTable();
     }
 
     @Override
