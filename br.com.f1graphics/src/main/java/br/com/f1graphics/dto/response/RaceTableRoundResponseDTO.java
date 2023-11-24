@@ -1,7 +1,7 @@
-package br.com.f1graphics.dto.request.racetable;
+package br.com.f1graphics.dto.response;
 
 import br.com.f1graphics.dto.DTO;
-import br.com.f1graphics.dto.request.races.RaceRequestDTO;
+import br.com.f1graphics.dto.response.RaceTableResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RaceTableRoundRequestDTO extends RaceTableRequestDTO implements Serializable, DTO {
+public class RaceTableRoundResponseDTO extends RaceTableResponseDTO implements Serializable, DTO {
 
     private String round;
 

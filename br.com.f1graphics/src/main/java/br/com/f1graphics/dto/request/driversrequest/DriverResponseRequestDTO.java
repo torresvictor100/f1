@@ -1,7 +1,7 @@
 package br.com.f1graphics.dto.request.driversrequest;
 
 import br.com.f1graphics.dto.DTO;
-import br.com.f1graphics.dto.request.mrdata.MRDataDriverRequestDTO;
+import br.com.f1graphics.dto.response.MRDataDriverResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +17,6 @@ import java.io.Serializable;
 public class DriverResponseRequestDTO implements Serializable, DTO {
 
     @JsonProperty("MRData")
-    private MRDataDriverRequestDTO mrData;
+    private MRDataDriverResponseDTO mrData;
 
 }

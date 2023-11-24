@@ -1,4 +1,4 @@
-package br.com.f1graphics.dto.request.races;
+package br.com.f1graphics.dto.response;
 
 import br.com.f1graphics.dto.response.races.RaceSprintResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;

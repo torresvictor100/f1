@@ -1,7 +1,7 @@
 package br.com.f1graphics.facade;
 
 import br.com.f1graphics.dto.response.MRDataRaceDriverIdItensResponseDTO;
-import br.com.f1graphics.dto.request.mrdataitens.MRDataRacePositionItensRequestDTO;
+import br.com.f1graphics.dto.response.MRDataRacePositionItensResponseDTO;
 import br.com.f1graphics.dto.request.mrdataitens.MRDataRaceRoundItensDTO;
 import br.com.f1graphics.dto.request.mrdataitens.MRDataRaceSprintRoundItensDTO;
 import br.com.f1graphics.util.RequestUtil;
@@ -14,10 +14,10 @@ public class RacesFacade {
 
     private final RequestUtil requestUtil;
 
-    public MRDataRacePositionItensRequestDTO getMRDataRacePositionItensDTOForSeason(String season) {
+    public MRDataRacePositionItensResponseDTO getMRDataRacePositionItensDTOForSeason(String season) {
 
         return requestUtil.get("/" + season + "/results/1.json"
-                , MRDataRacePositionItensRequestDTO.class);
+                , MRDataRacePositionItensResponseDTO.class);
     }
 
     public MRDataRaceSprintRoundItensDTO getResultSpintRacesForDriverSeason(String season, String driversId) {

@@ -1,7 +1,7 @@
-package br.com.f1graphics.dto.request.racetable;
+package br.com.f1graphics.dto.response.drive;
 
 import br.com.f1graphics.dto.DTO;
-import br.com.f1graphics.dto.request.racetable.RaceTableRequestDTO;
+import br.com.f1graphics.dto.response.RaceTableResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RaceTablePositionRequestDTO extends RaceTableRequestDTO implements Serializable, DTO {
+public class RaceTablePositionResponseDTO extends RaceTableResponseDTO implements Serializable, DTO {
 
     private String position;
 

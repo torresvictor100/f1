@@ -1,12 +1,11 @@
-package br.com.f1graphics.dto.request.racetable;
+package br.com.f1graphics.dto.response;
 
-import br.com.f1graphics.dto.request.races.RaceRequestDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public abstract class RaceTableRequestDTO {
+public abstract class RaceTableResponseDTO {
 
     String season;
 
