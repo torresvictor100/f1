@@ -2,14 +2,14 @@ package br.com.f1graphics.service.impl;
 
 import br.com.f1graphics.dto.factory.F1GraphicsFactory;
 import br.com.f1graphics.dto.request.ListDriversIdRequestDTO;
-import br.com.f1graphics.dto.response.results.ResultRaceResponseDTO;
-import br.com.f1graphics.dto.response.results.ResultResponseDTO;
-import br.com.f1graphics.dto.response.results.ResultSeasonResponseDTO;
 import br.com.f1graphics.dto.response.SeasonResponseDTO;
 import br.com.f1graphics.dto.response.drive.DriverSeasonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceSeasonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceSprintResponseDTO;
+import br.com.f1graphics.dto.response.results.ResultRaceResponseDTO;
+import br.com.f1graphics.dto.response.results.ResultResponseDTO;
+import br.com.f1graphics.dto.response.results.ResultSeasonResponseDTO;
 import br.com.f1graphics.facade.DriversFacade;
 import br.com.f1graphics.service.objects.RacesService;
 import br.com.f1graphics.service.objects.SeasonsService;
@@ -27,10 +27,8 @@ import java.util.Map;
 @Slf4j
 public class SeasonsServiceImpl implements SeasonsService {
 
-    private final DriversFacade driversFacade;
 
     private final RacesService racesService;
-
 
     private static F1GraphicsFactory factory;
 
@@ -39,23 +37,18 @@ public class SeasonsServiceImpl implements SeasonsService {
 
         SeasonResponseDTO seaseonResponseDTO = getSeasonResponse(season, listDriversIds);
 
-
         return seaseonResponseDTO;
     }
 
 
 
-    private Map<String, Double> criarMapSeasonValorResult(List<RaceResponseDTO> listRace
-            , List<String> listDriversId){
+    private Map<String, Double> criarMapSeasonValorResult(List<String> listDriversId){
         Map<String, Double> mapSeasonValorResult = new HashMap<>();
 
-        for(RaceResponseDTO race : listRace){
-            for (String driverId: listDriversId){
-                mapSeasonValorResult.put("totalSeasonPoints"+driverId,0.0);
-                mapSeasonValorResult.put("racesSeasonPoints"+driverId,0.0);
-                mapSeasonValorResult.put("sprintSeasonPoints"+driverId,0.0);
-            }
-
+        for (String driverId: listDriversId){
+            mapSeasonValorResult.put("totalSeasonPoints"+driverId,0.0);
+            mapSeasonValorResult.put("racesSeasonPoints"+driverId,0.0);
+            mapSeasonValorResult.put("sprintSeasonPoints"+driverId,0.0);
         }
 
         return mapSeasonValorResult;
@@ -119,7 +112,7 @@ public class SeasonsServiceImpl implements SeasonsService {
 
 
         List<RaceSeasonResponseDTO> listRaceSeaseon = new ArrayList<>();
-        Map<String, Double> mapSeasonValorResult = criarMapSeasonValorResult(listRace,listDriversIds) ;
+        Map<String, Double> mapSeasonValorResult = criarMapSeasonValorResult(listDriversIds) ;
 
         for(RaceResponseDTO race: listRace) {
 
