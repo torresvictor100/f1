@@ -32,9 +32,6 @@ public class SeasonsServiceImpl implements SeasonsService {
     private final RacesService racesService;
 
 
-    private Double pointsChampionshipRaces = 0.0;
-    private Double pointsChampionshipSprintRaces = 0.0;
-
     private static F1GraphicsFactory factory;
 
     @Override
@@ -152,53 +149,69 @@ public class SeasonsServiceImpl implements SeasonsService {
     private DriverSeasonResponseDTO getDriverSeasonResponseDTO(String driversId, RaceResponseDTO race
             , RaceSprintResponseDTO  raceSprint, Map<String, Double> mapSeasonValorResult) {
 
-        Double racePoint = 0.0;
-        Double totalRace = 0.0;
-        Double newTotalRace = 0.0;
-
-        Double sprintPoint = 0.0;
-        Double totalRaceSprint = 0.0;
-        Double newRaceSprint = 0.0;
-
-        Double totalSeason = 0.0;
-        Double newTotalSeason = 0.0;
 
         ResultSeaseonResponseDTO resultSeasonResponse = new ResultSeaseonResponseDTO();
         ResultRaceResponseDTO raceResponseDTO = new ResultRaceResponseDTO();
 
 
-        if(race != null){
-                racePoint = Double.valueOf(race.getResults().get(0).getPoints());
-                totalRace = mapSeasonValorResult.get("totalSeasonPoints"+driversId);
-                if(totalRace != null){
-                    newTotalRace = totalRace + racePoint;
-                    mapSeasonValorResult.replace("totalSeasonPoints"+driversId , newTotalRace);
-                }
-             if(raceSprint != null){
-                sprintPoint = Double.valueOf(race.getResults().get(0).getPoints());
-                totalRaceSprint = mapSeasonValorResult.get("sprintSeasonPoints"+driversId);
-                newRaceSprint = totalRaceSprint + sprintPoint;
-                mapSeasonValorResult.replace("sprintSeasonPoints"+driversId , newRaceSprint);
-            }
-            if(race != null && raceSprint != null){
-                totalSeason = mapSeasonValorResult.get("totalSeasonPoints"+driversId);
-                newTotalSeason = totalSeason + racePoint + sprintPoint;
-                mapSeasonValorResult.replace("totalSeasonPoints"+driversId , newTotalSeason);
-                            }
+        if(race != null && raceSprint != null) {
 
-            resultSeasonResponse  =  getResultSeasonResponse(race.getRaceName(), mapSeasonValorResult
-                , driversId);
+            Double racePoint = Double.valueOf(race.getResults().get(0).getPoints());
+            Double sprintPoint = Double.valueOf(raceSprint.getSprintResults().get(0).getPoints());
+
+            Double totalSeason = mapSeasonValorResult.get("totalSeasonPoints" + driversId);
+            Double totalRace = mapSeasonValorResult.get("racesSeasonPoints" + driversId);
+            Double totalRaceSprint = mapSeasonValorResult.get("sprintSeasonPoints" + driversId);
+
+
+
+            Double newRaceSprint = totalRaceSprint + sprintPoint;
+            mapSeasonValorResult.replace("sprintSeasonPoints" + driversId, newRaceSprint);
+
+            Double newTotalRace = totalRace + racePoint;
+            mapSeasonValorResult.replace("racesSeasonPoints" + driversId, newTotalRace);
+
+            totalSeason = totalSeason + racePoint + sprintPoint;
+            mapSeasonValorResult.replace("totalSeasonPoints" + driversId, totalSeason);
+        }else if(race != null && raceSprint == null) {
+
+            Double racePoint = Double.valueOf(race.getResults().get(0).getPoints());
+
+            Double totalSeason = mapSeasonValorResult.get("totalSeasonPoints" + driversId);
+            Double totalRace = mapSeasonValorResult.get("racesSeasonPoints" + driversId);
+
+            Double newTotalRace = totalRace + racePoint;
+            mapSeasonValorResult.replace("racesSeasonPoints" + driversId, newTotalRace);
+
+            totalSeason = totalSeason + racePoint ;
+            mapSeasonValorResult.replace("totalSeasonPoints" + driversId, totalSeason);
+        }else if(race == null && raceSprint != null) {
+
+            Double sprintPoint = Double.valueOf(raceSprint.getSprintResults().get(0).getPoints());
+
+            Double totalSeason = mapSeasonValorResult.get("totalSeasonPoints" + driversId);
+            Double totalRaceSprint = mapSeasonValorResult.get("sprintSeasonPoints" + driversId);
+
+
+
+            Double newRaceSprint = totalRaceSprint + sprintPoint;
+            mapSeasonValorResult.replace("sprintSeasonPoints" + driversId, newRaceSprint);
+
+
+            totalSeason = totalSeason + sprintPoint;
+            mapSeasonValorResult.replace("totalSeasonPoints" + driversId, totalSeason);
+
+
+        }
 
             raceResponseDTO = getResultRaceResponseDTO(race.getResults().get(0));
-
-                return factory.createDriverSeasonResponseDTO(race.getResults().get(0)
+            resultSeasonResponse  =  getResultSeasonResponse(race.getRaceName(), mapSeasonValorResult, driversId);
+            return factory.createDriverSeasonResponseDTO(race.getResults().get(0)
                         , raceResponseDTO
                         , resultSeasonResponse);
-            }
-
-        return null;
-
     }
+
+
 
 
 
