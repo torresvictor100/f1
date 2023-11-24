@@ -19,5 +19,5 @@ public class StandingsListsResponseDTO implements Serializable, DTO {
     private String season;
     private String round;
     @JsonProperty("DriverStandings")
-    private List<DriverStandingsRequestDTO> driverStandings;
+    private List<DriverStandingsResponseDTO> driverStandings;
 }

@@ -3,7 +3,7 @@ package br.com.f1graphics.dto.response;
 
 import br.com.f1graphics.dto.DTO;
 import br.com.f1graphics.dto.request.mrdata.MRDataRequestRequestDTO;
-import br.com.f1graphics.dto.request.stadingstable.StandingsTableConstructorRequestDTO;
+import br.com.f1graphics.dto.response.stadingstable.StandingsTableConstructorResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +19,7 @@ import java.io.Serializable;
 public class MRDataConstructorStandingsResponseDTO extends MRDataRequestRequestDTO implements Serializable, DTO {
 
     @JsonProperty("StandingsTable")
-    private StandingsTableConstructorRequestDTO standingsTable;
+    private StandingsTableConstructorResponseDTO standingsTable;
 
 
 

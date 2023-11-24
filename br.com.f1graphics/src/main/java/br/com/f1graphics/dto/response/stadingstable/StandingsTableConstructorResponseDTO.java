@@ -1,7 +1,7 @@
-package br.com.f1graphics.dto.request.stadingstable;
+package br.com.f1graphics.dto.response.stadingstable;
 
 import br.com.f1graphics.dto.DTO;
-import br.com.f1graphics.dto.response.StandingsListsResponseDTO;
+import br.com.f1graphics.dto.response.StandingsConstructorListsResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,9 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StandingsTableRequestDTO implements Serializable, DTO {
+public class StandingsTableConstructorResponseDTO implements Serializable, DTO {
 
     private String season;
     @JsonProperty("StandingsLists")
-    private List<StandingsListsResponseDTO> StandingsListsRequest;
+    private List<StandingsConstructorListsResponseDTO> StandingsListsRequest;
 }

@@ -18,6 +18,8 @@ public class DriverResponseDTO implements Serializable, DTO {
     @JsonProperty("driverId")
     private String driverId;
     private String url;
+    private String code;
+    private String permanentNumber;
     private String givenName;
     private String familyName;
     private String dateOfBirth;
