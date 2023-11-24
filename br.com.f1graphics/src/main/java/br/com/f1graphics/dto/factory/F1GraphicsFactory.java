@@ -11,7 +11,7 @@ import br.com.f1graphics.dto.response.*;
 import br.com.f1graphics.dto.response.drive.DriverResponseDTO;
 import br.com.f1graphics.dto.response.drive.DriverSeasonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
-import br.com.f1graphics.dto.response.races.RaceSeaseonResponseDTO;
+import br.com.f1graphics.dto.response.races.RaceSeasonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceSprintResponseDTO;
 import br.com.f1graphics.dto.response.racestable.RaceSprintTableResponseDTO;
 import br.com.f1graphics.dto.response.racestable.RaceTableResponseDTO;
@@ -22,15 +22,15 @@ import java.util.function.Consumer;
 
 public class F1GraphicsFactory {
 
-    public static SeaseonResponseDTO createChampionshipResponseDTO(String season, String totalGPs, List<RaceSeaseonResponseDTO> raceChampions) {
+    public static SeasonResponseDTO createSeaseonResponse(String season, String totalGPs, List<RaceSeasonResponseDTO> listRaceSeaseon) {
 
-        SeaseonResponseDTO championship = new SeaseonResponseDTO();
-        validateAndSetIfNotNull(season, championship::setSeason);
-        validateAndSetIfNotNull(totalGPs, championship::setTotalGPs);
-        validateAndSetIfNotNull(raceChampions, championship::setRaceChampions);
+        SeasonResponseDTO seasonResponse = new SeasonResponseDTO();
+        validateAndSetIfNotNull(season, seasonResponse::setSeason);
+        validateAndSetIfNotNull(totalGPs, seasonResponse::setTotalGPs);
+        validateAndSetIfNotNull(listRaceSeaseon, seasonResponse::setRaceSeason);
 
 
-        return championship;
+        return seasonResponse;
     }
 
     public static LocationResponseDTO createLocationResponseDTO(LocationResponseDTO locationRequest) {
@@ -46,23 +46,23 @@ public class F1GraphicsFactory {
         return locationResponse;
     }
 
-    public static RaceSeaseonResponseDTO createRaceChampionsResponseDTO(String round, String url, String raceName
+    public static RaceSeasonResponseDTO createRaceSeasonResponse(String round, String url, String raceName
             , String points, String laps, CircuitResponseDTO circuit, String date
             , String time, List<DriverSeasonResponseDTO> driversResults) {
 
-        RaceSeaseonResponseDTO raceChampions = new RaceSeaseonResponseDTO();
+        RaceSeasonResponseDTO raceSeason = new RaceSeasonResponseDTO();
 
-        validateAndSetIfNotNull(round, raceChampions::setRound);
-        validateAndSetIfNotNull(url, raceChampions::setUrl);
-        validateAndSetIfNotNull(raceName, raceChampions::setRaceName);
-        validateAndSetIfNotNull(laps, raceChampions::setLaps);
-        validateAndSetIfNotNull(circuit, raceChampions::setCircuit);
-        validateAndSetIfNotNull(date, raceChampions::setDate);
-        validateAndSetIfNotNull(time, raceChampions::setTime);
-        validateAndSetIfNotNull(driversResults, raceChampions::setDriversResults);
+        validateAndSetIfNotNull(round, raceSeason::setRound);
+        validateAndSetIfNotNull(url, raceSeason::setUrl);
+        validateAndSetIfNotNull(raceName, raceSeason::setRaceName);
+        validateAndSetIfNotNull(laps, raceSeason::setLaps);
+        validateAndSetIfNotNull(circuit, raceSeason::setCircuit);
+        validateAndSetIfNotNull(date, raceSeason::setDate);
+        validateAndSetIfNotNull(time, raceSeason::setTime);
+        validateAndSetIfNotNull(driversResults, raceSeason::setDriversResults);
 
 
-        return raceChampions;
+        return raceSeason;
     }
 
 
@@ -271,20 +271,20 @@ public class F1GraphicsFactory {
         return raceTableResponse;
     }
 
-    public static RaceSeaseonResponseDTO createRaceChampionsResponseDTO(RaceResponseDTO raceResponseDTO
+    public static RaceSeasonResponseDTO createRaceSeasonResponse(RaceResponseDTO raceResponseDTO
             , CircuitResponseDTO circuit, List<DriverSeasonResponseDTO> driversResults) {
 
-        RaceSeaseonResponseDTO raceChampionsResponse = new RaceSeaseonResponseDTO();
+        RaceSeasonResponseDTO raceSeasonResponse = new RaceSeasonResponseDTO();
 
-        validateAndSetIfNotNull(raceResponseDTO.getRaceName(), raceChampionsResponse::setRaceName);
-        validateAndSetIfNotNull(raceResponseDTO.getUrl(), raceChampionsResponse::setUrl);
-        validateAndSetIfNotNull(raceResponseDTO.getRound(), raceChampionsResponse::setRound);
-        validateAndSetIfNotNull(circuit, raceChampionsResponse::setCircuit);
-        validateAndSetIfNotNull(raceResponseDTO.getDate(), raceChampionsResponse::setDate);
-        validateAndSetIfNotNull(raceResponseDTO.getTime(), raceChampionsResponse::setTime);
-        validateAndSetIfNotNull(driversResults, raceChampionsResponse::setDriversResults);
+        validateAndSetIfNotNull(raceResponseDTO.getRaceName(), raceSeasonResponse::setRaceName);
+        validateAndSetIfNotNull(raceResponseDTO.getUrl(), raceSeasonResponse::setUrl);
+        validateAndSetIfNotNull(raceResponseDTO.getRound(), raceSeasonResponse::setRound);
+        validateAndSetIfNotNull(circuit, raceSeasonResponse::setCircuit);
+        validateAndSetIfNotNull(raceResponseDTO.getDate(), raceSeasonResponse::setDate);
+        validateAndSetIfNotNull(raceResponseDTO.getTime(), raceSeasonResponse::setTime);
+        validateAndSetIfNotNull(driversResults, raceSeasonResponse::setDriversResults);
 
-        return raceChampionsResponse;
+        return raceSeasonResponse;
     }
 
     public static RaceTableResponseDTO createRaceTableResponseDTO(RaceTablePositionRequestDTO raceTableRequest) {
@@ -307,23 +307,23 @@ public class F1GraphicsFactory {
     }
 
     public static DriverSeasonResponseDTO createDriverSeasonResponseDTO(ResultResponseDTO resultRequestDTO
-            , ResultRaceResponseDTO resultRaceResponse, ResultSeaseonResponseDTO resultChampionshipResponse) {
+            , ResultRaceResponseDTO resultRaceResponse, ResultSeasonResponseDTO resultSeasonResponse) {
 
-        DriverSeasonResponseDTO driverChampionsResponse = new DriverSeasonResponseDTO();
+        DriverSeasonResponseDTO driverSeasonResponse = new DriverSeasonResponseDTO();
 
-        validateAndSetIfNotNull(resultRequestDTO.getDriver().getDriverId(), driverChampionsResponse::setDriverId);
-        validateAndSetIfNotNull(resultRequestDTO.getConstructor(), driverChampionsResponse::setConstructor);
-        validateAndSetIfNotNull(resultRequestDTO.getDriver().getUrl(), driverChampionsResponse::setUrl);
-        validateAndSetIfNotNull(resultRequestDTO.getDriver().getGivenName(), driverChampionsResponse::setGivenName);
-        validateAndSetIfNotNull(resultRequestDTO.getDriver().getDateOfBirth(), driverChampionsResponse::setDateOfBirth);
-        validateAndSetIfNotNull(resultRequestDTO.getDriver().getNationality(), driverChampionsResponse::setNationality);
+        validateAndSetIfNotNull(resultRequestDTO.getDriver().getDriverId(), driverSeasonResponse::setDriverId);
+        validateAndSetIfNotNull(resultRequestDTO.getConstructor(), driverSeasonResponse::setConstructor);
+        validateAndSetIfNotNull(resultRequestDTO.getDriver().getUrl(), driverSeasonResponse::setUrl);
+        validateAndSetIfNotNull(resultRequestDTO.getDriver().getGivenName(), driverSeasonResponse::setGivenName);
+        validateAndSetIfNotNull(resultRequestDTO.getDriver().getDateOfBirth(), driverSeasonResponse::setDateOfBirth);
+        validateAndSetIfNotNull(resultRequestDTO.getDriver().getNationality(), driverSeasonResponse::setNationality);
 
-        driverChampionsResponse.setResultRaceResponse(resultRaceResponse);
-        driverChampionsResponse.setResultChampionshipResponseDTO(resultChampionshipResponse);
+        driverSeasonResponse.setResultRaceResponse(resultRaceResponse);
+        driverSeasonResponse.setResultSeaseonResponseDTO(resultSeasonResponse);
 
 
 
-        return driverChampionsResponse;
+        return driverSeasonResponse;
     }
 
 
@@ -340,17 +340,17 @@ public class F1GraphicsFactory {
         return resultRaceResponse;
     }
 
-    public static ResultSeaseonResponseDTO createResultChampionshipResponse(String raceName, Double pointsChampionship
-            , Double pointsChampionshipRaces, Double pointsChampionshipSprintRaces) {
+    public static ResultSeasonResponseDTO createResultSeasonResponse(String raceName, Double pointsSeason
+            , Double pointsSeasonRaces, Double pointsSeasonSprintRaces) {
 
-        ResultSeaseonResponseDTO resultChampionshipResponse = new ResultSeaseonResponseDTO();
+        ResultSeasonResponseDTO resultSeasonResponse = new ResultSeasonResponseDTO();
 
-        validateAndSetIfNotNull(raceName, resultChampionshipResponse::setRaceName);
-        validateAndSetIfNotNull(pointsChampionship, resultChampionshipResponse::setPointsChampionship);
-        validateAndSetIfNotNull(pointsChampionshipRaces, resultChampionshipResponse::setPointsChampionshipRaces);
-        validateAndSetIfNotNull(pointsChampionshipSprintRaces, resultChampionshipResponse::setPointsChampionshipSprintRaces);
+        validateAndSetIfNotNull(raceName, resultSeasonResponse::setRaceName);
+        validateAndSetIfNotNull(pointsSeason, resultSeasonResponse::setPointsSeason);
+        validateAndSetIfNotNull(pointsSeasonRaces, resultSeasonResponse::setPointsSeasonRaces);
+        validateAndSetIfNotNull(pointsSeasonSprintRaces, resultSeasonResponse::setPointsSeasonSprintRaces);
 
-        return resultChampionshipResponse;
+        return resultSeasonResponse;
     }
 
     public static <T> void validateAndSetIfNotNull(T source, Consumer<T> setter) {

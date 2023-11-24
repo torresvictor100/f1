@@ -11,11 +11,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ResultSeaseonResponseDTO implements Serializable {
+public class ResultSeasonResponseDTO implements Serializable {
 
     private String raceName;
-    private Double pointsChampionship;
-    private Double pointsChampionshipRaces;
-    private Double pointsChampionshipSprintRaces;
+    private Double pointsSeason;
+    private Double pointsSeasonRaces;
+    private Double pointsSeasonSprintRaces;
 
 }

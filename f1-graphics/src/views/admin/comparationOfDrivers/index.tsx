@@ -65,7 +65,7 @@ export default function UserReports() {
 		<CustomCard py='35px'  mb='10'>
         {/* Use Chakra UI text utilities or add custom styles here */}
         <Text fontSize="2xl" fontWeight="bold" textAlign="left" p="-0.5"  color={textColor2023} >
-          Championship 2023
+			Season 2023
         </Text>
       </CustomCard>
 			<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='20px'>
@@ -77,7 +77,7 @@ export default function UserReports() {
 							</FormLabel>
 						</Flex>
 					}
-					title="Championship Leader Construction"
+					title="Season Leader Construction"
 					name='Red Bull'
 					value='822'
 				/>
@@ -89,7 +89,7 @@ export default function UserReports() {
 							</FormLabel>
 						</Flex>
 					}
-					title="Championship Leader Driver"
+					title="Season Leader Driver"
 					name='M. Verstappen'
 					value='549'
 				/>

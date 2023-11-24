@@ -4,7 +4,7 @@ package br.com.f1graphics.dto.response.drive;
 import br.com.f1graphics.dto.DTO;
 import br.com.f1graphics.dto.response.ConstructorResponseDTO;
 import br.com.f1graphics.dto.response.ResultRaceResponseDTO;
-import br.com.f1graphics.dto.response.ResultSeaseonResponseDTO;
+import br.com.f1graphics.dto.response.ResultSeasonResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,8 +31,8 @@ public class DriverSeasonResponseDTO implements Serializable, DTO {
     private String dateOfBirth;
     private String nationality;
 
-    @JsonProperty("ResultChampionshipResponseDTO")
-    private ResultSeaseonResponseDTO resultChampionshipResponseDTO;
+    @JsonProperty("ResultSeaseon")
+    private ResultSeasonResponseDTO resultSeaseonResponseDTO;
 
     @JsonProperty("ResultRace")
     private ResultRaceResponseDTO resultRaceResponse;

@@ -55,7 +55,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 						</Flex>
 					}
 					title="Ferrari"
-					name='Champion'
+					name='Season'
 					value='L.Hamiton'
 				/>
 			<MiniStatisticsTitle

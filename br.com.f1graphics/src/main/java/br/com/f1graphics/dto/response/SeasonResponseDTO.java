@@ -1,7 +1,7 @@
 package br.com.f1graphics.dto.response;
 
 import br.com.f1graphics.dto.DTO;
-import br.com.f1graphics.dto.response.races.RaceSeaseonResponseDTO;
+import br.com.f1graphics.dto.response.races.RaceSeasonResponseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +15,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SeaseonResponseDTO implements Serializable, DTO {
+public class SeasonResponseDTO implements Serializable, DTO {
 
     private String season;
 
     private String totalGPs;
 
-    @JsonProperty("raceChampions")
-    private List<RaceSeaseonResponseDTO> raceChampions;
+    @JsonProperty("raceSeason")
+    private List<RaceSeasonResponseDTO> raceSeason;
 
 }

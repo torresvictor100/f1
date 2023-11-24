@@ -18,11 +18,6 @@ public class DriversServiceImpl implements DriversService {
     private final DriversFacade driversFacade;
 
     private final RacesService racesService;
-
-
-    private Double pointsChampionshipRaces = 0.0;
-    private Double pointsChampionshipSprintRaces = 0.0;
-
     private static F1GraphicsFactory factory;
 
     @Override
