@@ -1,6 +1,6 @@
 package br.com.f1graphics.controller;
 
-import br.com.f1graphics.dto.request.StandingsListsRequestDTO;
+import br.com.f1graphics.dto.response.StandingsListsResponseDTO;
 import br.com.f1graphics.service.objects.DriverStandingsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -26,7 +26,7 @@ public class DriverStandingsController {
     @Operation(responses = {
             @ApiResponse(description = "get drivers for season", responseCode = "200")
     })
-    public ResponseEntity<List<StandingsListsRequestDTO>> getDriversForSeason() {
+    public ResponseEntity<List<StandingsListsResponseDTO>> getDriversForSeason() {
         return ResponseEntity.ok(driverStandingsService.getDriverStandings());
     }
 

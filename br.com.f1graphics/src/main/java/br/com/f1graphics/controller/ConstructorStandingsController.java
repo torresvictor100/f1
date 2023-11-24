@@ -1,9 +1,7 @@
 package br.com.f1graphics.controller;
 
-import br.com.f1graphics.dto.request.StandingsConstructorListsRequestDTO;
-import br.com.f1graphics.dto.request.StandingsListsRequestDTO;
+import br.com.f1graphics.dto.response.StandingsConstructorListsResponseDTO;
 import br.com.f1graphics.service.objects.ConstructorStandingsService;
-import br.com.f1graphics.service.objects.DriverStandingsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +26,7 @@ public class ConstructorStandingsController {
     @Operation(responses = {
             @ApiResponse(description = "get standings constructor", responseCode = "200")
     })
-    public ResponseEntity<List<StandingsConstructorListsRequestDTO>> getDriversForSeason() {
+    public ResponseEntity<List<StandingsConstructorListsResponseDTO>> getDriversForSeason() {
         return ResponseEntity.ok(constructorStandingsService.getConstructorStandings());
     }
 

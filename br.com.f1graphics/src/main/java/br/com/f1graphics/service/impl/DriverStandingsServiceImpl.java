@@ -1,7 +1,7 @@
 package br.com.f1graphics.service.impl;
 
 
-import br.com.f1graphics.dto.request.StandingsListsRequestDTO;
+import br.com.f1graphics.dto.response.StandingsListsResponseDTO;
 import br.com.f1graphics.facade.DriverStandingsFacade;
 import br.com.f1graphics.service.objects.DriverStandingsService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class DriverStandingsServiceImpl implements DriverStandingsService {
     private final DriverStandingsFacade driverStandingsFacade;
 
     @Override
-    public List<StandingsListsRequestDTO> getDriverStandings() {
+    public List<StandingsListsResponseDTO> getDriverStandings() {
         return driverStandingsFacade.getDriverStandings().getMRData().getStandingsTable().getStandingsListsRequest();
     }
 }

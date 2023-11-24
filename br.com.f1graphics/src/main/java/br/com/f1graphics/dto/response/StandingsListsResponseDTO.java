@@ -1,4 +1,4 @@
-package br.com.f1graphics.dto.request;
+package br.com.f1graphics.dto.response;
 
 import br.com.f1graphics.dto.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StandingsListsRequestDTO implements Serializable, DTO {
+public class StandingsListsResponseDTO implements Serializable, DTO {
 
     private String season;
     private String round;
