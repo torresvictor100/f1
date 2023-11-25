@@ -6,7 +6,10 @@ import MiniStatisticsGrafic from 'components/card/MiniStatisticsTitle'
 import MAX from 'assets/img/comparationOfDrivers/max-verstappen.png';
 import RBR from 'assets/img/comparationOfDrivers/Red-Bull-logo.jpg';
 import ConstructorStandingsStatic from './ConstructorStandingsStatic';
-import DriverStandingsStatic from './DriverStandingsStatic';  // Importa o novo componente
+import DriverStandingsStatic from './DriverStandingsStatic'; 
+
+
+
 
 type DriverStanding = {
   position: string;
@@ -155,28 +158,43 @@ export default function Default(props: {}) {
   ]);
 
 
-  useEffect(() => {
-    axios(baseUrl).then((resp) => {
-		const driverStandings = resp.data[0].DriverStandings;
-		setDriverStanding(driverStandings);
-		const drivers = driverStandings[0];
-		setDriverLeader(drivers);
-	  });
+  const [dataLoaded, setDataLoaded] = useState(false); // Adiciona um estado para rastrear se os dados foram carregados
 
-    axios(baseUrlContructios).then((resp) => {
-      const listConstructors = resp.data[0].ConstructorStandings;
-      const constructors = resp.data[0].ConstructorStandings[0];
-      setConstructorStandingsList(listConstructors);
-      setConstructionLeader(constructors);
-      setListConstruction(listConstructors);
-    });
+  useEffect(() => {
+    axios(baseUrl)
+      .then((resp) => {
+        const driverStandings = resp.data[0].DriverStandings;
+        setDriverStanding(driverStandings);
+        const drivers = driverStandings[0];
+        setDriverLeader(drivers);
+      })
+      .finally(() => setDataLoaded(true)); // Define o estado para true após a conclusão da requisição
+
+    axios(baseUrlContructios)
+      .then((resp) => {
+        const listConstructors = resp.data[0].ConstructorStandings;
+        const constructors = resp.data[0].ConstructorStandings[0];
+        setConstructorStandingsList(listConstructors);
+        setConstructionLeader(constructors);
+        setListConstruction(listConstructors);
+      })
+      .finally(() => setDataLoaded(true)); // Define o estado para true após a conclusão da requisição
   }, []);
 
-  
+  if (!dataLoaded) {
+    return <div>Carregando...</div>; // Pode exibir um indicador de carregamento enquanto os dados estão sendo carregados
+  }
+
+ 
 
   return (
-    <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='0px'>
+	
+    <Box pt={{ base: '130px', md: '80px', xl: '80px' }} >
+		<Text fontSize="2xl" fontWeight="bold" textAlign="left" p="-0.5" color={"#1B2559"} >
+	Season 2023
+</Text>
+      <SimpleGrid mb='50px'  columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' >
+
         <MiniStatisticsGrafic
           endContent={
             <Flex me='-16px' mt='10px'>
@@ -185,7 +203,7 @@ export default function Default(props: {}) {
               </FormLabel>
             </Flex>
           }
-          title="Driver Leader Points"
+          title="Driver Leader"
           name={driverLeader.Driver.givenName +" " + driverLeader.Driver.familyName}
           value={driverLeader.points}  />
         <MiniStatisticsGrafic
@@ -196,7 +214,7 @@ export default function Default(props: {}) {
               </FormLabel>
             </Flex>
           }
-          title="Constructor Leader Points"
+          title="Constructor Leader"
           name={`${constructionLeader.Constructor.name || 'N/A'}`}
           value={`${constructionLeader.points || 'N/A'}`}
         />

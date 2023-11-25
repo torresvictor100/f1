@@ -21,14 +21,6 @@ export default function Default(props: {
 				{startContent}
 
 				<Stat my='auto' ms={startContent ? '18px' : '0px'}>
-				<StatLabel
-						lineHeight='100%'
-						color={textColorSecondary}
-						fontSize={{
-							base: 'sm'
-						}}>
-						{title}
-					</StatLabel>
 					<StatLabel
 						lineHeight='100%'
 						color={textColorSecondary}
@@ -36,6 +28,14 @@ export default function Default(props: {
 							base: 'sm'
 						}}>
 						{name}
+					</StatLabel>
+					<StatLabel
+						lineHeight='100%'
+						color={textColorSecondary}
+						fontSize={{
+							base: 'sm'
+						}}>
+						{title}
 					</StatLabel>
 					<StatNumber
 						color={textColor}

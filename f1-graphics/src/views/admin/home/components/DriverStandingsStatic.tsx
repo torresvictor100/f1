@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Flex, FormLabel, Avatar, Select, Box } from '@chakra-ui/react';
 import MiniStatisticsTitle from 'components/card/MiniStatisticsTitle';
 import PlaceholderImage from 'assets/img/comparationOfDrivers/Mclaren.png';
+import MAX from 'assets/img/comparationOfDrivers/max-verstappen.png';
 
 interface DriverStanding {
   position: string;
@@ -45,25 +46,25 @@ const DriverStandingsStatic: React.FC<DriverSelectProps> = ({ driverStandings })
         endContent={
           <Flex me="-16px" mt="10px">
             <FormLabel htmlFor="balance">
-              <Avatar src={selectedDriver.Driver.url || PlaceholderImage} />
+              <Avatar src={MAX} />
             </FormLabel>
             <Select
               id="balance"
               mt="5px"
               me="0px"
-              defaultValue={selectedDriver.Driver.driverId}
+
               onChange={handleDriverChange}
             >
               {driverStandings.map(driver => (
                 <option key={driver.Driver.driverId} value={driver.Driver.driverId}>
-                  {driver.Driver.givenName} {driver.Driver.familyName}
+                  {driver.Driver.familyName}
                 </option>
               ))}
             </Select>
           </Flex>
         }
-        title="Driver Points"
-        name={`${selectedDriver.Driver.givenName} ${selectedDriver.Driver.familyName}`}
+        title="Points"
+        name={`${selectedDriver.Driver.familyName}`}
         value={selectedDriver.points}
       />
     </Box>

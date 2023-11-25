@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Flex, FormLabel, Avatar, Select, Box } from '@chakra-ui/react';
 import MiniStatisticsTitle from 'components/card/MiniStatisticsTitle';
-import Mclaren from 'assets/img/comparationOfDrivers/Mclaren.png';
+import McLaren from 'assets/img/comparationOfDrivers/Mclaren.png';
 
 interface ConstructorStanding {
   position: string;
@@ -35,7 +35,7 @@ const ConstructorStandingsStatic: React.FC<ConstructorSelectProps> = ({ construc
         endContent={
           <Flex me="-16px" mt="10px">
             <FormLabel htmlFor="balance">
-              <Avatar src={Mclaren} />
+              <Avatar src={McLaren} />
             </FormLabel>
             <Select
               id="balance"
@@ -52,7 +52,7 @@ const ConstructorStandingsStatic: React.FC<ConstructorSelectProps> = ({ construc
             </Select>
           </Flex>
         }
-        title="Constructor Points"
+        title="Points"
         name={selectedConstructor.Constructor.name}
         value={selectedConstructor.points}
       />

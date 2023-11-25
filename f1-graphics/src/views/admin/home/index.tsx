@@ -59,63 +59,9 @@ export default function UserReports() {
 					Season 2023
 				</Text>
 			</CustomCard>
-			<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='20px'>
-				<MiniStatisticsTitle
-					endContent={
-						<Flex me='-16px' mt='10px'>
-							<FormLabel htmlFor='balance'>
-								<Avatar src={RBR} />
-							</FormLabel>
-						</Flex>
-					}
-					title="Season Leader Construction"
-					name='Red Bull'
-					value='822'
-				/>
-				<MiniStatisticsTitle
-					endContent={
-						<Flex me='-16px' mt='10px'>
-							<FormLabel htmlFor='balance'>
-								<Avatar src={MaxVerstappen} />
-							</FormLabel>
-						</Flex>
-					}
-					title="Season Leader Driver"
-					name='M. Verstappen'
-					value='549'
-				/>
-				<MiniStatisticsTitle
-					endContent={
-						<Flex me='-16px' mt='10px'>
-							<FormLabel htmlFor='balance'>
-								<Avatar src={Mclaren} />
-							</FormLabel>
-							<Select id='balance' variant='mini' mt='5px' me='0px' defaultValue='usd'>
-								<option value='mclaren'>Mclaren</option>
-								<option value='ferrari'>Ferrari</option>
-								<option value='mercedes'>Mercedes</option>
-							</Select>
-						</Flex>
-					}
-					title="Constructor Points"
-					name='McLaren'
-					value='284'
-				/>
-				<MiniStatisticsTitle
-					endContent={
-						<Flex me='-16px' mt='10px'>
-							<FormLabel htmlFor='balance'>
-								<Avatar src={Hamiton} />
-							</FormLabel>
-							<Select id='balance' variant='mini' mt='5px' me='0px' defaultValue='usd'>
-							</Select>
-						</Flex>
-					}
-					title="Driver Points"
-					name='L. Hamiton'
-					value='232'
-				/>
-			</SimpleGrid>
+
+			<StatisticsTable />
+
 			<CustomCard py='35px' mb='10'>
 				<Text fontSize="50px" mb="50px" fontWeight="bold" textAlign="left" p="-0.5" color={textColor2023} >
 					F1 Graphics
@@ -126,7 +72,6 @@ export default function UserReports() {
 			</CustomCard>
 			
 		</Box>
-		<Box><StatisticsTable></StatisticsTable></Box>
 		</Box>
 
 	);
