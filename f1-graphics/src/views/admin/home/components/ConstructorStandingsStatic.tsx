@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Flex, FormLabel, Avatar, Select, Box } from '@chakra-ui/react';
-import Mclaren from 'assets/img/comparationOfDrivers/Mclaren.png';
 import MiniStatisticsTitle from 'components/card/MiniStatisticsTitle';
+import Mclaren from 'assets/img/comparationOfDrivers/Mclaren.png';
 
 interface ConstructorStanding {
   position: string;
@@ -21,10 +21,12 @@ interface ConstructorSelectProps {
 }
 
 const ConstructorStandingsStatic: React.FC<ConstructorSelectProps> = ({ constructorStandings }) => {
-  const [selectedConstructor, setSelectedConstructor] = useState<string>(constructorStandings[0]?.Constructor.name);
+  const [selectedConstructor, setSelectedConstructor] = useState<ConstructorStanding>(constructorStandings[0]);
 
   const handleConstructorChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedConstructor(event.target.value);
+    const selectedConstructorId = event.target.value;
+    const selectedConstructor = constructorStandings.find(constructor => constructor.Constructor.constructorId === selectedConstructorId);
+    setSelectedConstructor(selectedConstructor || constructorStandings[0]);
   };
 
   return (
@@ -35,16 +37,24 @@ const ConstructorStandingsStatic: React.FC<ConstructorSelectProps> = ({ construc
             <FormLabel htmlFor="balance">
               <Avatar src={Mclaren} />
             </FormLabel>
-            <Select id="balance" mt="5px" me="0px" defaultValue="usd" onChange={handleConstructorChange}>
-              <option value="mclaren">Mclaren</option>
-              <option value="ferrari">Ferrari</option>
-              <option value="mercedes">Mercedes</option>
+            <Select
+              id="balance"
+              mt="5px"
+              me="0px"
+              defaultValue={selectedConstructor.Constructor.constructorId}
+              onChange={handleConstructorChange}
+            >
+              {constructorStandings.map(constructor => (
+                <option key={constructor.Constructor.constructorId} value={constructor.Constructor.constructorId}>
+                  {constructor.Constructor.name}
+                </option>
+              ))}
             </Select>
           </Flex>
         }
-        title="COnstuiction Points"
-        name="mclaren"
-        value="232"
+        title="Constructor Points"
+        name={selectedConstructor.Constructor.name}
+        value={selectedConstructor.points}
       />
     </Box>
   );
