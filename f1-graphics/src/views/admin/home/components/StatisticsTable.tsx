@@ -189,7 +189,7 @@ export default function Default(props: {
 		 <div style={{ display: 'flex' }}> 
     <ConstructorStandingsStatic constructorStandings={constructorStandingsList} />
   </div>
-  <div style={{ display: 'flex', marginLeft: '75px', width: 'calc(100% + 90px)'  }}> {/* Add margin-right for spacing */}
+  <div style={{ display: 'flex', marginLeft: '95px', width: 'calc(100% + 110px)'  }}> {/* Add margin-right for spacing */}
     <ConstructorStandingsStatic constructorStandings={constructorStandingsList} />
   </div>
     
