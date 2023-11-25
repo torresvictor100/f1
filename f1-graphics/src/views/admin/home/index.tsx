@@ -30,17 +30,8 @@ import RBR from 'assets/img/comparationOfDrivers/Red-Bull-logo.jpg';
 import MaxVerstappen from 'assets/img/comparationOfDrivers/max-verstappen.png';
 import Hamiton from 'assets/img/comparationOfDrivers/Hamiton.jpg';
 // Custom components
-import MiniCalendar from 'components/calendar/MiniCalendar';
+import StatisticsTable from './components/StatisticsTable'
 import MiniStatisticsTitle from 'components/card/MiniStatisticsTitle'
-import CheckTable from 'views/admin/rtl/components/CheckTable';
-import ComplexTable from 'views/admin/default/components/ComplexTable';
-import DailyTraffic from 'views/admin/default/components/DailyTraffic';
-import PieCard from 'views/admin/default/components/PieCard';
-import Tasks from 'views/admin/default/components/Tasks';
-import TotalSpent from 'views/admin/default/components/TotalSpent';
-import WeeklyRevenue from 'views/admin/default/components/WeeklyRevenue';
-import tableDataCheck from 'views/admin/default/variables/tableDataCheck';
-import tableDataComplex from 'views/admin/default/variables/tableDataComplex';
 import { CustomCardProps } from 'theme/theme';
 
 export default function UserReports() {
@@ -133,6 +124,7 @@ export default function UserReports() {
 				This project was developed by an enthusiast passionate about Formula 1 and programming. Its main purpose is to serve as a repository of processed F1 data graphics, providing customization options so that anyone can incorporate these graphics and data into their presentations about this fascinating sport.
 				</Text>
 			</CustomCard>
+			<StatisticsTable></StatisticsTable>
 		</Box>
 
 	);
