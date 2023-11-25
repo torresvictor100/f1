@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import MiniStatisticsGrafic from 'components/card/MiniStatisticsTitle'
 import MAX from 'assets/img/comparationOfDrivers/max-verstappen.png';
 import RBR from 'assets/img/comparationOfDrivers/Red-Bull-logo.jpg';
+import ConstructorStandingsStatic from './ConstructorStandingsStatic';
 
 type DriverStanding = {
 	position: string;
@@ -161,7 +162,7 @@ export default function Default(props: {
 
 	return (
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
-			<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='20px'>
+			<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='0px'>
 				<MiniStatisticsGrafic
 					endContent={
 						<Flex me='-16px' mt='10px'>
@@ -185,8 +186,17 @@ export default function Default(props: {
           name={`${constructionLeader.Constructor.name || 'N/A'}`}
           value={`${constructionLeader.points || 'N/A'}`}
         />
+		 <div style={{ display: 'flex' }}> 
+    <ConstructorStandingsStatic constructorStandings={constructorStandingsList} />
+  </div>
+  <div style={{ display: 'flex', marginLeft: '75px', width: 'calc(100% + 90px)'  }}> {/* Add margin-right for spacing */}
+    <ConstructorStandingsStatic constructorStandings={constructorStandingsList} />
+  </div>
+    
+    
       </SimpleGrid>
 
+      
 		</Box>
 	);
 }

@@ -49,7 +49,7 @@ export default function UserReports() {
 	const textColor2023 = useColorModeValue('secondaryGray.900', 'white');
 
 	return (
-
+<Box>
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
 
 
@@ -124,7 +124,9 @@ export default function UserReports() {
 				This project was developed by an enthusiast passionate about Formula 1 and programming. Its main purpose is to serve as a repository of processed F1 data graphics, providing customization options so that anyone can incorporate these graphics and data into their presentations about this fascinating sport.
 				</Text>
 			</CustomCard>
-			<StatisticsTable></StatisticsTable>
+			
+		</Box>
+		<Box><StatisticsTable></StatisticsTable></Box>
 		</Box>
 
 	);
