@@ -17,6 +17,6 @@ public class DriverPointsResponseDTO implements Serializable, DTO{
 
     private String name;
 
-    private List<String> data;
+    private List<Double> data;
 
 }

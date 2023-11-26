@@ -20,7 +20,9 @@ class LineChart extends React.Component<ChartProps, ChartState> {
 		};
 	}
 
+
 	componentDidMount() {
+		console.log(this.props);
 		this.setState({
 			chartData: this.props.chartData,
 			chartOptions: this.props.chartOptions
