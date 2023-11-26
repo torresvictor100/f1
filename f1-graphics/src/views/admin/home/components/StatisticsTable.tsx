@@ -1,15 +1,19 @@
-import { Avatar, Box, StatLabel, Flex, FormLabel, Text, Icon, Select, SimpleGrid, useStyleConfig, useColorModeValue } from '@chakra-ui/react';
+import {
+  Avatar,
+  Box,
+  Flex,
+  FormLabel,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 
+import MAX from "assets/img/DriversImage/max_verstappen.jpg";
+import RBR from "assets/img/comparationOfDrivers/Red-Bull-logo.jpg";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import MiniStatisticsGrafic from 'components/card/MiniStatisticsTitle'
-import MAX from 'assets/img/DriversImage/max_verstappen.jpg';
-import RBR from 'assets/img/comparationOfDrivers/Red-Bull-logo.jpg';
-import ConstructorStandingsStatic from './ConstructorStandingsStatic';
-import DriverStandingsStatic from './DriverStandingsStatic'; 
-
-
-
+import MiniStatisticsGrafic from "components/card/MiniStatisticsTitle";
+import { useEffect, useState } from "react";
+import ConstructorStandingsStatic from "./ConstructorStandingsStatic";
+import DriverStandingsStatic from "./DriverStandingsStatic";
 
 type DriverStanding = {
   position: string;
@@ -75,24 +79,10 @@ interface State {
 
 export default function Default(props: {}) {
   const baseUrl = "http://localhost:8080/f1-graphics/driverstandings/";
-  const baseUrlContructios = "http://localhost:8080/f1-graphics/constructorstandings/";
-  const [constructionLeader, setConstructionLeader] = useState<ConstructorStanding>({
-    position: "",
-    positionText: "",
-    points: "",
-    wins: "",
-    Constructor: {
-      constructorId: "",
-      url: "",
-      name: "",
-      nationality: ""
-    }
-  });
-
-  const [listConstruction, setListConstruction] = useState<ConstructorState>({
-    season: "",
-    round: "",
-    ConstructorStandings: [{
+  const baseUrlContructios =
+    "http://localhost:8080/f1-graphics/constructorstandings/";
+  const [constructionLeader, setConstructionLeader] =
+    useState<ConstructorStanding>({
       position: "",
       positionText: "",
       points: "",
@@ -101,12 +91,32 @@ export default function Default(props: {}) {
         constructorId: "",
         url: "",
         name: "",
-        nationality: ""
-      }
-    }]
+        nationality: "",
+      },
+    });
+
+  const [listConstruction, setListConstruction] = useState<ConstructorState>({
+    season: "",
+    round: "",
+    ConstructorStandings: [
+      {
+        position: "",
+        positionText: "",
+        points: "",
+        wins: "",
+        Constructor: {
+          constructorId: "",
+          url: "",
+          name: "",
+          nationality: "",
+        },
+      },
+    ],
   });
 
-  const [constructorStandingsList, setConstructorStandingsList] = useState<ConstructorStanding[]>([
+  const [constructorStandingsList, setConstructorStandingsList] = useState<
+    ConstructorStanding[]
+  >([
     {
       position: "",
       positionText: "",
@@ -116,9 +126,9 @@ export default function Default(props: {}) {
         constructorId: "",
         url: "",
         name: "",
-        nationality: ""
-      }
-    }
+        nationality: "",
+      },
+    },
   ]);
 
   const [driverLeader, setDriverLeader] = useState({
@@ -140,26 +150,27 @@ export default function Default(props: {}) {
   });
 
   const [listDriverStanding, setDriverStanding] = useState<DriverStanding[]>([
-	{position: "",
-    positionText: "",
-    points: "",
-    wins: "",
-    Driver: {
-      url: "",
-      code: "",
-      permanentNumber: "",
-      givenName: "",
-      familyName: "",
-      dateOfBirth: "",
-      nationality: "",
-      driverId: "",
+    {
+      position: "",
+      positionText: "",
+      points: "",
+      wins: "",
+      Driver: {
+        url: "",
+        code: "",
+        permanentNumber: "",
+        givenName: "",
+        familyName: "",
+        dateOfBirth: "",
+        nationality: "",
+        driverId: "",
+      },
+      Constructors: [],
     },
-    Constructors: [],}
   ]);
 
-
-  const [dataLoadedDrivers, setDataLoadedDrivers] = useState(false); 
-  const [dataLoadedContructios, setDataLoadedContructios] = useState(false); 
+  const [dataLoadedDrivers, setDataLoadedDrivers] = useState(false);
+  const [dataLoadedContructios, setDataLoadedContructios] = useState(false);
 
   useEffect(() => {
     axios(baseUrl)
@@ -186,27 +197,32 @@ export default function Default(props: {}) {
     return <div>Loading...</div>; // Pode exibir um indicador de carregamento enquanto os dados estão sendo carregados
   }
 
- 
-
   return (
-	
-    <Box pt={{ base: '130px', md: '80px', xl: '80px' }} >
-		<Text fontSize="2xl" fontWeight="bold" textAlign="left" p="-0.5" color={"#1B2559"} >
-	Season 2023
-</Text>
-      <SimpleGrid mb='50px'  columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' >
-
+    <Box pt={{ base: "80px", md: "80px" }}>
+      <Text
+        fontSize="2xl"
+        fontWeight="bold"
+        textAlign="left"
+        p="-0.5"
+        color={"#1B2559"}
+      >
+        Season 2023
+      </Text>
+      <SimpleGrid mb="50px" columns={{ base: 1, md: 2, lg: 4 }} gap="20px">
         <MiniStatisticsGrafic
           endContent={
-            <Flex me='-16px' mt='10px'>
-              <FormLabel htmlFor='balance'>
+            <Flex me="-16px" mt="10px">
+              <FormLabel htmlFor="balance">
                 <Avatar src={MAX} />
               </FormLabel>
             </Flex>
           }
           title="Driver Leader"
-          name={driverLeader.Driver.givenName +" " + driverLeader.Driver.familyName}
-          value={driverLeader.points}  />
+          name={
+            driverLeader.Driver.givenName + " " + driverLeader.Driver.familyName
+          }
+          value={driverLeader.points}
+        />
         <MiniStatisticsGrafic
           endContent={
             <Flex me="-16px" mt="10px">
@@ -216,15 +232,14 @@ export default function Default(props: {}) {
             </Flex>
           }
           title="Constructor Leader"
-          name={`${constructionLeader.Constructor.name || 'N/A'}`}
-          value={`${constructionLeader.points || 'N/A'}`}
+          name={`${constructionLeader.Constructor.name || "N/A"}`}
+          value={`${constructionLeader.points || "N/A"}`}
         />
-		<div style={{  }}> 
-    <ConstructorStandingsStatic constructorStandings={constructorStandingsList} />
-  </div>
-  <div style={{  marginLeft: '95px', width: 'calc(100% + 10px)'  }}> {/* Add margin-right for spacing */}
-    <DriverStandingsStatic driverStandings={listDriverStanding} />
-  </div>
+        <ConstructorStandingsStatic
+          constructorStandings={constructorStandingsList}
+        />
+        {/* Add margin-right for spacing */}
+        <DriverStandingsStatic driverStandings={listDriverStanding} />
       </SimpleGrid>
     </Box>
   );
