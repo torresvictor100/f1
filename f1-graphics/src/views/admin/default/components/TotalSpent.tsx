@@ -95,6 +95,18 @@ interface Location {
 	raceSeason: RaceSeason[];
   }
 
+  interface DriverPoints {
+	name: string,
+	data: string[]
+  }
+
+  function calcularPontosPilotos(raceSeasonList: RaceSeason[]): DriverPoints {
+	const driverPoint : DriverPoints= null;
+	// fazer um map que vai ter como valor o valor dos drivers que eles adicionar 
+	//ai pega esse map add cada valor vai ser for da cada corrida e for de cada drive e pronto 
+	return null;
+  }
+
 export default function TotalSpent(props: { [x: string]: any }) {
 	const { ...rest } = props;
 
@@ -110,6 +122,14 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 	const baseUrl = "http://localhost:8080/f1-graphics/seasons/season-drivers-ids/2021?listDriversIdRequestDTO=max_verstappen";
 	const [dataLoaded, setDataLoaded] = useState(false);
+	const [driverPointsList, SetDriverPointsList] = useState<DriverPoints[]>([
+		{
+			name: "",
+			data:[
+				"",""
+			]
+		}
+	])
 	const [season, setSeason] = useState<SeasonInfo>(
 		{
 		season: "",
@@ -174,18 +194,20 @@ export default function TotalSpent(props: { [x: string]: any }) {
   ],
 		}
 	);
-
+	
 
 	useEffect(() => {
 		axios(baseUrl)
 		  .then((resp) => {
-			const season2 = resp.data;
-			setSeason(season2);
+			setSeason(resp.data);
 		  })
 		  .finally(() => setDataLoaded(true)); // Define o estado para true após a conclusão da requisição
 	  }, []);
 
 	  console.log(season)
+
+	
+	
 	return (
 		<Card justifyContent='center' alignItems='center' flexDirection='column' w='100%' mb='0px' {...rest}>
 			<Text color={textColor} fontSize='54px' textAlign='start' fontWeight='700' lineHeight='100%'>
