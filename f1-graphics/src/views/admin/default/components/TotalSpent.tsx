@@ -93,6 +93,7 @@ interface Location {
 	season: string;
 	totalGPs: string;
 	raceSeason: RaceSeason[];
+	driverPoints: DriverPoints[]
   }
 
   interface DriverPoints {
@@ -120,7 +121,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const bgHover = useColorModeValue({ bg: 'secondaryGray.400' }, { bg: 'whiteAlpha.50' });
 	const bgFocus = useColorModeValue({ bg: 'secondaryGray.300' }, { bg: 'whiteAlpha.100' });
 
-	const baseUrl = "http://localhost:8080/f1-graphics/seasons/season-drivers-ids/2021?listDriversIdRequestDTO=max_verstappen";
+	const baseUrl = "http://localhost:8080/f1-graphics/seasons/season-drivers-ids/2021?listDriversIdRequestDTO=hamilton&listDriversIdRequestDTO=max_verstappen";
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [driverPointsList, SetDriverPointsList] = useState<DriverPoints[]>([
 		{
@@ -192,19 +193,24 @@ export default function TotalSpent(props: { [x: string]: any }) {
       ],
     },
   ],
+  driverPoints: [{
+	name: "",
+	data: [""]
+  }]
 		}
 	);
+	
 	
 
 	useEffect(() => {
 		axios(baseUrl)
 		  .then((resp) => {
 			setSeason(resp.data);
+			SetDriverPointsList(resp.data.driverPoints);
 		  })
 		  .finally(() => setDataLoaded(true)); // Define o estado para true após a conclusão da requisição
 	  }, []);
 
-	  console.log(season)
 
 	
 	
@@ -222,7 +228,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 						</Flex>
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
-					<LineChart chartData={lineChartDataTotalSpent} chartOptions={lineChartOptionsTotalSpent} />
+					<LineChart chartData={driverPointsList} chartOptions={lineChartOptionsTotalSpent} />
 				</Box>
 			</Flex>
 			<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='20px'>
