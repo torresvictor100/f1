@@ -55,7 +55,7 @@ export default function Default(props: {
 						</Flex>
 					) : null}
 				</Stat>
-				<Flex ms='auto' w='max-content'>
+				<Flex  w='max-content'>
 					{endContent}
 				</Flex>
 			</Flex>

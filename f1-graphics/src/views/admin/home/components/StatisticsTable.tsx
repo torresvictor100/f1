@@ -218,10 +218,10 @@ export default function Default(props: {}) {
           name={`${constructionLeader.Constructor.name || 'N/A'}`}
           value={`${constructionLeader.points || 'N/A'}`}
         />
-		<div style={{ display: 'flex' }}> 
+		<div style={{  }}> 
     <ConstructorStandingsStatic constructorStandings={constructorStandingsList} />
   </div>
-  <div style={{ display: 'flex', marginLeft: '95px', width: 'calc(100% + 10px)'  }}> {/* Add margin-right for spacing */}
+  <div style={{  marginLeft: '95px', width: 'calc(100% + 10px)'  }}> {/* Add margin-right for spacing */}
     <DriverStandingsStatic driverStandings={listDriverStanding} />
   </div>
       </SimpleGrid>
