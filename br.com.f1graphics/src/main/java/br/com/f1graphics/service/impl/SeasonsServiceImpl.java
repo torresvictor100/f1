@@ -2,6 +2,7 @@ package br.com.f1graphics.service.impl;
 
 import br.com.f1graphics.dto.factory.F1GraphicsFactory;
 import br.com.f1graphics.dto.request.ListDriversIdRequestDTO;
+import br.com.f1graphics.dto.response.DriverPointsResponseDTO;
 import br.com.f1graphics.dto.response.SeasonResponseDTO;
 import br.com.f1graphics.dto.response.drive.DriverSeasonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
@@ -31,18 +32,38 @@ public class SeasonsServiceImpl implements SeasonsService {
 
     private static F1GraphicsFactory factory;
 
+    private Map<String, DriverPointsResponseDTO> driverPointsResponseMap = new HashMap<>();
+
     @Override
     public SeasonResponseDTO getSeasonForDriversIds(String season, ListDriversIdRequestDTO listDriversIds) {
+
 
         return getSeasonResponse(season, listDriversIds);
     }
 
+    private List<DriverPointsResponseDTO> getResultDriverPoints(ListDriversIdRequestDTO listDriversIds){
+        List<DriverPointsResponseDTO> driverPointsList = new ArrayList<>();
 
+        for (String driversIds: listDriversIds.getListDriversIdRequestDTO()){
+            driverPointsList.add(driverPointsResponseMap.get(driversIds));
+
+        }
+
+        return driverPointsList;
+    }
 
     private Map<String, Double> createMapSeasonValorResult(List<String> listDriversId){
         Map<String, Double> mapSeasonValorResult = new HashMap<>();
 
         for (String driverId: listDriversId){
+
+            DriverPointsResponseDTO  driverPoints = new DriverPointsResponseDTO();
+            driverPoints.setName(driverId);
+            List<String> dataClean = new ArrayList<>();
+            dataClean.add("0");
+            driverPoints.setData(dataClean);
+            driverPointsResponseMap.put(driverId, driverPoints);
+
             mapSeasonValorResult.put("totalSeasonPoints"+driverId,0.0);
             mapSeasonValorResult.put("racesSeasonPoints"+driverId,0.0);
             mapSeasonValorResult.put("sprintSeasonPoints"+driverId,0.0);
@@ -72,8 +93,10 @@ public class SeasonsServiceImpl implements SeasonsService {
         List<RaceSeasonResponseDTO> raceSeasonResponse = getRaceSeasonResponseDTO(listRace,listDriversIdsSting
                 ,mapRaceTable,mapRaceSprint);
 
+        List<DriverPointsResponseDTO> driverPointList = getResultDriverPoints(listDriversIds);
+
         return factory.createSeaseonResponse(season ,
-            String.valueOf(listRace.size()), raceSeasonResponse);
+            String.valueOf(listRace.size()), raceSeasonResponse, driverPointList);
     }
 
 
@@ -156,6 +179,11 @@ public class SeasonsServiceImpl implements SeasonsService {
 
             totalSeason = totalSeason + racePoint + sprintPoint;
             mapSeasonValorResult.replace("totalSeasonPoints" + driversId, totalSeason);
+
+
+            setDriverPointsResponseMap(driversId,String.valueOf(totalSeason));
+
+
         }else if(race != null) {
 
             Double racePoint = Double.valueOf(race.getResults().get(0).getPoints());
@@ -168,6 +196,8 @@ public class SeasonsServiceImpl implements SeasonsService {
 
             totalSeason = totalSeason + racePoint ;
             mapSeasonValorResult.replace("totalSeasonPoints" + driversId, totalSeason);
+
+            setDriverPointsResponseMap(driversId,String.valueOf(totalSeason));
         }else if(raceSprint != null) {
 
             Double sprintPoint = Double.valueOf(raceSprint.getSprintResults().get(0).getPoints());
@@ -181,6 +211,8 @@ public class SeasonsServiceImpl implements SeasonsService {
             totalSeason = totalSeason + sprintPoint;
             mapSeasonValorResult.replace("totalSeasonPoints" + driversId, totalSeason);
 
+            setDriverPointsResponseMap(driversId,String.valueOf(totalSeason));
+
         }
             if(race != null){
                 ResultRaceResponseDTO raceResponse = getResultRaceResponseDTO(race.getResults().get(0));
@@ -192,7 +224,22 @@ public class SeasonsServiceImpl implements SeasonsService {
             return null;
     }
 
+    private void setDriverPointsResponseMap(String driversId, String totalSeason){
 
+        DriverPointsResponseDTO driverPointsResponse = driverPointsResponseMap.get(driversId);
+
+        List<String> data;
+        if(driverPointsResponse == null){
+            data = new ArrayList<>();
+            data.add(totalSeason);
+        }else {
+            data = driverPointsResponse.getData();
+            data.add(String.valueOf(totalSeason));
+        }
+        driverPointsResponse.setData(data);
+
+        driverPointsResponseMap.replace(driversId, driverPointsResponse);
+    }
 
     private ResultRaceResponseDTO getResultRaceResponseDTO(ResultResponseDTO resultRaceResponseDTO) {
 
