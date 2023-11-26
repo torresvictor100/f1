@@ -24,6 +24,6 @@ public class SeasonResponseDTO implements Serializable, DTO {
     @JsonProperty("raceSeason")
     private List<RaceSeasonResponseDTO> raceSeason;
 
-    private DriverPointsResponseDTO driverPoints;
+    private List<DriverPointsResponseDTO> driverPoints;
 
 }
