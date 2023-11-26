@@ -44,6 +44,7 @@ const ConstructorStandingsStatic: React.FC<ConstructorSelectProps> = ({ construc
               defaultValue={selectedConstructor.Constructor.constructorId}
               onChange={handleConstructorChange}
             >
+              <option value="">Constructor</option>
               {constructorStandings.map(constructor => (
                 <option key={constructor.Constructor.constructorId} value={constructor.Constructor.constructorId}>
                   {constructor.Constructor.name}

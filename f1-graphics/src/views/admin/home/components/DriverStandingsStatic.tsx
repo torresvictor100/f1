@@ -55,6 +55,7 @@ const DriverStandingsStatic: React.FC<DriverSelectProps> = ({ driverStandings })
 
               onChange={handleDriverChange}
             >
+               <option value="">Driver</option>
               {driverStandings.map(driver => (
                 <option key={driver.Driver.driverId} value={driver.Driver.driverId}>
                   {driver.Driver.familyName}

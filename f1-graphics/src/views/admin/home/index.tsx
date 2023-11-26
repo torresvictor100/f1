@@ -50,15 +50,7 @@ export default function UserReports() {
 
 	return (
 <Box>
-		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
-
-
-			<CustomCard py='35px' mb='10'>
-
-				<Text fontSize="2xl" fontWeight="bold" textAlign="left" p="-0.5" color={textColor2023} >
-					Season 2023
-				</Text>
-			</CustomCard>
+		<Box pt={{ base: '130px', md: '80px', xl: '1px' }}>
 
 			<StatisticsTable />
 
