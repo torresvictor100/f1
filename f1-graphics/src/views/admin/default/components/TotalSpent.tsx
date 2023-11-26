@@ -228,7 +228,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 						</Flex>
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
-					<LineChart chartData={driverPointsList} chartOptions={lineChartOptionsTotalSpent} />
+				{dataLoaded && <LineChart chartData={driverPointsList} chartOptions={lineChartOptionsTotalSpent} />}
 				</Box>
 			</Flex>
 			<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='20px'>
