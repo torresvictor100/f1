@@ -3,7 +3,7 @@ import { Avatar, Box, StatLabel, Flex, FormLabel, Text, Icon, Select, SimpleGrid
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import MiniStatisticsGrafic from 'components/card/MiniStatisticsTitle'
-import MAX from 'assets/img/comparationOfDrivers/max-verstappen.png';
+import MAX from 'assets/img/DriversImage/max_verstappen.jpg';
 import RBR from 'assets/img/comparationOfDrivers/Red-Bull-logo.jpg';
 import ConstructorStandingsStatic from './ConstructorStandingsStatic';
 import DriverStandingsStatic from './DriverStandingsStatic'; 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Flex, FormLabel, Avatar, Select, Box } from '@chakra-ui/react';
 import MiniStatisticsTitle from 'components/card/MiniStatisticsTitle';
 import PlaceholderImage from 'assets/img/comparationOfDrivers/Mclaren.png';
-import MAX from 'assets/img/comparationOfDrivers/max-verstappen.png';
+import MAX from 'assets/img/DriversImage/ricciardo.jpg';
 
 interface DriverStanding {
   position: string;
