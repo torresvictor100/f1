@@ -158,7 +158,8 @@ export default function Default(props: {}) {
   ]);
 
 
-  const [dataLoaded, setDataLoaded] = useState(false); // Adiciona um estado para rastrear se os dados foram carregados
+  const [dataLoadedDrivers, setDataLoadedDrivers] = useState(false); 
+  const [dataLoadedContructios, setDataLoadedContructios] = useState(false); 
 
   useEffect(() => {
     axios(baseUrl)
@@ -168,7 +169,7 @@ export default function Default(props: {}) {
         const drivers = driverStandings[0];
         setDriverLeader(drivers);
       })
-      .finally(() => setDataLoaded(true)); // Define o estado para true após a conclusão da requisição
+      .finally(() => setDataLoadedDrivers(true)); // Define o estado para true após a conclusão da requisição
 
     axios(baseUrlContructios)
       .then((resp) => {
@@ -178,11 +179,11 @@ export default function Default(props: {}) {
         setConstructionLeader(constructors);
         setListConstruction(listConstructors);
       })
-      .finally(() => setDataLoaded(true)); // Define o estado para true após a conclusão da requisição
+      .finally(() => setDataLoadedContructios(true)); // Define o estado para true após a conclusão da requisição
   }, []);
 
-  if (!dataLoaded) {
-    return <div>Carregando...</div>; // Pode exibir um indicador de carregamento enquanto os dados estão sendo carregados
+  if (!dataLoadedDrivers || !dataLoadedContructios) {
+    return <div>Loading...</div>; // Pode exibir um indicador de carregamento enquanto os dados estão sendo carregados
   }
 
  
