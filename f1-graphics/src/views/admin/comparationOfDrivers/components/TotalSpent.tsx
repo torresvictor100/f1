@@ -3,7 +3,7 @@ import { Avatar, Box, Flex, FormLabel, Text, Select, SimpleGrid, useColorModeVal
 import Card from 'components/card/Card';
 import LineChart from 'components/charts/LineChart';
 
-import {lineChartOptionsTotalSpent } from 'variables/charts';
+import { lineChartOptionsTotalSpent } from 'variables/charts';
 import Hamiton from 'assets/img/comparationOfDrivers/Hamiton.jpg';
 import Massa from 'assets/img/comparationOfDrivers/Massa.jpg';
 import Soma from 'assets/img/comparationOfDrivers/Soma.jpg';

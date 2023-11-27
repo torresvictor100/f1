@@ -190,11 +190,11 @@ export default function Default(props: {}) {
         setConstructionLeader(constructors);
         setListConstruction(listConstructors);
       })
-      .finally(() => setDataLoadedContructios(true)); // Define o estado para true após a conclusão da requisição
+      .finally(() => setDataLoadedContructios(true));
   }, []);
 
   if (!dataLoadedDrivers || !dataLoadedContructios) {
-    return <div>Loading...</div>; // Pode exibir um indicador de carregamento enquanto os dados estão sendo carregados
+    return <div>Loading...</div>;
   }
 
   return (
@@ -238,7 +238,6 @@ export default function Default(props: {}) {
         <ConstructorStandingsStatic
           constructorStandings={constructorStandingsList}
         />
-        {/* Add margin-right for spacing */}
         <DriverStandingsStatic driverStandings={listDriverStanding} />
       </SimpleGrid>
     </Box>
