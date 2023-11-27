@@ -4,7 +4,7 @@
  | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
  |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
  |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
+																																																																																	   
 =========================================================
 * Horizon UI - v1.1.0
 =========================================================
@@ -23,7 +23,7 @@
 import React, { forwardRef } from 'react';
 
 // Chakra imports
-import { Box,useStyleConfig, useColorModeValue } from '@chakra-ui/react';
+import { Box, useStyleConfig, useColorModeValue } from '@chakra-ui/react';
 // Custom components
 import TotalSpent from './components/TotalSpent';
 import { CustomCardProps } from 'theme/theme';
@@ -36,18 +36,18 @@ export default function UserReports() {
 	const CustomCard = forwardRef<HTMLDivElement, CustomCardProps>((props, ref) => {
 		const { size, variant, ...rest } = props;
 		const styles = useStyleConfig('Card', { size, variant });
-	  
-		return <Box ref={ref} __css={styles} {...rest} />;
-	  });
 
-	  const textColor2023 = useColorModeValue('secondaryGray.900', 'white');
-	
+		return <Box ref={ref} __css={styles} {...rest} />;
+	});
+
+	const textColor2023 = useColorModeValue('secondaryGray.900', 'white');
+
 	return (
 
-		<Box>		
-			<StatisticsTable/>
+		<Box>
+			<StatisticsTable />
 			<TotalSpent />
-			
+
 		</Box>
 	);
 }

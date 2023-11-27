@@ -6,12 +6,12 @@ import Card from 'components/card/Card';
 export default function Default(props: {
 	startContent?: JSX.Element;
 	endContent?: JSX.Element;
-	title:string;
+	title: string;
 	name: string;
 	growth?: string | number;
 	value: string | number;
 }) {
-	const { startContent, endContent,title, name, growth, value } = props;
+	const { startContent, endContent, title, name, growth, value } = props;
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const textColorSecondary = 'secondaryGray.600';
 
@@ -21,7 +21,7 @@ export default function Default(props: {
 				{startContent}
 
 				<Stat my='auto' ms={startContent ? '18px' : '0px'}>
-				<StatLabel
+					<StatLabel
 						lineHeight='100%'
 						color={textColorSecondary}
 						fontSize={{
