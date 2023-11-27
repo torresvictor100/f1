@@ -101,7 +101,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 
-	const baseUrl = "http://localhost:8080/f1-graphics/seasons/season-drivers-ids/2021?listDriversIdRequestDTO=hamilton";
+	
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [driverPointsList, SetDriverPointsList] = useState<DriverPoints[]>([
 		{
@@ -179,11 +179,21 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			}]
 		}
 	);
-
+	const [years, setYears] = useState<string[]>([]);
+	const [selectYears, setSelectYears] = useState<string>();
+	const baseUrl = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?listDriversIdRequestDTO=hamilton`;
 	const [carregando, setCarregando] = useState("Click in seach");
 
 	useEffect(() => {
+		const currentYear = new Date().getFullYear();
+		const availableYears = Array.from({ length: currentYear - 1949 }, (_, index) => (currentYear - index).toString());
+		setYears(availableYears);
 	}, []);
+
+	const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+
+		setSelectYears(event.target.value);
+	};
 
 	const fetchData = () => {
 		setCarregando('Carregando...');
@@ -193,7 +203,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 				SetDriverPointsList(resp.data.driverPoints);
 			})
 			.finally(() => setDataLoaded(true));
-			setCarregando('');
+		setCarregando('');
 	};
 
 	const handleButtonClick = () => {
@@ -208,11 +218,14 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			</Text>
 			<button onClick={handleButtonClick}>Seach</button>
 			<Flex me='-16px' mt='10px'>
-				<FormLabel htmlFor='balance'>
-					<Text fontSize='3textColor4px' color='secondaryGray.600' mt='12px' me='0px'>2008</Text>
-				</FormLabel>
-				<Select id='balance' variant='mini' mt='15px' me='0px' defaultValue='usd'>
-				</Select>
+				<label htmlFor="yearSelect"></label>
+				<select id="yearSelect" onChange={handleYearChange}>
+					{years.map((year) => (
+						<option key={year} value={year}>
+							{year}
+						</option>
+					))}
+				</select>
 			</Flex>
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
