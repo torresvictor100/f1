@@ -121,7 +121,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const bgHover = useColorModeValue({ bg: 'secondaryGray.400' }, { bg: 'whiteAlpha.50' });
 	const bgFocus = useColorModeValue({ bg: 'secondaryGray.300' }, { bg: 'whiteAlpha.100' });
 
-	const baseUrl = "http://localhost:8080/f1-graphics/seasons/season-drivers-ids/2021?listDriversIdRequestDTO=hamilton&listDriversIdRequestDTO=max_verstappen";
+	const baseUrl = "http://localhost:8080/f1-graphics/seasons/season-drivers-ids/2021?listDriversIdRequestDTO=hamilton";
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [driverPointsList, SetDriverPointsList] = useState<DriverPoints[]>([
 		{
@@ -208,7 +208,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			setSeason(resp.data);
 			SetDriverPointsList(resp.data.driverPoints);
 		  })
-		  .finally(() => setDataLoaded(true)); // Define o estado para true após a conclusão da requisição
+		  .finally(() => setDataLoaded(true)); 
 	  }, []);
 
 
@@ -221,7 +221,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 					</Text>
 						<Flex me='-16px' mt='10px'>
 							<FormLabel htmlFor='balance'>
-								<Text fontSize='34px' color='secondaryGray.600' mt='12px' me='0px'>2008</Text>
+								<Text fontSize='3textColor4px' color='secondaryGray.600' mt='12px' me='0px'>2008</Text>
 							</FormLabel>
 							<Select id='balance' variant='mini' mt='15px' me='0px' defaultValue='usd'>
 							</Select>
