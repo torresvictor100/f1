@@ -25,7 +25,7 @@ import React, { forwardRef } from 'react';
 // Chakra imports
 import { Box,useStyleConfig, useColorModeValue } from '@chakra-ui/react';
 // Custom components
-import TotalSpent from 'views/admin/default/components/TotalSpent';
+import TotalSpent from './default/TotalSpent';
 import { CustomCardProps } from 'theme/theme';
 import StatisticsTable from './../home/components/StatisticsTable'
 
