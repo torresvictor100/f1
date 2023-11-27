@@ -10,7 +10,6 @@ import Soma from 'assets/img/comparationOfDrivers/Soma.jpg';
 import MiniStatisticsTitle from 'components/card/MiniStatisticsTitle'
 import MiniStatistics from 'components/card/MiniStatistics'
 
-
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
@@ -30,7 +29,6 @@ interface Circuit {
 interface Time {
 	time: string;
 }
-
 
 interface AverageSpeed {
 	units: string;
@@ -182,18 +180,25 @@ export default function TotalSpent(props: { [x: string]: any }) {
 		}
 	);
 
-
+	const [carregando, setCarregando] = useState("Click in seach");
 
 	useEffect(() => {
+	}, []);
+
+	const fetchData = () => {
+		setCarregando('Carregando...');
 		axios(baseUrl)
 			.then((resp) => {
 				setSeason(resp.data);
 				SetDriverPointsList(resp.data.driverPoints);
 			})
 			.finally(() => setDataLoaded(true));
-	}, []);
+			setCarregando('');
+	};
 
-
+	const handleButtonClick = () => {
+		fetchData();
+	};
 
 
 	return (
@@ -201,6 +206,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			<Text color={textColor} fontSize='54px' textAlign='start' fontWeight='700' lineHeight='100%'>
 				Comparation Drivers
 			</Text>
+			<button onClick={handleButtonClick}>Seach</button>
 			<Flex me='-16px' mt='10px'>
 				<FormLabel htmlFor='balance'>
 					<Text fontSize='3textColor4px' color='secondaryGray.600' mt='12px' me='0px'>2008</Text>
@@ -210,24 +216,11 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			</Flex>
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
+					{carregando && <p>{carregando}</p>}
 					{dataLoaded && <LineChart chartData={driverPointsList} chartOptions={lineChartOptionsTotalSpent} />}
 				</Box>
 			</Flex>
 			<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='20px'>
-				<MiniStatisticsTitle
-					endContent={
-						<Flex me='-16px' mt='10px'>
-							<FormLabel htmlFor='balance'>
-								<Avatar src={Hamiton} />
-							</FormLabel>
-							<Select id='balance' variant='mini' mt='5px' me='0px' defaultValue='usd'>
-							</Select>
-						</Flex>
-					}
-					title="Ferrari"
-					name='Season'
-					value='L.Hamiton'
-				/>
 				<MiniStatisticsTitle
 					endContent={
 						<Flex me='-16px' mt='10px'>

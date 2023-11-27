@@ -38,7 +38,6 @@ const ConstructorStandingsStatic: React.FC<ConstructorSelectProps> = ({
   };
 
   return (
-    // <Box width="calc(100% - -100px)">
     <MiniStatisticsTitle
       endContent={
         <Flex mt="10px">
@@ -71,7 +70,6 @@ const ConstructorStandingsStatic: React.FC<ConstructorSelectProps> = ({
       name={selectedConstructor.Constructor.name}
       value={selectedConstructor.points}
     />
-    // </Box>
   );
 };
 
