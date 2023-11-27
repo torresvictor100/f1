@@ -363,7 +363,7 @@ export const lineChartDataTotalSpent = [
 export const lineChartOptionsTotalSpent: any = {
 	chart: {
 		toolbar: {
-			show: false
+			show: true
 		},
 		dropShadow: {
 			enabled: true,
@@ -371,15 +371,15 @@ export const lineChartOptionsTotalSpent: any = {
 			left: 0,
 			blur: 10,
 			opacity: 0.1,
-			color: '#4318FF'
+			color: '#000'
 		}
 	},
-	colors: [ '#a60203', '#ff8000' ],
+	colors: [ '#a60203', '#ff8000' ], //linhda dos piloto	
 	markers: {
-		size: 0,
-		colors: 'white',
-		strokeColors: '#7551FF',
-		strokeWidth: 3,
+		size: 1,
+		colors: '000',//cor da marcação ao redor dos pontos
+		strokeColors: '#000',//cor da marcação ao redor dos pontos
+		strokeWidth: 4,
 		strokeOpacity: 0.9,
 		strokeDashArray: 0,
 		fillOpacity: 1,
@@ -390,8 +390,25 @@ export const lineChartOptionsTotalSpent: any = {
 		offsetY: 0,
 		showNullDataPoints: true
 	},
+	title: {
+		text: 'Meu Gráfico',
+		align: 'center',
+		margin: 10,
+		offsetX: 0,
+		offsetY: 0,
+		floating: false,
+		style: {
+		  fontSize: '20px',
+		  fontWeight: 'bold',
+		  fontFamily: undefined,
+		  color: '#fff'
+		}
+	  },
 	tooltip: {
-		theme: 'dark'
+		theme: 'dark-dual',
+		style: {
+			color: '#000', // Cor do texto da dica de ferramenta (preto)
+		  },
 	},
 	dataLabels: {
 		enabled: false
@@ -422,7 +439,7 @@ export const lineChartOptionsTotalSpent: any = {
 		"Brazilian Grand Prix" ],
 		labels: {
 			style: {
-				colors: '#A3AED0',
+				colors: '#fff', //cor da lebols
 				fontSize: '12px',
 				fontWeight: '500'
 			}
@@ -435,17 +452,16 @@ export const lineChartOptionsTotalSpent: any = {
 		}
 	},
 	yaxis: {
-		show: false
+		show: true
 	},
 	legend: {
 		show: false
 	},
 	grid: {
-		show: false,
+		show: true,
 		column: {
 			color: [ '#7551FF', '#39B8FF' ],
 			opacity: 0.5
 		}
-	},
-	color: [ '#7551FF', '#39B8FF' ]
+	}
 };
