@@ -96,6 +96,35 @@ interface DriverPoints {
 	data: string[]
 }
 
+interface Driver {
+	driverId: string;
+	permanentNumber: string;
+	code: string;
+	url: string;
+	givenName: string;
+	familyName: string;
+	dateOfBirth: string;
+	nationality: string;
+}
+
+interface DriverTable {
+	season: string;
+	Drivers: Driver[];
+}
+
+interface MRData {
+	xmlns: string;
+	series: string;
+	url: string;
+	limit: string;
+	offset: string;
+	total: string;
+	DriverTable: DriverTable;
+}
+
+interface DriversResponse {
+	MRData: MRData;
+}
 export default function TotalSpent(props: { [x: string]: any }) {
 	const { ...rest } = props;
 
@@ -183,6 +212,13 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const [selectYears, setSelectYears] = useState<string>("2023");
 	const [loading, setLoading] = useState("Select the years");
 	const urlSeason = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?listDriversIdRequestDTO=hamilton`;
+	const urlDriver = `http://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`
+
+	const [loadingDriver, setLoadingDriver] = useState("Select the years");
+	const [dataLoadedDriver, setDataLoadedDriver] = useState(false);
+	const [driverOptions, setDriverOptions] = useState<{ label: string; value: string }[]>([]);
+
+	const [driverSelect, setDriverSelect] = useState<string[]>([]);
 
 	useEffect(() => {
 		const currentYear = new Date().getFullYear();
@@ -193,7 +229,34 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
 		setSelectYears(event.target.value);
+		fetchDataDriver();
+
+
 	};
+
+	const fetchDataDriver = () => {
+		setLoadingDriver('Loading...');
+		axios.get<DriversResponse>(`http://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`)
+			.then((response) => {
+				const data = response.data;
+				const drivers = data.MRData.DriverTable.Drivers;
+	
+				// Create options list for the Select component
+				const driverOptions = drivers.map((driver) => ({
+					label: `${driver.givenName} ${driver.familyName}`,
+					value: driver.driverId,
+				}));
+	
+				// Set the options list to state or pass it to the Select component directly
+				setDriverOptions(driverOptions);
+			})
+			.catch((error) => {
+				console.error(error);
+			})
+			.finally(() => setDataLoadedDriver(true));
+	};
+
+
 
 	const fetchData = () => {
 		setLoading('Loading...');
@@ -205,13 +268,13 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			.finally(() => setDataLoaded(true));
 		setLoading('');
 	};
-	
+
 
 	const handleButtonClick = () => {
 		fetchData();
 	};
 
-	var list = ["1","2"];
+	var list = ["1", "2"];
 
 	return (
 		<Card justifyContent='center' alignItems='center' flexDirection='column' w='100%' mb='0px' {...rest}>
@@ -219,20 +282,20 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			<Text color={textColor} fontSize='54px' textAlign='start' fontWeight='700' lineHeight='100%'>
 				Comparation Drivers
 			</Text>
-				<Flex mt='10px' color={textColor} textAlign='start' fontWeight='700' lineHeight='100%' justifyContent='flex-start'>
-					<label htmlFor="yearSelect"></label>
-					<select id="yearSelect" onChange={handleYearChange} style={{ fontSize: '18px', padding: '8px' }}>
-						{years.map((year) => (
-							<option key={year} value={year}>
-								{year}
-							</option>
-						))}
-					</select>
-				</Flex>
-				<SelectComponent options={list}/>
-				<Box color={textColor} mt="10px" fontSize='25px' textAlign='start' fontWeight='700' lineHeight='100%' borderWidth='2px' borderStyle='solid' borderColor={textColor} borderRadius='md' p='4' background='#f4f7fe'>
-					<button onClick={handleButtonClick}>Search</button>
-				</Box>
+			<Flex mt='10px' color={textColor} textAlign='start' fontWeight='700' lineHeight='100%' justifyContent='flex-start'>
+				<label htmlFor="yearSelect"></label>
+				<select id="yearSelect" onChange={handleYearChange} style={{ fontSize: '18px', padding: '8px' }}>
+					{years.map((year) => (
+						<option key={year} value={year}>
+							{year}
+						</option>
+					))}
+				</select>
+			</Flex>
+			<SelectComponent options={driverOptions} />
+			<Box color={textColor} mt="10px" fontSize='25px' textAlign='start' fontWeight='700' lineHeight='100%' borderWidth='2px' borderStyle='solid' borderColor={textColor} borderRadius='md' p='4' background='#f4f7fe'>
+				<button onClick={handleButtonClick}>Search</button>
+			</Box>
 
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
@@ -242,7 +305,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 					{dataLoaded && <LineChart chartData={driverPointsList} chartOptions={lineChartOptionsTotalSpent} />}
 				</Box>
 			</Flex>
-			
+
 		</Card>
 	);
 }
