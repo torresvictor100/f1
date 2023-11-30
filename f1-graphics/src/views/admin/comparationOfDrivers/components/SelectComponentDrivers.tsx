@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import {
   Select,
   Flex,
@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react'; 
 import MiniStatisticsTitleSelect from './MiniStatisticsTitleSelect'
 import Massa from 'assets/img/comparationOfDrivers/Massa.jpg';
+import axios from "axios";
 
 interface SelectComponentProps {
   options: string[];
@@ -45,6 +46,26 @@ const Butaostyle={
 
 const SelectComponent: React.FC<SelectComponentProps> = ({ options }) => {
   const [selects, setSelects] = useState<string[]>(['']);
+
+  const [selectYears, setSelectYears] = useState<string>("2023");
+  const urlDriver = `http://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`
+	const [loading, setLoading] = useState("Select the years");
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  useEffect(() => {
+		fetchDataDriver();
+	}, []);
+
+  const fetchDataDriver = () => {
+		setLoading('Loading...');
+		axios(urlDriver)
+			.then((resp) => {
+        console.log("souchado")
+        console.log(resp.data)
+			})
+			.finally(() => setDataLoaded(true));
+		setLoading('');
+	};
 
   const handleAddSelect = () => {
     setSelects([...selects, '']);

@@ -2,7 +2,7 @@ import { Avatar, Box, Flex, FormLabel, Text, Select, SimpleGrid, useColorModeVal
 
 import Card from 'components/card/Card';
 import LineChart from 'components/charts/LineChart';
-import SelectComponent from './SelectComponent';
+import SelectComponent from './SelectComponentDrivers';
 import { lineChartOptionsTotalSpent } from 'variables/charts';
 import Hamiton from 'assets/img/comparationOfDrivers/Hamiton.jpg';
 import Massa from 'assets/img/comparationOfDrivers/Massa.jpg';
@@ -181,8 +181,8 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	);
 	const [years, setYears] = useState<string[]>([]);
 	const [selectYears, setSelectYears] = useState<string>("2023");
-	const baseUrl = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?listDriversIdRequestDTO=hamilton`;
-	const [carregando, setCarregando] = useState("Select the years");
+	const [loading, setLoading] = useState("Select the years");
+	const urlSeason = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?listDriversIdRequestDTO=hamilton`;
 
 	useEffect(() => {
 		const currentYear = new Date().getFullYear();
@@ -196,15 +196,16 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	};
 
 	const fetchData = () => {
-		setCarregando('Carregando...');
-		axios(baseUrl)
+		setLoading('Loading...');
+		axios(urlSeason)
 			.then((resp) => {
 				setSeason(resp.data);
 				SetDriverPointsList(resp.data.driverPoints);
 			})
 			.finally(() => setDataLoaded(true));
-		setCarregando('');
+		setLoading('');
 	};
+	
 
 	const handleButtonClick = () => {
 		fetchData();
@@ -236,7 +237,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
 					<Text color={textColor} fontSize='30px' textAlign='start' fontWeight='700' lineHeight='100%'>
-						{carregando && <p>{carregando}</p>}
+						{loading && <p>{loading}</p>}
 					</Text>
 					{dataLoaded && <LineChart chartData={driverPointsList} chartOptions={lineChartOptionsTotalSpent} />}
 				</Box>
