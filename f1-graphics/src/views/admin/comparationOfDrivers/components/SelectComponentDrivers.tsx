@@ -61,7 +61,7 @@ const SelectComponent: React.FC<SelectComponentProps> = ({ options ,onPilotsSele
     onPilotsSelected(updatedSelects);
   };
   useEffect(() => {
-    onPilotsSelected(selects); // Chamando a função do componente pai quando a lista de pilotos for inicializada
+    onPilotsSelected(selects);
   }, [selects]);
 
   const handleSelectChange = (index: number, value: string) => {
