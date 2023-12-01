@@ -273,12 +273,22 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 
 	const handleButtonClick = () => {
-		const pilotsQueryString = selectedPilots.map((pilot) => `listDriversIdRequestDTO=${pilot}`).join('&');
-		console.log(pilotsQueryString)
-    	const updatedUrlSeason = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?${pilotsQueryString}`;
-		console.log(updatedUrlSeason)
-		fetchData();
-	};
+		// Filtra pilotos não vazios
+		const nonEmptyPilots = selectedPilots.filter((pilot) => pilot.trim() !== '');
+	
+		if (nonEmptyPilots.length > 0) {
+		  const pilotsQueryString = nonEmptyPilots.map((pilot) => `listDriversIdRequestDTO=${pilot}`).join('&');
+		  console.log(pilotsQueryString);
+	
+		  const updatedUrlSeason = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?${pilotsQueryString}`;
+		  console.log(updatedUrlSeason);
+	
+		  fetchData();
+		} else {
+		  console.log("No pilots selected. Skipping fetchData.");
+		  // Nenhum piloto selecionado, lógica adicional se necessário
+		}
+	  };
 
 
 	return (
