@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Select, Flex, FormLabel, Avatar, SimpleGrid, Box } from '@chakra-ui/react';
 import MiniStatisticsTitleSelect from './MiniStatisticsTitleSelect';
 import Massa from 'assets/img/comparationOfDrivers/Massa.jpg';
@@ -41,8 +41,14 @@ const Butaostyle = {
   fontSize: '25px',
 };
 
-const SelectComponent: React.FC<SelectComponentProps> = ({ options }) => {
+interface SelectComponentProps {
+  options: SelectOption[];
+  onPilotsSelected: (selectedPilots: string[]) => void;
+}
+
+const SelectComponent: React.FC<SelectComponentProps> = ({ options ,onPilotsSelected}) => {
   const [selects, setSelects] = useState<string[]>(['']);
+
 
   const handleAddSelect = () => {
     setSelects([...selects, '']);
@@ -52,12 +58,17 @@ const SelectComponent: React.FC<SelectComponentProps> = ({ options }) => {
     const updatedSelects = [...selects];
     updatedSelects.splice(index, 1);
     setSelects(updatedSelects);
+    onPilotsSelected(updatedSelects);
   };
+  useEffect(() => {
+    onPilotsSelected(selects); // Chamando a função do componente pai quando a lista de pilotos for inicializada
+  }, [selects]);
 
   const handleSelectChange = (index: number, value: string) => {
     const updatedSelects = [...selects];
     updatedSelects[index] = value;
     setSelects(updatedSelects);
+    onPilotsSelected(updatedSelects);
   };
 
   return (
