@@ -129,7 +129,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const { ...rest } = props;
 
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
-
+	const [selectedPilots, setSelectedPilots] = useState<string[]>([]);
 
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [driverPointsList, SetDriverPointsList] = useState<DriverPoints[]>([
@@ -211,10 +211,10 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const [years, setYears] = useState<string[]>([]);
 	const [selectYears, setSelectYears] = useState<string>("2023");
 	const [loading, setLoading] = useState("Select the years");
-	const urlSeason = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?listDriversIdRequestDTO=hamilton`;
 	const urlDriver = `http://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`
 
-	const [loadingDriver, setLoadingDriver] = useState("Select the years");
+	const [urlSeason , setUrlSeason] = useState("Select the years"); 
+	const [loadingDriver, setLoadingDriver] = useState(`http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?`);
 	const [dataLoadedDriver, setDataLoadedDriver] = useState(false);
 	const [driverOptions, setDriverOptions] = useState<{ label: string; value: string }[]>([]);
 
@@ -256,7 +256,9 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			.finally(() => setDataLoadedDriver(true));
 	};
 
-
+	const handlePilotsSelected = (pilots: string[]) => {
+		setSelectedPilots(pilots);
+	  };
 
 	const fetchData = () => {
 		setLoading('Loading...');
@@ -271,10 +273,13 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 
 	const handleButtonClick = () => {
+		const pilotsQueryString = selectedPilots.map((pilot) => `listDriversIdRequestDTO=${pilot}`).join('&');
+		console.log(pilotsQueryString)
+    	const updatedUrlSeason = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?${pilotsQueryString}`;
+		console.log(updatedUrlSeason)
 		fetchData();
 	};
 
-	var list = ["1", "2"];
 
 	return (
 		<Card justifyContent='center' alignItems='center' flexDirection='column' w='100%' mb='0px' {...rest}>
@@ -292,7 +297,9 @@ export default function TotalSpent(props: { [x: string]: any }) {
 					))}
 				</select>
 			</Flex>
-			<SelectComponent options={driverOptions} />
+
+			<SelectComponent options={driverOptions} onPilotsSelected={handlePilotsSelected} />
+
 			<Box color={textColor} mt="10px" fontSize='25px' textAlign='start' fontWeight='700' lineHeight='100%' borderWidth='2px' borderStyle='solid' borderColor={textColor} borderRadius='md' p='4' background='#f4f7fe'>
 				<button onClick={handleButtonClick}>Search</button>
 			</Box>
