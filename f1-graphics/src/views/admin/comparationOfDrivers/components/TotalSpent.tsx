@@ -213,10 +213,11 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const [loading, setLoading] = useState("Select the years");
 	const urlDriver = `http://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`
 
-	const [urlSeason , setUrlSeason] = useState("Select the years"); 
+	const [urlSeason, setUrlSeason] = useState("Select the years");
 	const [loadingDriver, setLoadingDriver] = useState(`http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?`);
 	const [dataLoadedDriver, setDataLoadedDriver] = useState(false);
 	const [driverOptions, setDriverOptions] = useState<{ label: string; value: string }[]>([]);
+	const [cleanClicked, setCleanClicked] = useState(false);
 
 	const [driverSelect, setDriverSelect] = useState<string[]>([]);
 
@@ -240,13 +241,13 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			.then((response) => {
 				const data = response.data;
 				const drivers = data.MRData.DriverTable.Drivers;
-	
+
 				// Create options list for the Select component
 				const driverOptions = drivers.map((driver) => ({
 					label: `${driver.givenName} ${driver.familyName}`,
 					value: driver.driverId,
 				}));
-	
+
 				// Set the options list to state or pass it to the Select component directly
 				setDriverOptions(driverOptions);
 			})
@@ -258,41 +259,46 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 	const handlePilotsSelected = (pilots: string[]) => {
 		setSelectedPilots(pilots);
-	  };
+	};
 
-	  const fetchData = (updatedUrlSeason: string) => {
+	const fetchData = (updatedUrlSeason: string) => {
 		setLoading('Loading...');
-		console.log(updatedUrlSeason);
-	  
+
 		axios(updatedUrlSeason)
-		  .then((resp) => {
-			setSeason(resp.data);
-			console.log(resp.data.driverPoints);
-			SetDriverPointsList(resp.data.driverPoints);
-		  })
-		  .finally(() => setDataLoaded(true));
-	  
+			.then((resp) => {
+				setSeason(resp.data);
+				SetDriverPointsList(resp.data.driverPoints);
+				console.log(driverPointsList)
+			})
+			.finally(() => setDataLoaded(true));
+
 		setLoading('');
-	  };
-	
+	};
+
 
 
 	const handleButtonClick = () => {
 
 		const nonEmptyPilots = selectedPilots.filter((pilot) => pilot.trim() !== '');
-		
+
 		if (nonEmptyPilots.length > 0) {
-		  const pilotsQueryString = nonEmptyPilots.map((pilot) => `listDriversIdRequestDTO=${pilot}`).join('&');
-	
-		  const updatedUrlSeason = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?${pilotsQueryString}`;
+			const pilotsQueryString = nonEmptyPilots.map((pilot) => `listDriversIdRequestDTO=${pilot}`).join('&');
+
+			const updatedUrlSeason = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?${pilotsQueryString}`;
 
 			setUrlSeason(updatedUrlSeason)
-		  fetchData(updatedUrlSeason);
+			fetchData(updatedUrlSeason);
 		} else {
-		  console.log("No pilots selected. Skipping fetchData.");
+			console.log("No pilots selected. Skipping fetchData.");
 		}
-	  };
+	};
 
+	const handleCleanClick = () => {
+		console.log('Limpar gráfico');
+
+		setCleanClicked(true);
+	  };
+	  
 
 	return (
 		<Card justifyContent='center' alignItems='center' flexDirection='column' w='100%' mb='0px' {...rest}>
@@ -313,9 +319,15 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 			<SelectComponent options={driverOptions} onPilotsSelected={handlePilotsSelected} />
 
-			<Box color={textColor} mt="10px" fontSize='25px' textAlign='start' fontWeight='700' lineHeight='100%' borderWidth='2px' borderStyle='solid' borderColor={textColor} borderRadius='md' p='4' background='#f4f7fe'>
-				<button onClick={handleButtonClick}>Search</button>
-			</Box>
+			<Flex mt="10px">
+				<Box color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
+					<button onClick={handleButtonClick}>Search</button>
+				</Box>
+				<Box ml="10px" color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
+					<button onClick={handleCleanClick}>Clean</button>
+				</Box>
+			</Flex>
+
 
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
