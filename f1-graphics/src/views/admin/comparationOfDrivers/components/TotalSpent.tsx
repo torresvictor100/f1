@@ -225,30 +225,29 @@ export default function TotalSpent(props: { [x: string]: any }) {
 		const currentYear = new Date().getFullYear();
 		const availableYears = Array.from({ length: currentYear - 1949 }, (_, index) => (currentYear - index).toString());
 		setYears(availableYears);
+		fetchDataDriver(selectYears)
 	}, []);
 
 	const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
 		setSelectYears(event.target.value);
-		fetchDataDriver();
-
+		fetchDataDriver(event.target.value);
 
 	};
 
-	const fetchDataDriver = () => {
+	const fetchDataDriver = (selectYears: string) => {
 		setLoadingDriver('Loading...');
+		console.log("perto do acio"+selectYears)
 		axios.get<DriversResponse>(`http://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`)
 			.then((response) => {
 				const data = response.data;
 				const drivers = data.MRData.DriverTable.Drivers;
 
-				// Create options list for the Select component
 				const driverOptions = drivers.map((driver) => ({
 					label: `${driver.givenName} ${driver.familyName}`,
 					value: driver.driverId,
 				}));
-
-				// Set the options list to state or pass it to the Select component directly
+				
 				setDriverOptions(driverOptions);
 			})
 			.catch((error) => {
@@ -268,7 +267,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			.then((resp) => {
 				setSeason(resp.data);
 				SetDriverPointsList(resp.data.driverPoints);
-				console.log(driverPointsList)
 			})
 			.finally(() => setDataLoaded(true));
 
@@ -294,10 +292,8 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	};
 
 	const handleCleanClick = () => {
-		console.log('Limpar gráfico');
 		setCleanClicked(true);
-	
-		// Limpe os valores para seus estados iniciais
+
 		setSelectedPilots([]);
 		setDataLoaded(false);
 		SetDriverPointsList([
@@ -376,8 +372,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 		});
 	
 		setLoading("Select the years");
-	
-		// Se necessário, redefina outros estados conforme necessário
+
 	  };
 	  
 
