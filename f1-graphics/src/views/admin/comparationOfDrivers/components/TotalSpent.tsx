@@ -260,33 +260,36 @@ export default function TotalSpent(props: { [x: string]: any }) {
 		setSelectedPilots(pilots);
 	  };
 
-	const fetchData = () => {
+	  const fetchData = (updatedUrlSeason: string) => {
 		setLoading('Loading...');
-		axios(urlSeason)
-			.then((resp) => {
-				setSeason(resp.data);
-				SetDriverPointsList(resp.data.driverPoints);
-			})
-			.finally(() => setDataLoaded(true));
+		console.log(updatedUrlSeason);
+	  
+		axios(updatedUrlSeason)
+		  .then((resp) => {
+			setSeason(resp.data);
+			console.log(resp.data.driverPoints);
+			SetDriverPointsList(resp.data.driverPoints);
+		  })
+		  .finally(() => setDataLoaded(true));
+	  
 		setLoading('');
-	};
+	  };
+	
 
 
 	const handleButtonClick = () => {
-		// Filtra pilotos não vazios
+
 		const nonEmptyPilots = selectedPilots.filter((pilot) => pilot.trim() !== '');
-	
+		
 		if (nonEmptyPilots.length > 0) {
 		  const pilotsQueryString = nonEmptyPilots.map((pilot) => `listDriversIdRequestDTO=${pilot}`).join('&');
-		  console.log(pilotsQueryString);
 	
 		  const updatedUrlSeason = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?${pilotsQueryString}`;
-		  console.log(updatedUrlSeason);
-	
-		  fetchData();
+
+			setUrlSeason(updatedUrlSeason)
+		  fetchData(updatedUrlSeason);
 		} else {
 		  console.log("No pilots selected. Skipping fetchData.");
-		  // Nenhum piloto selecionado, lógica adicional se necessário
 		}
 	  };
 
