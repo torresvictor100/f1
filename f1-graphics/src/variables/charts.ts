@@ -374,22 +374,7 @@ export const lineChartOptionsTotalSpent: any = {
 			color: '#000'
 		}
 	},
-	colors: [ '#a60203', '#ff8000' ], //linhda dos piloto	
-	markers: {
-		size: 1,
-		colors: '000',//cor da marcação ao redor dos pontos
-		strokeColors: '#000',//cor da marcação ao redor dos pontos
-		strokeWidth: 4,
-		strokeOpacity: 0.9,
-		strokeDashArray: 0,
-		fillOpacity: 1,
-		discrete: [],
-		shape: 'circle',
-		radius: 2,
-		offsetX: 0,
-		offsetY: 0,
-		showNullDataPoints: true
-	},
+	colors: [ '#a60203', '#ff8000' ], //linhda dos piloto		
 	title: {
 		text: 'Meu Gráfico',
 		align: 'center',
