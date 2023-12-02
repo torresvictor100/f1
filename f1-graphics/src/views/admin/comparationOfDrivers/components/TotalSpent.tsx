@@ -211,7 +211,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const [years, setYears] = useState<string[]>([]);
 	const [selectYears, setSelectYears] = useState<string>("2023");
 	const [loading, setLoading] = useState("Select the years");
-	const urlDriver = `http://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`
 
 	const [urlSeason, setUrlSeason] = useState("Select the years");
 	const [loadingDriver, setLoadingDriver] = useState(`http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?`);
@@ -232,6 +231,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 		setSelectYears(event.target.value);
 		fetchDataDriver(event.target.value);
+
 
 	};
 
@@ -294,7 +294,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const handleCleanClick = () => {
 		setCleanClicked(true);
 
-		setSelectedPilots([]);
 		setDataLoaded(false);
 		SetDriverPointsList([
 		  {
@@ -370,6 +369,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			}
 		  ]
 		});
+
 	
 		setLoading("Select the years");
 
