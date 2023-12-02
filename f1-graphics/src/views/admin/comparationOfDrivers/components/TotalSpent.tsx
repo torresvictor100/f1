@@ -3,12 +3,12 @@ import { Avatar, Box, Flex, FormLabel, Text, Select, SimpleGrid, useColorModeVal
 import Card from 'components/card/Card';
 import LineChart from 'components/charts/LineChart';
 import SelectComponent from './SelectComponentDrivers';
-import { lineChartOptionsTotalSpent } from 'variables/charts';
 import Hamiton from 'assets/img/comparationOfDrivers/Hamiton.jpg';
 import Massa from 'assets/img/comparationOfDrivers/Massa.jpg';
 import Soma from 'assets/img/comparationOfDrivers/Soma.jpg';
 import MiniStatisticsTitle from 'components/card/MiniStatisticsTitle'
 import MiniStatistics from 'components/card/MiniStatistics'
+import BoxComponent from './BoxComponent'
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -217,6 +217,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const [dataLoadedDriver, setDataLoadedDriver] = useState(false);
 	const [driverOptions, setDriverOptions] = useState<{ label: string; value: string }[]>([]);
 	const [cleanClicked, setCleanClicked] = useState(false);
+	const [isBoxOpen, setIsBoxOpen] = useState(false);
 
 	const [driverSelect, setDriverSelect] = useState<string[]>([]);
 
@@ -237,7 +238,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 	const fetchDataDriver = (selectYears: string) => {
 		setLoadingDriver('Loading...');
-		console.log("perto do acio"+selectYears)
+		console.log("perto do acio" + selectYears)
 		axios.get<DriversResponse>(`http://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`)
 			.then((response) => {
 				const data = response.data;
@@ -247,7 +248,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 					label: `${driver.givenName} ${driver.familyName}`,
 					value: driver.driverId,
 				}));
-				
+
 				setDriverOptions(driverOptions);
 			})
 			.catch((error) => {
@@ -296,85 +297,184 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 		setDataLoaded(false);
 		SetDriverPointsList([
-		  {
-			name: "",
-			data: ["", ""]
-		  }
+			{
+				name: "",
+				data: ["", ""]
+			}
 		]);
 		setSeason({
-		  season: "",
-		  totalGPs: "",
-		  raceSeason: [
-			{
-			  round: "",
-			  url: "",
-			  raceName: "",
-			  date: "",
-			  time: "",
-			  Circuit: {
-				circuitId: "",
-				url: "",
-				circuitName: "",
-				Location: {
-				  lat: "",
-				  locality: "",
-				  country: "",
-				},
-			  },
-			  DriversResults: [
+			season: "",
+			totalGPs: "",
+			raceSeason: [
 				{
-				  driverId: "",
-				  url: "",
-				  givenName: "",
-				  dateOfBirth: "",
-				  nationality: "",
-				  Constructor: {
-					constructorId: "",
+					round: "",
 					url: "",
-					name: "",
-					nationality: "",
-				  },
-				  ResultSeaseon: {
 					raceName: "",
-					pointsSeason: 0,
-					pointsSeasonRaces: 0,
-					pointsSeasonSprintRaces: 0,
-				  },
-				  ResultRace: {
-					position: "",
-					points: "",
-					Time: {
-					  time: "",
+					date: "",
+					time: "",
+					Circuit: {
+						circuitId: "",
+						url: "",
+						circuitName: "",
+						Location: {
+							lat: "",
+							locality: "",
+							country: "",
+						},
 					},
-					FastestLap: {
-					  rank: "",
-					  lap: "",
-					  Time: {
-						time: "",
-					  },
-					  AverageSpeed: {
-						units: "",
-						speed: "",
-					  },
-					},
-				  },
+					DriversResults: [
+						{
+							driverId: "",
+							url: "",
+							givenName: "",
+							dateOfBirth: "",
+							nationality: "",
+							Constructor: {
+								constructorId: "",
+								url: "",
+								name: "",
+								nationality: "",
+							},
+							ResultSeaseon: {
+								raceName: "",
+								pointsSeason: 0,
+								pointsSeasonRaces: 0,
+								pointsSeasonSprintRaces: 0,
+							},
+							ResultRace: {
+								position: "",
+								points: "",
+								Time: {
+									time: "",
+								},
+								FastestLap: {
+									rank: "",
+									lap: "",
+									Time: {
+										time: "",
+									},
+									AverageSpeed: {
+										units: "",
+										speed: "",
+									},
+								},
+							},
+						},
+					],
 				},
-			  ],
-			},
-		  ],
-		  driverPoints: [
-			{
-			  name: "",
-			  data: [""]
-			}
-		  ]
+			],
+			driverPoints: [
+				{
+					name: "",
+					data: [""]
+				}
+			]
 		});
 
-	
+
 		setLoading("Select the years");
 
-	  };
-	  
+	};
+
+
+	const lineChartOptionsTotalSpent: any = {
+		chart: {
+			toolbar: {
+				show: true
+			},
+			dropShadow: {
+				enabled: true,
+				top: 13,
+				left: 0,
+				blur: 10,
+				opacity: 0.1,
+				color: '#000'
+			}
+		},
+		colors: ['#a60203', '#ff8000'], //linhda dos piloto		
+		title: {
+			text: 'Meu Gráfico',
+			align: 'center',
+			margin: 10,
+			offsetX: 0,
+			offsetY: 0,
+			floating: false,
+			style: {
+				fontSize: '20px',
+				fontWeight: 'bold',
+				fontFamily: undefined,
+				color: '#fff'
+			}
+		},
+		tooltip: {
+			theme: 'dark-dual',
+			style: {
+				color: '#000', // Cor do texto da dica de ferramenta (preto)
+			},
+		},
+		dataLabels: {
+			enabled: false
+		},
+		stroke: {
+			curve: 'smooth',
+			type: 'line'
+		},
+		xaxis: {
+			type: 'numeric',
+			categories: ["0", "Australian Grand Prix",
+				"Malaysian Grand Prix",
+				"Bahrain Grand Prix",
+				"Spanish Grand Prix",
+				"Turkish Grand Prix",
+				"Monaco Grand Prix",
+				"Canadian Grand Prix",
+				"French Grand Prix",
+				"British Grand Prix",
+				"German Grand Prix",
+				"Hungarian Grand Prix",
+				"European Grand Prix",
+				"Belgian Grand Prix",
+				"Italian Grand Prix",
+				"Singapore Grand Prix",
+				"Japanese Grand Prix",
+				"Chinese Grand Prix",
+				"Brazilian Grand Prix"],
+			labels: {
+				style: {
+					colors: '#fff', //cor da lebols
+					fontSize: '12px',
+					fontWeight: '500'
+				}
+			},
+			axisBorder: {
+				show: false
+			},
+			axisTicks: {
+				show: false
+			}
+		},
+		yaxis: {
+			show: true
+		},
+		legend: {
+			show: false
+		},
+		grid: {
+			show: true,
+			column: {
+				color: ['#7551FF', '#39B8FF'],
+				opacity: 0.5
+			}
+		}
+	};
+
+	const handleButtonClickOpen = () => {
+		setIsBoxOpen(!isBoxOpen);
+	};
+
+	const handleBoxClose = () => {
+		setIsBoxOpen(false);
+	};
 
 	return (
 		<Card justifyContent='center' alignItems='center' flexDirection='column' w='100%' mb='0px' {...rest}>
@@ -402,8 +502,12 @@ export default function TotalSpent(props: { [x: string]: any }) {
 				<Box ml="10px" color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
 					<button onClick={handleCleanClick}>Clean</button>
 				</Box>
+				{/*<Box ml="10px" color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
+					<button onClick={handleButtonClickOpen}>Edit</button>
+				</Box>*/}
 			</Flex>
 
+			<BoxComponent isOpen={isBoxOpen} onClose={handleBoxClose} />
 
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
