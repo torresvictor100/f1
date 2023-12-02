@@ -295,8 +295,89 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 	const handleCleanClick = () => {
 		console.log('Limpar gráfico');
-
 		setCleanClicked(true);
+	
+		// Limpe os valores para seus estados iniciais
+		setSelectedPilots([]);
+		setDataLoaded(false);
+		SetDriverPointsList([
+		  {
+			name: "",
+			data: ["", ""]
+		  }
+		]);
+		setSeason({
+		  season: "",
+		  totalGPs: "",
+		  raceSeason: [
+			{
+			  round: "",
+			  url: "",
+			  raceName: "",
+			  date: "",
+			  time: "",
+			  Circuit: {
+				circuitId: "",
+				url: "",
+				circuitName: "",
+				Location: {
+				  lat: "",
+				  locality: "",
+				  country: "",
+				},
+			  },
+			  DriversResults: [
+				{
+				  driverId: "",
+				  url: "",
+				  givenName: "",
+				  dateOfBirth: "",
+				  nationality: "",
+				  Constructor: {
+					constructorId: "",
+					url: "",
+					name: "",
+					nationality: "",
+				  },
+				  ResultSeaseon: {
+					raceName: "",
+					pointsSeason: 0,
+					pointsSeasonRaces: 0,
+					pointsSeasonSprintRaces: 0,
+				  },
+				  ResultRace: {
+					position: "",
+					points: "",
+					Time: {
+					  time: "",
+					},
+					FastestLap: {
+					  rank: "",
+					  lap: "",
+					  Time: {
+						time: "",
+					  },
+					  AverageSpeed: {
+						units: "",
+						speed: "",
+					  },
+					},
+				  },
+				},
+			  ],
+			},
+		  ],
+		  driverPoints: [
+			{
+			  name: "",
+			  data: [""]
+			}
+		  ]
+		});
+	
+		setLoading("Select the years");
+	
+		// Se necessário, redefina outros estados conforme necessário
 	  };
 	  
 
