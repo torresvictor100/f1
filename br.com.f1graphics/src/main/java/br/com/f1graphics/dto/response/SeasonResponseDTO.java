@@ -26,4 +26,6 @@ public class SeasonResponseDTO implements Serializable, DTO {
 
     private List<DriverPointsResponseDTO> driverPoints;
 
+    private  ListNamesRacesResponseDTO listNamesRacesResponseDTO;
+
 }

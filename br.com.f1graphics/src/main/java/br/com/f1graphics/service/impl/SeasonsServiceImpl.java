@@ -3,6 +3,7 @@ package br.com.f1graphics.service.impl;
 import br.com.f1graphics.dto.factory.F1GraphicsFactory;
 import br.com.f1graphics.dto.request.ListDriversIdRequestDTO;
 import br.com.f1graphics.dto.response.DriverPointsResponseDTO;
+import br.com.f1graphics.dto.response.ListNamesRacesResponseDTO;
 import br.com.f1graphics.dto.response.SeasonResponseDTO;
 import br.com.f1graphics.dto.response.drive.DriverSeasonResponseDTO;
 import br.com.f1graphics.dto.response.races.RaceResponseDTO;
@@ -95,10 +96,23 @@ public class SeasonsServiceImpl implements SeasonsService {
 
         List<DriverPointsResponseDTO> driverPointList = getResultDriverPoints(listDriversIds);
 
+        ListNamesRacesResponseDTO listNamesRacesResponseDTO =  getListNamesRacesResponseDTO(listRace);
+
         return factory.createSeaseonResponse(season ,
-            String.valueOf(listRace.size()), raceSeasonResponse, driverPointList);
+            String.valueOf(listRace.size()), raceSeasonResponse, driverPointList, listNamesRacesResponseDTO);
     }
 
+    private ListNamesRacesResponseDTO getListNamesRacesResponseDTO(List<RaceResponseDTO> listRace ){
+
+        ListNamesRacesResponseDTO listNamesRacesResponseDTO =  new ListNamesRacesResponseDTO();
+        List<String> listNameRace = new ArrayList<>();
+        listNameRace.add("");
+        for(RaceResponseDTO raceResponseDTO : listRace){
+            listNameRace.add(raceResponseDTO.getRaceName());
+        }
+        listNamesRacesResponseDTO.setListNamesRacesDTO(listNameRace);
+        return listNamesRacesResponseDTO;
+    }
 
     private Map<String, RaceResponseDTO> getMapRaceResponse(String season, List<String> listDriversIds){
 
