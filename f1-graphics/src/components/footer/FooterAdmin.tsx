@@ -28,9 +28,9 @@ export default function Footer() {
 				{' '}
 				&copy; {new Date().getFullYear()}
 				<Text as='span' fontWeight='500' ms='4px'>
-					Horizon UI. All Rights Reserved. Made with love by
-					<Link mx='3px' color={textColor} href='https://www.simmmple.com' target='_blank' fontWeight='700'>
-						Simmmple!
+					Developed By João Victor Torres
+					<Link mx='3px' color={textColor} href='https://www.linkedin.com/in/jo%C3%A3o-victor-torres-ara%C3%BAjo-99465b186/' target='_blank' fontWeight='700'>
+						Linkedin
 					</Link>
 				</Text>
 			</Text>
@@ -40,18 +40,12 @@ export default function Footer() {
 						base: '20px',
 						md: '44px'
 					}}>
-					<Link fontWeight='500' color={textColor} href='mailto:hello@simmmple.com'>
-						Developed By João Victor Torres
-					</Link>
 				</ListItem>
 				<ListItem
 					me={{
 						base: '20px',
 						md: '44px'
 					}}>
-					<Link fontWeight='500' color={textColor} href='https://www.simmmple.com/licenses'>
-						License
-					</Link>
 				</ListItem>
 			
 				
