@@ -14,13 +14,14 @@ import java.util.function.Consumer;
 public class F1GraphicsFactory {
 
     public static SeasonResponseDTO createSeaseonResponse(String season, String totalGPs, List<RaceSeasonResponseDTO> listRaceSeaseon
-            ,List<DriverPointsResponseDTO> driverPointList ) {
+            ,List<DriverPointsResponseDTO> driverPointList, ListNamesRacesResponseDTO listNamesRacesResponseDTO ) {
 
         SeasonResponseDTO seasonResponse = new SeasonResponseDTO();
         validateAndSetIfNotNull(season, seasonResponse::setSeason);
         validateAndSetIfNotNull(totalGPs, seasonResponse::setTotalGPs);
         validateAndSetIfNotNull(listRaceSeaseon, seasonResponse::setRaceSeason);
         seasonResponse.setDriverPoints(driverPointList);
+        seasonResponse.setListNamesRacesResponseDTO(listNamesRacesResponseDTO);
 
 
         return seasonResponse;
