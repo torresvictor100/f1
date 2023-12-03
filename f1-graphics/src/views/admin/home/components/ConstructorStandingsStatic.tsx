@@ -1,5 +1,5 @@
 import { Avatar, Flex, FormLabel, Select } from "@chakra-ui/react";
-import McLaren from "assets/img/comparationOfDrivers/Mclaren.png";
+import Icon from 'assets/img/comparationOfDrivers/icon.png';
 import MiniStatisticsTitle from "components/card/MiniStatisticsTitle";
 import React, { useState } from "react";
 
@@ -42,7 +42,7 @@ const ConstructorStandingsStatic: React.FC<ConstructorSelectProps> = ({
       endContent={
         <Flex mt="10px">
           <FormLabel htmlFor="balance">
-            <Avatar src={McLaren} />
+            <Avatar src={Icon} />
           </FormLabel>
         </Flex>
       }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Flex, FormLabel, Avatar, Select, Box } from "@chakra-ui/react";
 import MiniStatisticsTitle from "components/card/MiniStatisticsTitle";
-import MAX from "assets/img/DriversImage/ricciardo.jpg";
+import Icon from 'assets/img/comparationOfDrivers/icon.png';
 
 interface DriverStanding {
   position: string;
@@ -50,7 +50,7 @@ const DriverStandingsStatic: React.FC<DriverSelectProps> = ({
       endContent={
         <Flex me="-16px" mt="10px">
           <FormLabel htmlFor="balance">
-            <Avatar src={MAX} />
+            <Avatar src={Icon} />
           </FormLabel>
         </Flex>
       }

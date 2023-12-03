@@ -7,8 +7,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import MAX from "assets/img/DriversImage/max_verstappen.jpg";
-import RBR from "assets/img/comparationOfDrivers/Red-Bull-logo.jpg";
+import Icon from 'assets/img/comparationOfDrivers/icon.png';
 import axios from "axios";
 import MiniStatisticsGrafic from "components/card/MiniStatisticsTitle";
 import { useEffect, useState } from "react";
@@ -213,7 +212,7 @@ export default function Default(props: {}) {
           endContent={
             <Flex me="-16px" mt="10px">
               <FormLabel htmlFor="balance">
-                <Avatar src={MAX} />
+                <Avatar src={Icon} />
               </FormLabel>
             </Flex>
           }
@@ -227,7 +226,7 @@ export default function Default(props: {}) {
           endContent={
             <Flex me="-16px" mt="10px">
               <FormLabel htmlFor="balance">
-                <Avatar src={RBR} />
+                <Avatar src={Icon} />
               </FormLabel>
             </Flex>
           }
