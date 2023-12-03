@@ -2,7 +2,6 @@ import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 
 import Card from 'components/card/Card';
 import SelectComponent from './SelectComponentDrivers';
-import BoxComponent from './BoxComponent'
 import LineGraph from './LineGraph'
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -467,13 +466,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 		}
 	};
 
-	const handleButtonClickOpen = () => {
-		setIsBoxOpen(!isBoxOpen);
-	};
-
-	const handleBoxClose = () => {
-		setIsBoxOpen(false);
-	};
 
 	return (
 		<Card justifyContent='center' alignItems='center' flexDirection='column' w='100%' mb='0px' {...rest}>
@@ -501,12 +493,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 				<Box ml="10px" color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
 					<button onClick={handleCleanClick}>Clean</button>
 				</Box>
-				{/*<Box ml="10px" color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
-					<button onClick={handleButtonClickOpen}>Edit</button>
-				</Box>*/}
 			</Flex>
-
-			<BoxComponent isOpen={isBoxOpen} onClose={handleBoxClose} />
 
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
