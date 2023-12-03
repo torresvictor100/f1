@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Select, Flex, FormLabel, Avatar, SimpleGrid, Box } from '@chakra-ui/react';
 import MiniStatisticsTitleSelect from './MiniStatisticsTitleSelect';
-import Massa from 'assets/img/comparationOfDrivers/Massa.jpg';
+import Icon from 'assets/img/comparationOfDrivers/icon.png';
 
 interface SelectOption {
   label: string;
@@ -80,7 +80,7 @@ const SelectComponent: React.FC<SelectComponentProps> = ({ options ,onPilotsSele
               endContent={
                 <Flex mt="10px">
                   <FormLabel htmlFor={`balance-${index}`}>
-                    <Avatar src={Massa} />
+                    <Avatar src={Icon} />
                   </FormLabel>
                   <button style={Butaostyle} onClick={() => handleRemoveSelect(index)}>
                     -

@@ -6,119 +6,15 @@ import LineGraph from './LineGraph'
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-interface Location {
-	lat: string;
-	locality: string;
-	country: string;
-}
+import {
+	SeasonInfo,
+	DriverPoints,
+	Driver,
+	DriversResponse,
+  } from  './Interfaces';
 
-interface Circuit {
-	circuitId: string;
-	url: string;
-	circuitName: string;
-	Location: Location;
-}
 
-interface Time {
-	time: string;
-}
 
-interface AverageSpeed {
-	units: string;
-	speed: string;
-}
-
-interface FastestLap {
-	rank: string;
-	lap: string;
-	Time: Time;
-	AverageSpeed: AverageSpeed;
-}
-
-interface Constructor {
-	constructorId: string;
-	url: string;
-	name: string;
-	nationality: string;
-}
-
-interface ResultSeaseon {
-	raceName: string;
-	pointsSeason: number;
-	pointsSeasonRaces: number;
-	pointsSeasonSprintRaces: number;
-}
-
-interface ResultRace {
-	position: string;
-	points: string;
-	Time: Time;
-	FastestLap: FastestLap;
-}
-
-interface DriversResults {
-	driverId: string;
-	url: string;
-	givenName: string;
-	dateOfBirth: string;
-	nationality: string;
-	Constructor: Constructor;
-	ResultSeaseon: ResultSeaseon;
-	ResultRace: ResultRace;
-}
-
-interface RaceSeason {
-	round: string;
-	url: string;
-	raceName: string;
-	date: string;
-	time: string;
-	Circuit: Circuit;
-	DriversResults: DriversResults[];
-}
-
-interface SeasonInfo {
-	season: string;
-	totalGPs: string;
-	raceSeason: RaceSeason[];
-	driverPoints: DriverPoints[];
-	listNamesRacesResponseDTO: string[];
-}
-
-interface DriverPoints {
-	name: string,
-	data: string[]
-}
-
-interface Driver {
-	driverId: string;
-	permanentNumber: string;
-	code: string;
-	url: string;
-	givenName: string;
-	familyName: string;
-	dateOfBirth: string;
-	nationality: string;
-}
-
-interface DriverTable {
-	season: string;
-	Drivers: Driver[];
-}
-
-interface MRData {
-	xmlns: string;
-	series: string;
-	url: string;
-	limit: string;
-	offset: string;
-	total: string;
-	DriverTable: DriverTable;
-}
-
-interface DriversResponse {
-	MRData: MRData;
-}
 export default function TotalSpent(props: { [x: string]: any }) {
 	const { ...rest } = props;
 
@@ -213,9 +109,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const [dataLoadedDriver, setDataLoadedDriver] = useState(false);
 	const [driverOptions, setDriverOptions] = useState<{ label: string; value: string }[]>([]);
 	const [cleanClicked, setCleanClicked] = useState(false);
-	const [isBoxOpen, setIsBoxOpen] = useState(false);
-
-	const [driverSelect, setDriverSelect] = useState<string[]>([]);
 
 	useEffect(() => {
 		const currentYear = new Date().getFullYear();
@@ -228,8 +121,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 		setSelectYears(event.target.value);
 		fetchDataDriver(event.target.value);
-
-
 	};
 
 	const fetchDataDriver = (selectYears: string) => {
@@ -239,7 +130,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 				const data = response.data;
 				const drivers = data.MRData.DriverTable.Drivers;
 
-				const driverOptions = drivers.map((driver) => ({
+				const driverOptions = drivers.map((driver: Driver) => ({
 					label: `${driver.givenName} ${driver.familyName}`,
 					value: driver.driverId,
 				}));
@@ -257,6 +148,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	};
 
 	const fetchData = (updatedUrlSeason: string) => {
+
 		setLoading('Loading...');
 
 		axios(updatedUrlSeason)
@@ -368,7 +260,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			],
 			listNamesRacesResponseDTO: []
 		});
-
 
 		setLoading("Select the years");
 
