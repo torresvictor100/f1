@@ -193,7 +193,7 @@ export interface DataLabelsOptions {
     enabled: boolean;
 }
 
-export interface DefaultOptionsLine {
+export interface OptionsLine {
     chart: {
         toolbar: ToolbarOptions;
         dropShadow: DropShadowOptions;
