@@ -1,15 +1,9 @@
-import { Avatar, Box, Flex, FormLabel, Text, Select, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 
 import Card from 'components/card/Card';
-import LineChart from 'components/charts/LineChart';
 import SelectComponent from './SelectComponentDrivers';
-import Hamiton from 'assets/img/comparationOfDrivers/Hamiton.jpg';
-import Massa from 'assets/img/comparationOfDrivers/Massa.jpg';
-import Soma from 'assets/img/comparationOfDrivers/Soma.jpg';
-import MiniStatisticsTitle from 'components/card/MiniStatisticsTitle'
-import MiniStatistics from 'components/card/MiniStatistics'
 import BoxComponent from './BoxComponent'
-
+import LineGraph from './LineGraph'
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
@@ -88,7 +82,8 @@ interface SeasonInfo {
 	season: string;
 	totalGPs: string;
 	raceSeason: RaceSeason[];
-	driverPoints: DriverPoints[]
+	driverPoints: DriverPoints[];
+	listNamesRacesResponseDTO: string[];
 }
 
 interface DriverPoints {
@@ -131,6 +126,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const [selectedPilots, setSelectedPilots] = useState<string[]>([]);
 
+	const [raceSeasonName, setRaceSeasonName] = useState<string[]>([]);
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [driverPointsList, SetDriverPointsList] = useState<DriverPoints[]>([
 		{
@@ -205,7 +201,8 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			driverPoints: [{
 				name: "",
 				data: [""]
-			}]
+			}],
+			listNamesRacesResponseDTO: []
 		}
 	);
 	const [years, setYears] = useState<string[]>([]);
@@ -238,7 +235,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 	const fetchDataDriver = (selectYears: string) => {
 		setLoadingDriver('Loading...');
-		console.log("perto do acio" + selectYears)
 		axios.get<DriversResponse>(`http://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`)
 			.then((response) => {
 				const data = response.data;
@@ -267,6 +263,8 @@ export default function TotalSpent(props: { [x: string]: any }) {
 		axios(updatedUrlSeason)
 			.then((resp) => {
 				setSeason(resp.data);
+				console.log(resp.data.listNamesRacesResponseDTO.listNamesRacesDTO)
+				setRaceSeasonName(resp.data.listNamesRacesResponseDTO.listNamesRacesDTO)
 				SetDriverPointsList(resp.data.driverPoints);
 			})
 			.finally(() => setDataLoaded(true));
@@ -368,7 +366,8 @@ export default function TotalSpent(props: { [x: string]: any }) {
 					name: "",
 					data: [""]
 				}
-			]
+			],
+			listNamesRacesResponseDTO: []
 		});
 
 
@@ -514,7 +513,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 					<Text color={textColor} fontSize='30px' textAlign='start' fontWeight='700' lineHeight='100%'>
 						{loading && <p>{loading}</p>}
 					</Text>
-					{dataLoaded && <LineChart chartData={driverPointsList} chartOptions={lineChartOptionsTotalSpent} />}
+					{dataLoaded && <LineGraph chartData={driverPointsList} chartOptions={lineChartOptionsTotalSpent} />}
 				</Box>
 			</Flex>
 
