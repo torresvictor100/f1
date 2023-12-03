@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 import { Box, useStyleConfig, useColorModeValue } from '@chakra-ui/react';
 
-import TotalSpent from './components/TotalSpent';
+import Graph from './components/Graph';
 import { CustomCardProps } from 'theme/theme';
 import StatisticsTable from './../home/components/StatisticsTable'
 
@@ -21,7 +21,7 @@ export default function UserReports() {
 
 		<Box>
 			<StatisticsTable />
-			<TotalSpent />
+			<Graph />
 		</Box>
 	);
 }

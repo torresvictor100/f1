@@ -5,10 +5,11 @@ import SelectComponent from './SelectComponentDrivers';
 import LineGraph from './LineGraph'
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import {defautOptionsLine } from 'variables/charts';
 
 import {
 	SeasonInfo,
-	DriverPoints,
+	DataGraphic,
 	Driver,
 	DriversResponse,
   } from  './Interfaces';
@@ -23,7 +24,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 	const [raceSeasonName, setRaceSeasonName] = useState<string[]>([]);
 	const [dataLoaded, setDataLoaded] = useState(false);
-	const [driverPointsList, SetDriverPointsList] = useState<DriverPoints[]>([
+	const [driverPointsList, SetDriverPointsList] = useState<DataGraphic[]>([
 		{
 			name: "",
 			data: [
@@ -154,7 +155,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 		axios(updatedUrlSeason)
 			.then((resp) => {
 				setSeason(resp.data);
-				console.log(resp.data.listNamesRacesResponseDTO.listNamesRacesDTO)
 				setRaceSeasonName(resp.data.listNamesRacesResponseDTO.listNamesRacesDTO)
 				SetDriverPointsList(resp.data.driverPoints);
 			})
@@ -266,97 +266,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	};
 
 
-	const lineChartOptionsTotalSpent: any = {
-		chart: {
-			toolbar: {
-				show: true
-			},
-			dropShadow: {
-				enabled: true,
-				top: 13,
-				left: 0,
-				blur: 10,
-				opacity: 0.1,
-				color: '#000'
-			}
-		},
-		colors: ['#a60203', '#ff8000'], //linhda dos piloto		
-		title: {
-			text: 'Meu Gráfico',
-			align: 'center',
-			margin: 10,
-			offsetX: 0,
-			offsetY: 0,
-			floating: false,
-			style: {
-				fontSize: '20px',
-				fontWeight: 'bold',
-				fontFamily: undefined,
-				color: '#fff'
-			}
-		},
-		tooltip: {
-			theme: 'dark-dual',
-			style: {
-				color: '#000', // Cor do texto da dica de ferramenta (preto)
-			},
-		},
-		dataLabels: {
-			enabled: false
-		},
-		stroke: {
-			curve: 'smooth',
-			type: 'line'
-		},
-		xaxis: {
-			type: 'numeric',
-			categories: ["0", "Australian Grand Prix",
-				"Malaysian Grand Prix",
-				"Bahrain Grand Prix",
-				"Spanish Grand Prix",
-				"Turkish Grand Prix",
-				"Monaco Grand Prix",
-				"Canadian Grand Prix",
-				"French Grand Prix",
-				"British Grand Prix",
-				"German Grand Prix",
-				"Hungarian Grand Prix",
-				"European Grand Prix",
-				"Belgian Grand Prix",
-				"Italian Grand Prix",
-				"Singapore Grand Prix",
-				"Japanese Grand Prix",
-				"Chinese Grand Prix",
-				"Brazilian Grand Prix"],
-			labels: {
-				style: {
-					colors: '#fff', //cor da lebols
-					fontSize: '12px',
-					fontWeight: '500'
-				}
-			},
-			axisBorder: {
-				show: false
-			},
-			axisTicks: {
-				show: false
-			}
-		},
-		yaxis: {
-			show: true
-		},
-		legend: {
-			show: false
-		},
-		grid: {
-			show: true,
-			column: {
-				color: ['#7551FF', '#39B8FF'],
-				opacity: 0.5
-			}
-		}
-	};
-
 
 	return (
 		<Card justifyContent='center' alignItems='center' flexDirection='column' w='100%' mb='0px' {...rest}>
@@ -391,7 +300,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 					<Text color={textColor} fontSize='30px' textAlign='start' fontWeight='700' lineHeight='100%'>
 						{loading && <p>{loading}</p>}
 					</Text>
-					{dataLoaded && <LineGraph chartData={driverPointsList} chartOptions={lineChartOptionsTotalSpent} />}
+					{dataLoaded && <LineGraph chartData={driverPointsList} chartOptions={defautOptionsLine} chartLabel={raceSeasonName}/>}
 				</Box>
 			</Flex>
 
