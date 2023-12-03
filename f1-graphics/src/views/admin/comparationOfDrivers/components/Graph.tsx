@@ -103,9 +103,9 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	);
 	const [years, setYears] = useState<string[]>([]);
 	const [selectYears, setSelectYears] = useState<string>("2023");
-	const [loading, setLoading] = useState("Select the years");
+	const [loading, setLoading] = useState("Select the years and Drivers");
 
-	const [urlSeason, setUrlSeason] = useState("Select the years");
+	const [urlSeason, setUrlSeason] = useState("Select the years and Drivers");
 	const [loadingDriver, setLoadingDriver] = useState(`http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?`);
 	const [dataLoadedDriver, setDataLoadedDriver] = useState(false);
 	const [driverOptions, setDriverOptions] = useState<{ label: string; value: string }[]>([]);
@@ -261,7 +261,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			listNamesRacesResponseDTO: []
 		});
 
-		setLoading("Select the years");
+		setLoading("Select the years and Drivers");
 
 	};
 
