@@ -74,11 +74,11 @@ export interface SeasonInfo {
     season: string;
     totalGPs: string;
     raceSeason: RaceSeason[];
-    driverPoints: DriverPoints[];
+    driverPoints: DataGraphic[];
     listNamesRacesResponseDTO: string[];
 }
 
-export interface DriverPoints {
+export interface DataGraphic {
     name: string,
     data: string[]
 }
@@ -111,4 +111,100 @@ export interface MRData {
 
 export interface DriversResponse {
     MRData: MRData;
+}
+
+export interface ToolbarOptions {
+    show: boolean;
+}
+
+export interface DropShadowOptions {
+    enabled: boolean;
+    top: number;
+    left: number;
+    blur: number;
+    opacity: number;
+    color: string;
+}
+
+export interface TitleOptions {
+    text: string;
+    align: string;
+    margin: number;
+    offsetX: number;
+    offsetY: number;
+    floating: boolean;
+    style: {
+        fontSize: string;
+        fontWeight: string;
+        fontFamily: string | undefined;
+        color: string;
+    };
+}
+
+export interface TooltipOptions {
+    theme: string;
+    style: {
+        color: string;
+    };
+}
+
+export interface LabelsOptions {
+    style: {
+        colors: string;
+        fontSize: string;
+        fontWeight: string;
+    };
+}
+
+export interface XAxisOptions {
+    type: string;
+    categories: string[];
+    labels: LabelsOptions;
+    axisBorder: {
+        show: boolean;
+    };
+    axisTicks: {
+        show: boolean;
+    };
+}
+
+export interface YAxisOptions {
+    show: boolean;
+}
+
+export interface LegendOptions {
+    show: boolean;
+}
+
+export interface GridOptions {
+    show: boolean;
+    column: {
+        color: string[];
+        opacity: number;
+    };
+}
+
+export interface StrokeOptions {
+    curve: string;
+    type: string;
+}
+
+export interface DataLabelsOptions {
+    enabled: boolean;
+}
+
+export interface DefaultOptionsLine {
+    chart: {
+        toolbar: ToolbarOptions;
+        dropShadow: DropShadowOptions;
+    };
+    colors: string[];
+    title: TitleOptions;
+    tooltip: TooltipOptions;
+    dataLabels: DataLabelsOptions;
+    stroke: StrokeOptions;
+    xaxis: XAxisOptions;
+    yaxis: YAxisOptions;
+    legend: LegendOptions;
+    grid: GridOptions;
 }

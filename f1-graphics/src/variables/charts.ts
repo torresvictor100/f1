@@ -360,7 +360,7 @@ export const lineChartDataTotalSpent = [
 	}
 ];
 
-export const lineChartOptionsTotalSpent: any = {
+export const defautOptionsLine: any = {
 	chart: {
 		toolbar: {
 			show: true
