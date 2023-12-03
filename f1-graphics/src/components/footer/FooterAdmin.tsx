@@ -46,9 +46,12 @@ export default function Footer() {
 						base: '20px',
 						md: '44px'
 					}}>
+					<Link mx='3px' color={textColor} href='https://github.com/torresvictor100/f1' target='_blank' fontWeight='700'>
+						GitHub
+					</Link>
 				</ListItem>
-			
-				
+
+
 			</List>
 		</Flex>
 	);
