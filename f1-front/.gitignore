@@ -1,0 +1,27 @@
+# Módulos do Node.js
+node_modules/
+
+# Arquivos temporários gerados durante a construção
+build/
+dist/
+
+# Logs e arquivos temporários
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependências locais
+/.pnp
+.pnp.js
+
+# Arquivos de configuração específicos do IDE
+.idea/
+.vscode/
+
+# Arquivos de configuração do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de cache
+.cache/
