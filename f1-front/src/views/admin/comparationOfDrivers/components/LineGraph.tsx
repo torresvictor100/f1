@@ -28,7 +28,7 @@ export default function Default(props: {
   const [chartTitleColor, setChartTitleColor] = useState('#ee0000');
   const [chartLabelColor, setChartLabelColor] = useState('#1B2559');
   const [chartYaxisColor, setChartYaxisColor] = useState('#ee0000');
-  const [chartLinesColor, setChartLinesColor] = useState('#817373');
+  const [chartLinesColor, setChartLinesColor] = useState('#484D50');
   const [backgroundColor, setBackgroundColor] = useState('#fff');
   const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState('#1B2559');
   const [chartYaxisShow, setChartYaxisShow] = useState(true);
