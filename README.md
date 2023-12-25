@@ -4,5 +4,4 @@ This project was developed by an enthusiast passionate about Formula 1 and progr
 We accept collaborations; our project started on 10/23. It's still very recent, but we will manage to make progress with this project more and more.
 
 # GitHub
--Front-End: https://github.com/torresvictor100/f1-front
--Back-End: https://github.com/torresvictor100/f1
+https://github.com/torresvictor100/f1
