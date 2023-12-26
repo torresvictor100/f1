@@ -31,6 +31,7 @@ export default function Default(props: {
   const [chartLinesColor, setChartLinesColor] = useState('#484D50');
   const [backgroundColor, setBackgroundColor] = useState('#fff');
   const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState('#1B2559');
+  const [driverLineColors, setDriverLineColors] = useState<string[]>(props.chartData.map(() => ''));
   const [chartYaxisShow, setChartYaxisShow] = useState(true);
   const [chartYaxisLinesShow, setChartYaxisLinesShow] = useState(true);
   const [chartXaxisLinesShow, setChartXaxisLinesShow] = useState(true);
@@ -39,6 +40,16 @@ export default function Default(props: {
   const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState('16');
   const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState('16');
   const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
+
+  const updateLineColor = (index: number, color: string) => {
+    const newColors = [...driverLineColors];
+    newColors[index] = color;
+    setDriverLineColors(newColors);
+
+    const newOptionsLine = { ...optionsLine };
+    newOptionsLine.colors = newColors.filter(color => color !== '');
+    setDriverLineColors(newOptionsLine);
+  };
 
   const optionsLine: any = {
     chart: {
@@ -107,7 +118,7 @@ export default function Default(props: {
       showForNullSeries: true,
       showForZeroSeries: true,
       position: 'bottom',
-      horizontalAlign: 'center', 
+      horizontalAlign: 'center',
       floating: false,
       fontSize: '14px', //tamanho
       fontWeight: 400,
@@ -120,72 +131,73 @@ export default function Default(props: {
       offsetX: 0,
       offsetY: 0,
       labels: {
-          colors: undefined,
-          useSeriesColors: false
+        colors: '#000', // letras cor entro da caixa
+        useSeriesColors: false
       },
       markers: {
-          width: 12,
-          height: 12,
-          strokeWidth: 0,
-          strokeColor: '#fff',
-          fillColors: undefined,
-          radius: 12,
-          customHTML: undefined,
-          onClick: undefined,
-          offsetX: 0,
-          offsetY: 0
+        width: 12,
+        height: 12,
+        strokeWidth: 0,
+        strokeColor: '#000',
+        fillColors: undefined,
+        radius: 12,
+        customHTML: undefined,
+        onClick: undefined,
+        offsetX: 0,
+        offsetY: 0
       },
       itemMargin: {
-          horizontal: 5,
-          vertical: 0
+        horizontal: 5,
+        vertical: 0
       },
       onItemClick: {
-          toggleDataSeries: true
+        toggleDataSeries: true
       },
       onItemHover: {
-          highlightDataSeries: true
+        highlightDataSeries: true
       },
-  },
+    },
     grid: {
       show: true,
       borderColor: chartLinesColor,
       strokeDashArray: 0,
       position: 'back',
       xaxis: {
-          lines: {
-              show: chartYaxisLinesShow
-          }
-      },   
+        lines: {
+          show: chartYaxisLinesShow
+        }
+      },
       yaxis: {
-          lines: {
-              show: chartXaxisLinesShow
-          }
-      },  
+        lines: {
+          show: chartXaxisLinesShow
+        }
+      },
       row: {
-          colors: undefined,
-          opacity: 0.5
-      },  
+        color: ['#755', '#fff'],
+        opacity: 0.5
+      },
       column: {
-          colors: undefined,
-          opacity: 0.5
-      },  
+        colors: undefined,
+        opacity: 0.5
+      },
       padding: {
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0
-      }  
-  }
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      }
+    },
+    colors: driverLineColors.filter(color => color !== ''),
   };
 
-  console.log(props.chartLabel);
+  console.log(props.chartData);
 
   return (
     <>
       <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4}>
         <GridItem>
           <FormControl>
-          <FormLabel>Title</FormLabel>
+            <FormLabel>Title</FormLabel>
             <Input
               type="text"
               value={chartTitle}
@@ -213,7 +225,7 @@ export default function Default(props: {
 
         <GridItem>
           <FormControl>
-          <FormLabel>Title Color</FormLabel>
+            <FormLabel>Title Color</FormLabel>
             <Input
               type="color"
               value={chartTitleColor}
@@ -225,7 +237,7 @@ export default function Default(props: {
 
         <GridItem>
           <FormControl>
-          <FormLabel>Background</FormLabel>
+            <FormLabel>Background</FormLabel>
             <Input
               type="color"
               value={backgroundColor}
@@ -237,7 +249,7 @@ export default function Default(props: {
       </Grid>
 
       <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
-      <GridItem>
+        <GridItem>
           <FormControl>
             <FormLabel>Yaxis Show</FormLabel>
             <Checkbox
@@ -279,7 +291,7 @@ export default function Default(props: {
 
         <GridItem>
           <FormControl>
-          <FormLabel>Yaxis Color</FormLabel>
+            <FormLabel>Yaxis Color</FormLabel>
             <Input
               type="color"
               value={chartYaxisColor}
@@ -307,7 +319,7 @@ export default function Default(props: {
 
         <GridItem>
           <FormControl>
-          <FormLabel>Yaxis Value Color</FormLabel>
+            <FormLabel>Yaxis Value Color</FormLabel>
             <Input
               type="color"
               value={chartYaxisLabelColor}
@@ -321,7 +333,7 @@ export default function Default(props: {
 
       <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
 
-      <GridItem>
+        <GridItem>
           <FormControl>
             <FormLabel>Lines Xaxis Show</FormLabel>
             <Checkbox
@@ -347,7 +359,7 @@ export default function Default(props: {
 
         <GridItem>
           <FormControl>
-          <FormLabel>Lines Color</FormLabel>
+            <FormLabel>Lines Color</FormLabel>
             <Input
               type="color"
               value={chartLinesColor}
@@ -375,10 +387,10 @@ export default function Default(props: {
 
         <GridItem>
           <FormControl>
-          <FormLabel>Label Color</FormLabel>
+            <FormLabel>Label Color</FormLabel>
             <Input
               type="color"
-              value={chartLabelColor} 
+              value={chartLabelColor}
               onChange={(e) => setChartLabelColor(e.target.value)}
               w="30%"
             />
@@ -386,6 +398,27 @@ export default function Default(props: {
         </GridItem>
 
       </Grid>
+
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+        
+        {props.chartData.map((data, index) => (
+          <FormControl key={index} style={{ flexBasis: '15%' }}>
+            <FormLabel>{data.name} Line</FormLabel>
+            <Input
+              type="color"
+              value={driverLineColors[index]}
+              onChange={(e) => {
+                const newColors = [...driverLineColors];
+                newColors[index] = e.target.value;
+                setDriverLineColors(newColors);
+              }}
+              w="100%"
+            />
+          </FormControl>
+        ))}
+      </div>
+
+
 
       <Box minH='400px' minW='95%' mt='auto'>
         {props.dataLoaded && <LineChart chartData={props.chartData} chartOptions={optionsLine} />}
