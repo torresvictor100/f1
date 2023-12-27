@@ -66,9 +66,16 @@ export default function Default(props: {
   const optionsLine: any = {
     chart: {
       toolbar: {
-        show: props.chartOptions.chart.toolbar.show
+        show: true
       },
-      dropShadow: props.chartOptions.chart.dropShadow,
+      dropShadow: {
+        enabled: true,
+        top: 13,
+        left: 0,
+        blur: 10,
+        opacity: 0.1,
+        color: '#000'
+      },
       background: backgroundColor
     },
     title: {
@@ -85,8 +92,15 @@ export default function Default(props: {
         color: chartTitleColor
       }
     },
-    tooltip: props.chartOptions.tooltip,
-    dataLabels: props.chartOptions.dataLabels,
+    tooltip: {
+      theme: 'dark-dual',
+      style: {
+        color: '#000',
+      },
+    },
+    dataLabels: {
+      enabled: false
+    },
     stroke: {
       curve: 'smooth',
       type: 'line'
@@ -236,11 +250,11 @@ export default function Default(props: {
 
       <Box display="flex" flexWrap="wrap" gap="10px" marginTop={'10px'}>
         <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button  style={{ width: '100%' }} onClick={handleClickShowTitleBackGroundConfig}>Title and Background Settings</button>
+          <button style={{ width: '100%' }} onClick={handleClickShowTitleBackGroundConfig}>Title and Background Settings</button>
         </Box>
 
         <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button  style={{ width: '100%' }} onClick={handleClickShowYaxisConfig}>Yaxis Settings</button>
+          <button style={{ width: '100%' }} onClick={handleClickShowYaxisConfig}>Yaxis Settings</button>
         </Box>
 
         <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
@@ -252,7 +266,7 @@ export default function Default(props: {
         </Box>
 
         <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button  style={{ width: '100%' }} onClick={handleshowColorsConfig}>Colors Settings</button>
+          <button style={{ width: '100%' }} onClick={handleshowColorsConfig}>Colors Settings</button>
         </Box>
       </Box>
 
