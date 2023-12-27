@@ -184,10 +184,10 @@ export default function Default(props: {
         opacity: 0.5
       },
       padding: {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
+        top: 20,
+        right: 20,
+        bottom: 20,
+        left: 20
       }
     },
     colors: driverLineColors.filter(color => color !== ''),
@@ -409,7 +409,7 @@ export default function Default(props: {
 
       </Grid>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+      <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
         {props.driverNames.map((driverName, index) => (
           <FormControl key={index} style={{ flexBasis: '15%' }}>
             <FormLabel>{driverName} Line</FormLabel>
@@ -425,7 +425,7 @@ export default function Default(props: {
             />
           </FormControl>
         ))}
-      </div>
+      </Box>
 
 
 
