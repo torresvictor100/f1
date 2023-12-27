@@ -48,10 +48,10 @@ interface SelectComponentProps {
   onPilotsSelected: (selectedPilots: string[]) => void;
 }
 
-const SelectComponent: React.FC<SelectComponentProps> = ({ options, onPilotsSelected }) => {
+const SelectComponent: React.FC<SelectComponentProps> = ({ options ,onPilotsSelected}) => {
   const [selects, setSelects] = useState<string[]>(['']);
 
-
+  
   const handleAddSelect = () => {
     setSelects([...selects, '']);
   };
@@ -70,14 +70,14 @@ const SelectComponent: React.FC<SelectComponentProps> = ({ options, onPilotsSele
     const updatedSelects = [...selects];
     updatedSelects[index] = value;
     setSelects(updatedSelects);
-
+  
     const updatedDriverNames = updatedSelects.map(driverId =>
       options.find(option => option.value === driverId)?.label || ''
     );
     onPilotsSelected(updatedDriverNames);
   };
-
-
+  
+  
 
   return (
     <Box>

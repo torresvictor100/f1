@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Input,
@@ -24,6 +24,8 @@ export default function Default(props: {
   dataLoaded: boolean;
   driverNames: string[];
 }) {
+  const [chartData, setChartData] = useState<DataGraphic[]>(props.chartData);
+  const [chartDataName, setChartDataName] = useState<DataGraphic[]>([]);
   const [chartTitle, setChartTitle] = useState('F1 Graphics');
   const [chartYaxisTitle, setChartYaxisTitle] = useState('Drivers');
   const [chartTitleColor, setChartTitleColor] = useState('#ee0000');
@@ -190,6 +192,15 @@ export default function Default(props: {
     },
     colors: driverLineColors.filter(color => color !== ''),
   };
+
+  useEffect(() => {
+    const updatedChartData = props.chartData.map((data, index) => ({
+      ...data,
+      name: props.driverNames[index] || data.name,
+    }));
+    setChartData(updatedChartData);
+    setChartDataName(updatedChartData);
+  }, [props.chartData, props.driverNames]);
 
   return (
     <>
@@ -399,7 +410,7 @@ export default function Default(props: {
       </Grid>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-        
+
         {props.chartData.map((data, index) => (
           <FormControl key={index} style={{ flexBasis: '15%' }}>
             <FormLabel>{data.name} Line</FormLabel>
@@ -419,7 +430,7 @@ export default function Default(props: {
 
 
       <Box minH='400px' minW='95%' mt='auto'>
-        {props.dataLoaded && <LineChart chartData={props.chartData} chartOptions={optionsLine} />}
+        {props.dataLoaded && <LineChart chartData={chartDataName} chartOptions={optionsLine} />}
       </Box>
     </>
   );
