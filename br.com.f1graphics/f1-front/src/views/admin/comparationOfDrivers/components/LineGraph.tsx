@@ -32,14 +32,17 @@ export default function Default(props: {
   const [chartLabelColor, setChartLabelColor] = useState('#1B2559');
   const [chartYaxisColor, setChartYaxisColor] = useState('#ee0000');
   const [chartLinesColor, setChartLinesColor] = useState('#484D50');
+  const [legendLabelsColor, setLegendLabelsColor] = useState('#1B2559');
   const [backgroundColor, setBackgroundColor] = useState('#fff');
   const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState('#1B2559');
   const [driverLineColors, setDriverLineColors] = useState<string[]>(props.chartData.map(() => ''));
   const [chartYaxisShow, setChartYaxisShow] = useState(true);
+  const [showLegend, setShowLegend] = useState(true);
   const [chartYaxisLinesShow, setChartYaxisLinesShow] = useState(true);
   const [chartXaxisLinesShow, setChartXaxisLinesShow] = useState(true);
   const [titleFontSize, setTitleFontSize] = useState('20');
   const [chartLabelFontSize, setLabelFontSize] = useState('13');
+  const [legendLabelFontSize, setLegendLabelFontSize] = useState('14');
   const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState('16');
   const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState('16');
   const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
@@ -117,13 +120,13 @@ export default function Default(props: {
     },
     legend: {
       show: true,
-      showForSingleSeries: true, //show
+      showForSingleSeries: showLegend,
       showForNullSeries: true,
       showForZeroSeries: true,
       position: 'bottom',
       horizontalAlign: 'center',
       floating: false,
-      fontSize: '14px', //tamanho
+      fontSize: legendLabelFontSize,
       fontWeight: 400,
       formatter: undefined,
       inverseOrder: false,
@@ -134,7 +137,7 @@ export default function Default(props: {
       offsetX: 0,
       offsetY: 0,
       labels: {
-        colors: '#000', // letras cor entro da caixa
+        colors: legendLabelsColor,
         useSeriesColors: false
       },
       markers: {
@@ -404,6 +407,50 @@ export default function Default(props: {
               onChange={(e) => setChartLabelColor(e.target.value)}
               w="30%"
             />
+          </FormControl>
+        </GridItem>
+
+      </Grid>
+
+      <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
+
+        <GridItem>
+          <FormControl>
+            <FormLabel>Show Legend</FormLabel>
+            <Checkbox
+              isChecked={showLegend}
+              onChange={() => setShowLegend(!showLegend)}
+            >
+              Show Legend
+            </Checkbox>
+          </FormControl>
+        </GridItem>
+
+        <GridItem>
+          <FormControl>
+            <FormLabel>Legend Labels Color</FormLabel>
+            <Input
+              type="color"
+              value={legendLabelsColor}
+              onChange={(e) => setLegendLabelsColor(e.target.value)}
+              w="30%"
+            />
+          </FormControl>
+        </GridItem>
+
+        <GridItem>
+          <FormControl>
+            <FormLabel>Legend Label Font Size</FormLabel>
+            <Select
+              value={legendLabelFontSize}
+              onChange={(e) => setLegendLabelFontSize(e.target.value)}
+            >
+              {fontSizeOptions.map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </Select>
           </FormControl>
         </GridItem>
 
