@@ -11,6 +11,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 import LineChart from 'components/charts/LineChart';
+import { F1GraphicsChartOptions } from './chartOptions'
+
+import { F2GraphicsChartOptions } from './chartOptions'
 
 import {
   DataGraphic,
@@ -25,6 +28,8 @@ export default function Default(props: {
   dataLoaded: boolean;
   driverNames: string[];
 }) {
+  const [defaultChartOptions, setDefaultChartOptions] = useState<any>(F1GraphicsChartOptions);
+  const [layoutSelect, setLayoutSelect] = useState<string>('F1GraphicsChartOptions');
   const [chartData, setChartData] = useState<DataGraphic[]>(props.chartData);
   const [chartDataFullName, setChartDataFullName] = useState<DataGraphic[]>([]);
   const [chartTitle, setChartTitle] = useState('F1 Graphics');
@@ -228,6 +233,21 @@ export default function Default(props: {
   const handleClickShowTitleBackGroundConfig = () => {
     setShowTitleBackGroundSettings(!showTitleBackGroundSettings);
   };
+
+  const handleLayoutChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedLayout = event.target.value;
+    setLayoutSelect(selectedLayout);
+
+    // Adicione lógica aqui para definir o título do gráfico com base na opção selecionada
+    // Pode ser algo como:
+    // if (selectedLayout === 'F1GraphicsChartOptions') {
+    //   setChartTitle('Título para F1 Graphics Chart Options');
+    // } else if (selectedLayout === 'F2GraphicsChartOptions') {
+    //   setChartTitle('Título para F2 Graphics Chart Options');
+    // }
+  };
+
+  console.log(layoutSelect);
 
   const handleClickShowYaxisConfig = () => {
     setShowYaxisSettings(!showYaxisSettings);
@@ -547,6 +567,14 @@ export default function Default(props: {
           ))}
         </Box>
       )}
+
+      <Box width="260px">
+        <label htmlFor="layoutSelect">Ready Layouts</label>
+        <Select id="layoutSelect" value={layoutSelect} onChange={handleLayoutChange}>
+          <option value="F1GraphicsChartOptions">F1 Graphics Chart Options</option>
+          <option value="F2GraphicsChartOptions">F2 Graphics Chart Options</option>
+        </Select>
+      </Box>
 
       <Box minH='400px' minW='95%' mt='auto'>
         {props.dataLoaded && <LineChart chartData={chartDataFullName} chartOptions={optionsLine} />}
