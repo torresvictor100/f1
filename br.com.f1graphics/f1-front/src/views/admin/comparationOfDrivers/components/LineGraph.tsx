@@ -8,6 +8,7 @@ import {
   GridItem,
   Checkbox,
   Select,
+  Button,
 } from "@chakra-ui/react";
 import LineChart from 'components/charts/LineChart';
 
@@ -46,6 +47,11 @@ export default function Default(props: {
   const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState('16');
   const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState('16');
   const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
+  const [showTitleBackGroundConfig, setShowTitleBackGroundConfig] = useState(false);
+  const [showYaxisConfig, setShowYaxisConfig] = useState(false);
+  const [showXaxisConfig, setShowXaxisConfig] = useState(false);
+  const [showLegendConfig, setShowLegendConfig] = useState(false);
+  const [showColorsConfig, setShowColorsConfig] = useState(false);
 
   const updateLineColor = (index: number, color: string) => {
     const newColors = [...driverLineColors];
@@ -205,276 +211,328 @@ export default function Default(props: {
     setChartDataFullName(updatedChartData);
   }, [props.chartData, props.driverNames]);
 
+  const handleClickShowTitleBackGroundConfig = () => {
+    setShowTitleBackGroundConfig(!showTitleBackGroundConfig);
+  };
+
+  const handleClickShowYaxisConfig = () => {
+    setShowYaxisConfig(!showYaxisConfig);
+  };
+
+  const handleClickShowXaxisConfig = () => {
+    setShowXaxisConfig(!showXaxisConfig);
+  };
+
+  const handleshowLegendConfig = () => {
+    setShowLegendConfig(!showLegendConfig);
+  };
+
+  const handleshowColorsConfig = () => {
+    setShowColorsConfig(!showColorsConfig);
+  };
+
   return (
     <>
-      <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4}>
-        <GridItem>
-          <FormControl>
-            <FormLabel>Title</FormLabel>
-            <Input
-              type="text"
-              value={chartTitle}
-              onChange={(e) => setChartTitle(e.target.value)}
-              placeholder="Enter chart title"
-            />
-          </FormControl>
-        </GridItem>
 
-        <GridItem>
-          <FormControl>
-            <FormLabel>Title Font Size</FormLabel>
-            <Select
-              value={titleFontSize}
-              onChange={(e) => setTitleFontSize(e.target.value)}
-            >
-              {fontSizeOptions.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
-        </GridItem>
+      <Box display="flex" flexWrap="wrap" gap="10px" marginTop={'10px'}>
+        <Box width="250px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button  style={{ width: '100%' }} onClick={handleClickShowTitleBackGroundConfig}>Title and Background Config</button>
+        </Box>
 
-        <GridItem>
-          <FormControl>
-            <FormLabel>Title Color</FormLabel>
-            <Input
-              type="color"
-              value={chartTitleColor}
-              onChange={(e) => setChartTitleColor(e.target.value)}
-              w="30%"
-            />
-          </FormControl>
-        </GridItem>
+        <Box width="250px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button  style={{ width: '100%' }} onClick={handleClickShowYaxisConfig}>Yaxis Config</button>
+        </Box>
 
-        <GridItem>
-          <FormControl>
-            <FormLabel>Background</FormLabel>
-            <Input
-              type="color"
-              value={backgroundColor}
-              onChange={(e) => setBackgroundColor(e.target.value)}
-              w="30%"
-            />
-          </FormControl>
-        </GridItem>
-      </Grid>
+        <Box width="250px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button style={{ width: '100%' }} onClick={handleClickShowXaxisConfig}>Xaxis Config</button>
+        </Box>
 
-      <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
-        <GridItem>
-          <FormControl>
-            <FormLabel>Yaxis Show</FormLabel>
-            <Checkbox
-              isChecked={chartYaxisShow}
-              onChange={() => setChartYaxisShow(!chartYaxisShow)}
-            >
-              Show Yaxis
-            </Checkbox>
-          </FormControl>
-        </GridItem>
+        <Box width="250px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button style={{ width: '100%' }} onClick={handleshowLegendConfig}>Legend Config</button>
+        </Box>
 
-        <GridItem>
-          <FormControl>
-            <FormLabel>Yaxis Title</FormLabel>
-            <Input
-              type="text"
-              value={chartYaxisTitle}
-              onChange={(e) => setChartYaxisTitle(e.target.value)}
-              placeholder="Enter chart Yaxis title"
-            />
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Yaxis Title Font Size</FormLabel>
-            <Select
-              value={chartYaxisTitleFontSize}
-              onChange={(e) => setChartYaxisTitleFontSize(e.target.value)}
-            >
-              {fontSizeOptions.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Yaxis Color</FormLabel>
-            <Input
-              type="color"
-              value={chartYaxisColor}
-              onChange={(e) => setChartYaxisColor(e.target.value)}
-              w="30%"
-            />
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Yaxis Value Font Size</FormLabel>
-            <Select
-              value={chartYaxisLabelFontSize}
-              onChange={(e) => setChartYaxisLabelFontSize(e.target.value)}
-            >
-              {fontSizeOptions.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Yaxis Value Color</FormLabel>
-            <Input
-              type="color"
-              value={chartYaxisLabelColor}
-              onChange={(e) => setChartYaxisLabelColor(e.target.value)}
-              w="30%"
-            />
-          </FormControl>
-        </GridItem>
-
-      </Grid>
-
-      <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Lines Xaxis Show</FormLabel>
-            <Checkbox
-              isChecked={chartXaxisLinesShow}
-              onChange={() => setChartXaxisLinesShow(!chartXaxisLinesShow)}
-            >
-              Show Lines Xaxis
-            </Checkbox>
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Lines Yaxis Show</FormLabel>
-            <Checkbox
-              isChecked={chartYaxisLinesShow}
-              onChange={() => setChartYaxisLinesShow(!chartYaxisLinesShow)}
-            >
-              Show Lines Yaxis
-            </Checkbox>
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Lines Color</FormLabel>
-            <Input
-              type="color"
-              value={chartLinesColor}
-              onChange={(e) => setChartLinesColor(e.target.value)}
-              w="30%"
-            />
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Label Font Size</FormLabel>
-            <Select
-              value={chartLabelFontSize}
-              onChange={(e) => setLabelFontSize(e.target.value)}
-            >
-              {fontSizeOptions.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Label Color</FormLabel>
-            <Input
-              type="color"
-              value={chartLabelColor}
-              onChange={(e) => setChartLabelColor(e.target.value)}
-              w="30%"
-            />
-          </FormControl>
-        </GridItem>
-
-      </Grid>
-
-      <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Show Legend</FormLabel>
-            <Checkbox
-              isChecked={showLegend}
-              onChange={() => setShowLegend(!showLegend)}
-            >
-              Show Legend
-            </Checkbox>
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Legend Labels Color</FormLabel>
-            <Input
-              type="color"
-              value={legendLabelsColor}
-              onChange={(e) => setLegendLabelsColor(e.target.value)}
-              w="30%"
-            />
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
-            <FormLabel>Legend Label Font Size</FormLabel>
-            <Select
-              value={legendLabelFontSize}
-              onChange={(e) => setLegendLabelFontSize(e.target.value)}
-            >
-              {fontSizeOptions.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
-        </GridItem>
-
-      </Grid>
-
-      <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-        {props.driverNames.map((driverName, index) => (
-          <FormControl key={index} style={{ flexBasis: '15%' }}>
-            <FormLabel>{driverName} Line</FormLabel>
-            <Input
-              type="color"
-              value={driverLineColors[index]}
-              onChange={(e) => {
-                const newColors = [...driverLineColors];
-                newColors[index] = e.target.value;
-                setDriverLineColors(newColors);
-              }}
-              w="100%"
-            />
-          </FormControl>
-        ))}
+        <Box width="250px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button  style={{ width: '100%' }} onClick={handleshowColorsConfig}>Colors Config</button>
+        </Box>
       </Box>
 
 
+      {showTitleBackGroundConfig && (
+        <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4}>
+          <GridItem>
+            <FormControl>
+              <FormLabel>Title</FormLabel>
+              <Input
+                type="text"
+                value={chartTitle}
+                onChange={(e) => setChartTitle(e.target.value)}
+                placeholder="Enter chart title"
+              />
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Title Font Size</FormLabel>
+              <Select
+                value={titleFontSize}
+                onChange={(e) => setTitleFontSize(e.target.value)}
+              >
+                {fontSizeOptions.map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Title Color</FormLabel>
+              <Input
+                type="color"
+                value={chartTitleColor}
+                onChange={(e) => setChartTitleColor(e.target.value)}
+                w="30%"
+              />
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Background</FormLabel>
+              <Input
+                type="color"
+                value={backgroundColor}
+                onChange={(e) => setBackgroundColor(e.target.value)}
+                w="30%"
+              />
+            </FormControl>
+          </GridItem>
+        </Grid>
+      )}
+
+      {showYaxisConfig && (
+        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
+          <GridItem>
+            <FormControl>
+              <FormLabel>Yaxis Show</FormLabel>
+              <Checkbox
+                isChecked={chartYaxisShow}
+                onChange={() => setChartYaxisShow(!chartYaxisShow)}
+              >
+                Show Yaxis
+              </Checkbox>
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Yaxis Title</FormLabel>
+              <Input
+                type="text"
+                value={chartYaxisTitle}
+                onChange={(e) => setChartYaxisTitle(e.target.value)}
+                placeholder="Enter chart Yaxis title"
+              />
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Yaxis Title Font Size</FormLabel>
+              <Select
+                value={chartYaxisTitleFontSize}
+                onChange={(e) => setChartYaxisTitleFontSize(e.target.value)}
+              >
+                {fontSizeOptions.map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Yaxis Color</FormLabel>
+              <Input
+                type="color"
+                value={chartYaxisColor}
+                onChange={(e) => setChartYaxisColor(e.target.value)}
+                w="30%"
+              />
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Yaxis Value Font Size</FormLabel>
+              <Select
+                value={chartYaxisLabelFontSize}
+                onChange={(e) => setChartYaxisLabelFontSize(e.target.value)}
+              >
+                {fontSizeOptions.map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Yaxis Value Color</FormLabel>
+              <Input
+                type="color"
+                value={chartYaxisLabelColor}
+                onChange={(e) => setChartYaxisLabelColor(e.target.value)}
+                w="30%"
+              />
+            </FormControl>
+          </GridItem>
+
+        </Grid>
+      )}
+
+      {showXaxisConfig && (
+        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Lines Xaxis Show</FormLabel>
+              <Checkbox
+                isChecked={chartXaxisLinesShow}
+                onChange={() => setChartXaxisLinesShow(!chartXaxisLinesShow)}
+              >
+                Show Lines Xaxis
+              </Checkbox>
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Lines Yaxis Show</FormLabel>
+              <Checkbox
+                isChecked={chartYaxisLinesShow}
+                onChange={() => setChartYaxisLinesShow(!chartYaxisLinesShow)}
+              >
+                Show Lines Yaxis
+              </Checkbox>
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Lines Color</FormLabel>
+              <Input
+                type="color"
+                value={chartLinesColor}
+                onChange={(e) => setChartLinesColor(e.target.value)}
+                w="30%"
+              />
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Label Font Size</FormLabel>
+              <Select
+                value={chartLabelFontSize}
+                onChange={(e) => setLabelFontSize(e.target.value)}
+              >
+                {fontSizeOptions.map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Label Color</FormLabel>
+              <Input
+                type="color"
+                value={chartLabelColor}
+                onChange={(e) => setChartLabelColor(e.target.value)}
+                w="30%"
+              />
+            </FormControl>
+          </GridItem>
+
+        </Grid>
+      )}
+
+      {showLegendConfig && (
+        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Show Legend</FormLabel>
+              <Checkbox
+                isChecked={showLegend}
+                onChange={() => setShowLegend(!showLegend)}
+              >
+                Show Legend
+              </Checkbox>
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Legend Labels Color</FormLabel>
+              <Input
+                type="color"
+                value={legendLabelsColor}
+                onChange={(e) => setLegendLabelsColor(e.target.value)}
+                w="30%"
+              />
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Legend Label Font Size</FormLabel>
+              <Select
+                value={legendLabelFontSize}
+                onChange={(e) => setLegendLabelFontSize(e.target.value)}
+              >
+                {fontSizeOptions.map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
+          </GridItem>
+
+        </Grid>
+      )}
+
+      {showColorsConfig && (
+        <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+          {props.driverNames.map((driverName, index) => (
+            <FormControl key={index} style={{ flexBasis: '15%' }}>
+              <FormLabel>{driverName} Line</FormLabel>
+              <Input
+                type="color"
+                value={driverLineColors[index]}
+                onChange={(e) => {
+                  const newColors = [...driverLineColors];
+                  newColors[index] = e.target.value;
+                  setDriverLineColors(newColors);
+                }}
+                w="100%"
+              />
+            </FormControl>
+          ))}
+        </Box>
+      )}
 
       <Box minH='400px' minW='95%' mt='auto'>
         {props.dataLoaded && <LineChart chartData={chartDataFullName} chartOptions={optionsLine} />}

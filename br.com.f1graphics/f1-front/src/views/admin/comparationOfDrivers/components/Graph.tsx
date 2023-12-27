@@ -296,11 +296,11 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 
 			<Flex mt="10px">
-				<Box color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
-					<button onClick={handleButtonClick}>Search</button>
+				<Box width="120px" color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
+					<button style={{ width: '100%' }} onClick={handleButtonClick}>Search</button>
 				</Box>
-				<Box ml="10px" color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
-					<button onClick={handleCleanClick}>Clean</button>
+				<Box width="120px" ml="10px" color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
+					<button style={{ width: '100%' }} onClick={handleCleanClick}>Clean</button>
 				</Box>
 			</Flex>
 
