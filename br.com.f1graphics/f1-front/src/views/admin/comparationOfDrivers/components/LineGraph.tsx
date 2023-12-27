@@ -8,18 +8,15 @@ import {
   GridItem,
   Checkbox,
   Select,
-  Button,
 } from "@chakra-ui/react";
 import LineChart from 'components/charts/LineChart';
-import { F1GraphicsChartOptions } from './chartOptions'
-
-import { F2GraphicsChartOptions } from './chartOptions'
+import { f1GraphicsChartOptions } from './ChartOptions'
+import { splashAndGoChartOptions } from './ChartOptions'
 
 import {
   DataGraphic,
   OptionsLine,
 } from './Interfaces';
-import { title } from 'process';
 
 export default function Default(props: {
   chartData: DataGraphic[];
@@ -28,7 +25,6 @@ export default function Default(props: {
   dataLoaded: boolean;
   driverNames: string[];
 }) {
-  const [defaultChartOptions, setDefaultChartOptions] = useState<any>(F1GraphicsChartOptions);
   const [layoutSelect, setLayoutSelect] = useState<string>('F1GraphicsChartOptions');
   const [chartData, setChartData] = useState<DataGraphic[]>(props.chartData);
   const [chartDataFullName, setChartDataFullName] = useState<DataGraphic[]>([]);
@@ -57,6 +53,7 @@ export default function Default(props: {
   const [showXaxisSettings, setShowXaxisSettings] = useState(false);
   const [showLegendSettings, setShowLegendSettings] = useState(false);
   const [showColorsSettings, setShowColorsSettings] = useState(false);
+  const [showLayoutsSettings, setShowLayoutsSettings] = useState(false);
 
   const updateLineColor = (index: number, color: string) => {
     const newColors = [...driverLineColors];
@@ -238,16 +235,17 @@ export default function Default(props: {
     const selectedLayout = event.target.value;
     setLayoutSelect(selectedLayout);
 
-    // Adicione lógica aqui para definir o título do gráfico com base na opção selecionada
-    // Pode ser algo como:
-    // if (selectedLayout === 'F1GraphicsChartOptions') {
-    //   setChartTitle('Título para F1 Graphics Chart Options');
-    // } else if (selectedLayout === 'F2GraphicsChartOptions') {
-    //   setChartTitle('Título para F2 Graphics Chart Options');
-    // }
+
+    if (selectedLayout === 'f1GraphicsChartOptions') {
+      setLayout(f1GraphicsChartOptions)
+    } else if (selectedLayout === 'splashAndGoChartOptions') {
+      setLayout(splashAndGoChartOptions)
+    }
   };
 
-  console.log(layoutSelect);
+  const setLayout = (f1GraphicsChartOptions:any) => {
+    setChartTitle(f1GraphicsChartOptions.Title);
+  }
 
   const handleClickShowYaxisConfig = () => {
     setShowYaxisSettings(!showYaxisSettings);
@@ -263,6 +261,10 @@ export default function Default(props: {
 
   const handleshowColorsConfig = () => {
     setShowColorsSettings(!showColorsSettings);
+  };
+
+  const handleshowshowLayoutsSettings = () => {
+    setShowLayoutsSettings(!showLayoutsSettings);
   };
 
   return (
@@ -287,6 +289,12 @@ export default function Default(props: {
 
         <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
           <button style={{ width: '100%' }} onClick={handleshowColorsConfig}>Colors Settings</button>
+        </Box>
+      </Box>
+
+      <Box display="flex" flexWrap="wrap" gap="10px" marginTop={'10px'}>
+      <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button style={{ width: '100%' }} onClick={handleshowshowLayoutsSettings}>Layouts Settings</button>
         </Box>
       </Box>
 
@@ -568,13 +576,15 @@ export default function Default(props: {
         </Box>
       )}
 
-      <Box width="260px">
+      {showLayoutsSettings && (
+        <Box width="260px">
         <label htmlFor="layoutSelect">Ready Layouts</label>
         <Select id="layoutSelect" value={layoutSelect} onChange={handleLayoutChange}>
-          <option value="F1GraphicsChartOptions">F1 Graphics Chart Options</option>
-          <option value="F2GraphicsChartOptions">F2 Graphics Chart Options</option>
+          <option value="f1GraphicsChartOptions">F1 Graphics</option>
+          <option value="splashAndGoChartOptions">Splash And Go</option>
         </Select>
       </Box>
+      )}
 
       <Box minH='400px' minW='95%' mt='auto'>
         {props.dataLoaded && <LineChart chartData={chartDataFullName} chartOptions={optionsLine} />}
