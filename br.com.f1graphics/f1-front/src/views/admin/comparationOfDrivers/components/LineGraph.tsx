@@ -47,11 +47,11 @@ export default function Default(props: {
   const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState('16');
   const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState('16');
   const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
-  const [showTitleBackGroundConfig, setShowTitleBackGroundConfig] = useState(false);
-  const [showYaxisConfig, setShowYaxisConfig] = useState(false);
-  const [showXaxisConfig, setShowXaxisConfig] = useState(false);
-  const [showLegendConfig, setShowLegendConfig] = useState(false);
-  const [showColorsConfig, setShowColorsConfig] = useState(false);
+  const [showTitleBackGroundSettings, setShowTitleBackGroundSettings] = useState(false);
+  const [showYaxisSettings, setShowYaxisSettings] = useState(false);
+  const [showXaxisSettings, setShowXaxisSettings] = useState(false);
+  const [showLegendSettings, setShowLegendSettings] = useState(false);
+  const [showColorsSettings, setShowColorsSettings] = useState(false);
 
   const updateLineColor = (index: number, color: string) => {
     const newColors = [...driverLineColors];
@@ -212,52 +212,52 @@ export default function Default(props: {
   }, [props.chartData, props.driverNames]);
 
   const handleClickShowTitleBackGroundConfig = () => {
-    setShowTitleBackGroundConfig(!showTitleBackGroundConfig);
+    setShowTitleBackGroundSettings(!showTitleBackGroundSettings);
   };
 
   const handleClickShowYaxisConfig = () => {
-    setShowYaxisConfig(!showYaxisConfig);
+    setShowYaxisSettings(!showYaxisSettings);
   };
 
   const handleClickShowXaxisConfig = () => {
-    setShowXaxisConfig(!showXaxisConfig);
+    setShowXaxisSettings(!showXaxisSettings);
   };
 
   const handleshowLegendConfig = () => {
-    setShowLegendConfig(!showLegendConfig);
+    setShowLegendSettings(!showLegendSettings);
   };
 
   const handleshowColorsConfig = () => {
-    setShowColorsConfig(!showColorsConfig);
+    setShowColorsSettings(!showColorsSettings);
   };
 
   return (
     <>
 
       <Box display="flex" flexWrap="wrap" gap="10px" marginTop={'10px'}>
-        <Box width="250px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button  style={{ width: '100%' }} onClick={handleClickShowTitleBackGroundConfig}>Title and Background Config</button>
+        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button  style={{ width: '100%' }} onClick={handleClickShowTitleBackGroundConfig}>Title and Background Settings</button>
         </Box>
 
-        <Box width="250px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button  style={{ width: '100%' }} onClick={handleClickShowYaxisConfig}>Yaxis Config</button>
+        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button  style={{ width: '100%' }} onClick={handleClickShowYaxisConfig}>Yaxis Settings</button>
         </Box>
 
-        <Box width="250px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button style={{ width: '100%' }} onClick={handleClickShowXaxisConfig}>Xaxis Config</button>
+        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button style={{ width: '100%' }} onClick={handleClickShowXaxisConfig}>Xaxis Settings</button>
         </Box>
 
-        <Box width="250px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button style={{ width: '100%' }} onClick={handleshowLegendConfig}>Legend Config</button>
+        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button style={{ width: '100%' }} onClick={handleshowLegendConfig}>Legend Settings</button>
         </Box>
 
-        <Box width="250px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button  style={{ width: '100%' }} onClick={handleshowColorsConfig}>Colors Config</button>
+        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+          <button  style={{ width: '100%' }} onClick={handleshowColorsConfig}>Colors Settings</button>
         </Box>
       </Box>
 
 
-      {showTitleBackGroundConfig && (
+      {showTitleBackGroundSettings && (
         <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4}>
           <GridItem>
             <FormControl>
@@ -313,7 +313,7 @@ export default function Default(props: {
         </Grid>
       )}
 
-      {showYaxisConfig && (
+      {showYaxisSettings && (
         <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
           <GridItem>
             <FormControl>
@@ -398,7 +398,7 @@ export default function Default(props: {
         </Grid>
       )}
 
-      {showXaxisConfig && (
+      {showXaxisSettings && (
         <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
 
           <GridItem>
@@ -468,7 +468,7 @@ export default function Default(props: {
         </Grid>
       )}
 
-      {showLegendConfig && (
+      {showLegendSettings && (
         <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
 
           <GridItem>
@@ -514,7 +514,7 @@ export default function Default(props: {
         </Grid>
       )}
 
-      {showColorsConfig && (
+      {showColorsSettings && (
         <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
           {props.driverNames.map((driverName, index) => (
             <FormControl key={index} style={{ flexBasis: '15%' }}>
