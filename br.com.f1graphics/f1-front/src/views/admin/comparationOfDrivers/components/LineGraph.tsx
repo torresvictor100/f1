@@ -25,7 +25,7 @@ export default function Default(props: {
   driverNames: string[];
 }) {
   const [chartData, setChartData] = useState<DataGraphic[]>(props.chartData);
-  const [chartDataName, setChartDataName] = useState<DataGraphic[]>([]);
+  const [chartDataFullName, setChartDataFullName] = useState<DataGraphic[]>([]);
   const [chartTitle, setChartTitle] = useState('F1 Graphics');
   const [chartYaxisTitle, setChartYaxisTitle] = useState('Drivers');
   const [chartTitleColor, setChartTitleColor] = useState('#ee0000');
@@ -199,7 +199,7 @@ export default function Default(props: {
       name: props.driverNames[index] || data.name,
     }));
     setChartData(updatedChartData);
-    setChartDataName(updatedChartData);
+    setChartDataFullName(updatedChartData);
   }, [props.chartData, props.driverNames]);
 
   return (
@@ -410,10 +410,9 @@ export default function Default(props: {
       </Grid>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-
-        {props.chartData.map((data, index) => (
+        {props.driverNames.map((driverName, index) => (
           <FormControl key={index} style={{ flexBasis: '15%' }}>
-            <FormLabel>{data.name} Line</FormLabel>
+            <FormLabel>{driverName} Line</FormLabel>
             <Input
               type="color"
               value={driverLineColors[index]}
@@ -429,8 +428,9 @@ export default function Default(props: {
       </div>
 
 
+
       <Box minH='400px' minW='95%' mt='auto'>
-        {props.dataLoaded && <LineChart chartData={chartDataName} chartOptions={optionsLine} />}
+        {props.dataLoaded && <LineChart chartData={chartDataFullName} chartOptions={optionsLine} />}
       </Box>
     </>
   );
