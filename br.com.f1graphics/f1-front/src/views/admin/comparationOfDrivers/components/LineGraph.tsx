@@ -22,6 +22,7 @@ export default function Default(props: {
   chartOptions: OptionsLine;
   chartLabel: string[];
   dataLoaded: boolean;
+  driverNames: string[];
 }) {
   const [chartTitle, setChartTitle] = useState('F1 Graphics');
   const [chartYaxisTitle, setChartYaxisTitle] = useState('Drivers');
@@ -189,8 +190,6 @@ export default function Default(props: {
     },
     colors: driverLineColors.filter(color => color !== ''),
   };
-
-  console.log(props.chartData);
 
   return (
     <>
@@ -417,7 +416,6 @@ export default function Default(props: {
           </FormControl>
         ))}
       </div>
-
 
 
       <Box minH='400px' minW='95%' mt='auto'>

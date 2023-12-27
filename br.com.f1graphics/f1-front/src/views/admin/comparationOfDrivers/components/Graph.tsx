@@ -1,18 +1,18 @@
-import { Box, Flex, Text, useColorModeValue , Spinner } from '@chakra-ui/react';
+import { Box, Flex, Text, useColorModeValue, Spinner } from '@chakra-ui/react';
 
 import Card from 'components/card/Card';
 import SelectComponent from './SelectComponentDrivers';
 import LineGraph from './LineGraph'
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import {defautOptionsLine } from 'variables/charts';
+import { defautOptionsLine } from 'variables/charts';
 
 import {
 	SeasonInfo,
 	DataGraphic,
 	Driver,
 	DriversResponse,
-  } from  './Interfaces';
+} from './Interfaces';
 
 
 
@@ -110,6 +110,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const [dataLoadedDriver, setDataLoadedDriver] = useState(false);
 	const [driverOptions, setDriverOptions] = useState<{ label: string; value: string }[]>([]);
 	const [cleanClicked, setCleanClicked] = useState(false);
+	const [driverNames, setDriverNames] = useState<string[]>([]);
 
 	useEffect(() => {
 		const currentYear = new Date().getFullYear();
@@ -146,7 +147,13 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 	const handlePilotsSelected = (pilots: string[]) => {
 		setSelectedPilots(pilots);
+
+		const updatedDriverNames = pilots.map(driverId =>
+			driverOptions.find(option => option.value === driverId)?.label || ''
+		);
+		setDriverNames(updatedDriverNames);
 	};
+
 
 	const fetchData = (updatedUrlSeason: string) => {
 
@@ -285,7 +292,8 @@ export default function TotalSpent(props: { [x: string]: any }) {
 				</select>
 			</Flex>
 
-			<SelectComponent options={driverOptions} onPilotsSelected={handlePilotsSelected} />
+			<SelectComponent options={driverOptions} onPilotsSelected={handlePilotsSelected} setDriverNames={setDriverNames} />
+
 
 			<Flex mt="10px">
 				<Box color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
@@ -299,9 +307,9 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
 					<Text color={textColor} fontSize='30px' textAlign='start' fontWeight='700' lineHeight='100%'>
-					{loading ? <Spinner /> : null}
+						{loading ? <Spinner /> : null}
 					</Text>
-						<LineGraph chartData={driverPointsList} chartOptions={defautOptionsLine} chartLabel={raceSeasonName} dataLoaded={dataLoaded}/>
+					<LineGraph chartData={driverPointsList} chartOptions={defautOptionsLine} chartLabel={raceSeasonName} dataLoaded={dataLoaded} driverNames={driverNames} />
 				</Box>
 			</Flex>
 
