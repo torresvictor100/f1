@@ -1,7 +1,39 @@
 export const f1GraphicsChartOptions: any = {
-    Title : 'F1Graphics.com.br'
+    Title: 'F1Graphics.com.br',
+    TitleColor: '#1B2559',
+    YaxisTitle: 'Points',
+    LabelColor: '#EE0000',
+    BackgroundColor: '#F4F7FE',
+    YaxisColor: '#1B2559',
+    LinesColor: '#1B2559',
+    LegendLabelsColor: '#EE0000',
+    YaxisLabelColor: '#EE0000',
+    TitleFontSize: '20',
+    LabelFontSize: '13',
+    LegendLabelFontSize: '14',
+    YaxisTitleFontSize: '16',
+    YaxisLabelFontSize: '16',
+    ChartYaxisShow: true,
+    ShowLegend: true,
+    ChartYaxisLinesShow: true,
 };
 
-export const splashAndGoChartOptions: any = {
-    Title : 'Splash and Go'
+export const splashGoChartOptions: any = {
+    Title: 'Splash/Go',
+    TitleColor: '#019bd9',
+    YaxisTitle: 'Points',
+    LabelColor: '#FFFEFC',
+    BackgroundColor: '#00313F',
+    YaxisColor: '#019bd9',
+    LinesColor: '#FFFEFC',
+    LegendLabelsColor: '#FFFEFC',
+    YaxisLabelColor: '#FFFEFC',
+    TitleFontSize: '20',
+    LabelFontSize: '13',
+    LegendLabelFontSize: '14',
+    YaxisTitleFontSize: '16',
+    YaxisLabelFontSize: '16',
+    ChartYaxisShow: true,
+    ShowLegend: true,
+    ChartYaxisLinesShow: true,
 };
