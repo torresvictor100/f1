@@ -81,7 +81,7 @@ const SelectComponent: React.FC<SelectComponentProps> = ({ options ,onPilotsSele
 
   return (
     <Box>
-      <SimpleGrid mb="50px" columns={{ base: 1, md: 2, lg: 4 }} gap="20px">
+      <SimpleGrid mb="50px" columns={{ base: 1, md: 2, lg: 4 }} gap="20px" color={'#1B2559'}>
         {selects.map((value, index) => (
           <Box key={index}>
             <MiniStatisticsTitleSelect
