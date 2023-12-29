@@ -86,7 +86,7 @@ export default function Default(props: {
       align: 'center',
       margin: 10,
       offsetX: 0,
-      offsetY: 0,
+      offsetY: 5,
       floating: false,
       style: {
         fontSize: titleFontSize,
