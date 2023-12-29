@@ -49,12 +49,13 @@ export default function Default(props: {
   const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState(layoutsDefault.YaxisTitleFontSize);
   const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState(layoutsDefault.YaxisLabelFontSize);
   const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
-  const [showTitleBackGroundSettings, setShowTitleBackGroundSettings] = useState(layoutsDefault.ShowTitleBackGroundSettings);
+  const [showTitleBackGroundSettings, setShowTitleBackGroundSettings] = useState(false);
   const [showYaxisSettings, setShowYaxisSettings] = useState(false);
   const [showXaxisSettings, setShowXaxisSettings] = useState(false);
   const [showLegendSettings, setShowLegendSettings] = useState(false);
   const [showColorsSettings, setShowColorsSettings] = useState(false);
   const [showLayoutsSettings, setShowLayoutsSettings] = useState(false);
+
 
   const updateLineColor = (index: number, color: string) => {
     const newColors = [...driverLineColors];
@@ -100,28 +101,28 @@ export default function Default(props: {
       opacity: 100,
       type: 'solid',
       gradient: {
-          shade: 'dark',
-          type: "horizontal",
-          shadeIntensity: 60,
-          gradientToColors: undefined,
-          inverseColors: true,
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [6, 50, 100],
-          colorStops: []
+        shade: 'dark',
+        type: "horizontal",
+        shadeIntensity: 60,
+        gradientToColors: undefined,
+        inverseColors: true,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [6, 50, 100],
+        colorStops: []
       },
       image: {
-          src: [],
-          width: undefined,
-          height: undefined
+        src: [],
+        width: undefined,
+        height: undefined
       },
       pattern: {
-          style: 'verticalLines',
-          width: 6,
-          height: 6,
-          strokeWidth: 2,
+        style: 'verticalLines',
+        width: 6,
+        height: 6,
+        strokeWidth: 2,
       },
-    },    
+    },
     tooltip: {
       enabled: true, //show ou nao
       enabledOnSeries: undefined,
@@ -245,7 +246,7 @@ export default function Default(props: {
         size: undefined,
         sizeOffset: 3
       }
-  },
+    },
     legend: {
       show: true,
       showForSingleSeries: showLegend,
@@ -334,8 +335,85 @@ export default function Default(props: {
   }, [props.chartData, props.driverNames]);
 
   const handleClickShowTitleBackGroundConfig = () => {
+
     setShowTitleBackGroundSettings(!showTitleBackGroundSettings);
+
   };
+
+  const backgroundStyleTitleBackGroundSettings = showTitleBackGroundSettings
+    ? {
+      background: `linear-gradient(to right, #fff, #000})`,
+      boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)',
+    }
+    : {};
+
+  const backgroundStyleshowYaxisSettings = showYaxisSettings
+    ? {
+      background: `linear-gradient(to right, #fff, #000})`,
+      boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)',
+    }
+    : {};
+
+  const backgroundStyleshowXaxisSettings = showXaxisSettings
+    ? {
+      background: `linear-gradient(to right, #fff, #000})`,
+      boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)',
+    }
+    : {};
+
+  const backgroundStyleshowLegendSettings = showLegendSettings
+    ? {
+      background: `linear-gradient(to right, #fff, #000})`,
+      boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)',
+    }
+    : {};
+
+  const backgroundStyleshowColorsSettings = showColorsSettings
+    ? {
+      background: `linear-gradient(to right, #fff, #000})`,
+      boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)',
+    }
+    : {};
+
+  const backgroundStyleshowLayoutsSettings = showLayoutsSettings
+    ? {
+      background: `linear-gradient(to right, #fff, #000})`,
+      boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)',
+    }
+    : {};
+
+  const titleBackgroundStyle = showTitleBackGroundSettings
+    ? {
+      marginTop: '10px',
+      marginBottom: '10px',
+      backgroundColor: '#f4f7fe',
+      padding: '10px',
+      borderRadius: '8px',
+      boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)',
+    }
+    : {};
+
+  const showXaxisSettingsStyle = showXaxisSettings
+    ? {
+      marginTop: '10px',
+      marginBottom: '10px',
+      backgroundColor: '#f4f7fe',
+      padding: '10px',
+      borderRadius: '8px',
+      boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)',
+    }
+    : {};
+
+  const showColorsSettingsStyle = showColorsSettings
+    ? {
+      marginTop: '10px',
+      marginBottom: '10px',
+      backgroundColor: '#f4f7fe',
+      padding: '10px',
+      borderRadius: '8px',
+      boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)',
+    }
+    : {};
 
   const handleLayoutChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedLayout = event.target.value;
@@ -394,88 +472,103 @@ export default function Default(props: {
     <>
 
       <Box display="flex" flexWrap="wrap" gap="10px" marginTop={'10px'}>
-        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button style={{ width: '100%' }} onClick={handleClickShowTitleBackGroundConfig}>Title and Background Settings</button>
+        <Box style={backgroundStyleTitleBackGroundSettings}>
+          <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+            <button style={{ width: '100%' }} onClick={handleClickShowTitleBackGroundConfig}>Title and Background Settings</button>
+          </Box>
         </Box>
 
-        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button style={{ width: '100%' }} onClick={handleClickShowYaxisConfig}>Yaxis Settings</button>
+        <Box style={backgroundStyleshowYaxisSettings}>
+          <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+            <button style={{ width: '100%' }} onClick={handleClickShowYaxisConfig}>Yaxis Settings</button>
+          </Box>
         </Box>
 
-        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button style={{ width: '100%' }} onClick={handleClickShowXaxisConfig}>Xaxis Settings</button>
+        <Box style={backgroundStyleshowXaxisSettings}>
+          <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+            <button style={{ width: '100%' }} onClick={handleClickShowXaxisConfig}>Xaxis Settings</button>
+          </Box>
         </Box>
 
-        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button style={{ width: '100%' }} onClick={handleshowLegendConfig}>Legend Settings</button>
+        <Box style={backgroundStyleshowLegendSettings}>
+          <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+            <button style={{ width: '100%' }} onClick={handleshowLegendConfig}>Legend Settings</button>
+          </Box>
         </Box>
 
-        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button style={{ width: '100%' }} onClick={handleshowColorsConfig}>Colors Settings</button>
+        <Box style={backgroundStyleshowColorsSettings}>
+          <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+            <button style={{ width: '100%' }} onClick={handleshowColorsConfig}>Colors Settings</button>
+          </Box>
         </Box>
       </Box>
 
+
       <Box display="flex" flexWrap="wrap" gap="10px" marginTop={'10px'}>
-        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-          <button style={{ width: '100%' }} onClick={handleshowshowLayoutsSettings}>Layouts Settings</button>
+        <Box style={backgroundStyleshowLayoutsSettings}>
+          <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+            <button style={{ width: '100%' }} onClick={handleshowshowLayoutsSettings}>Layouts Settings</button>
+          </Box>
         </Box>
       </Box>
 
 
       {showTitleBackGroundSettings && (
-        <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4}>
-          <GridItem>
-            <FormControl>
-              <FormLabel>Title</FormLabel>
-              <Input
-                type="text"
-                value={chartTitle}
-                onChange={(e) => setChartTitle(e.target.value)}
-                placeholder="Enter chart title"
-              />
-            </FormControl>
-          </GridItem>
+        <Box style={titleBackgroundStyle}>
+          <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4}>
+            <GridItem>
+              <FormControl>
+                <FormLabel>Title</FormLabel>
+                <Input
+                  type="text"
+                  value={chartTitle}
+                  onChange={(e) => setChartTitle(e.target.value)}
+                  placeholder="Enter chart title"
+                />
+              </FormControl>
+            </GridItem>
 
-          <GridItem>
-            <FormControl>
-              <FormLabel>Title Font Size</FormLabel>
-              <Select
-                value={titleFontSize}
-                onChange={(e) => setTitleFontSize(e.target.value)}
-              >
-                {fontSizeOptions.map((size) => (
-                  <option key={size} value={size}>
-                    {size}
-                  </option>
-                ))}
-              </Select>
-            </FormControl>
-          </GridItem>
+            <GridItem>
+              <FormControl>
+                <FormLabel>Title Font Size</FormLabel>
+                <Select
+                  value={titleFontSize}
+                  onChange={(e) => setTitleFontSize(e.target.value)}
+                >
+                  {fontSizeOptions.map((size) => (
+                    <option key={size} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+            </GridItem>
 
-          <GridItem>
-            <FormControl>
-              <FormLabel>Title Color</FormLabel>
-              <Input
-                type="color"
-                value={chartTitleColor}
-                onChange={(e) => setChartTitleColor(e.target.value)}
-                w="30%"
-              />
-            </FormControl>
-          </GridItem>
+            <GridItem>
+              <FormControl>
+                <FormLabel>Title Color</FormLabel>
+                <Input
+                  type="color"
+                  value={chartTitleColor}
+                  onChange={(e) => setChartTitleColor(e.target.value)}
+                  w="30%"
+                />
+              </FormControl>
+            </GridItem>
 
-          <GridItem>
-            <FormControl>
-              <FormLabel>Background</FormLabel>
-              <Input
-                type="color"
-                value={backgroundColor}
-                onChange={(e) => setBackgroundColor(e.target.value)}
-                w="30%"
-              />
-            </FormControl>
-          </GridItem>
-        </Grid>
+            <GridItem>
+              <FormControl>
+                <FormLabel>Background</FormLabel>
+                <Input
+                  type="color"
+                  value={backgroundColor}
+                  onChange={(e) => setBackgroundColor(e.target.value)}
+                  w="30%"
+                />
+              </FormControl>
+            </GridItem>
+          </Grid>
+        </Box>
       )}
 
       {showYaxisSettings && (
@@ -564,73 +657,77 @@ export default function Default(props: {
       )}
 
       {showXaxisSettings && (
-        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
+        <Box style={showXaxisSettingsStyle} >
 
-          <GridItem>
-            <FormControl>
-              <FormLabel>Lines Xaxis Show</FormLabel>
-              <Checkbox
-                isChecked={chartXaxisLinesShow}
-                onChange={() => setChartXaxisLinesShow(!chartXaxisLinesShow)}
-              >
-                Show Lines Xaxis
-              </Checkbox>
-            </FormControl>
-          </GridItem>
 
-          <GridItem>
-            <FormControl>
-              <FormLabel>Lines Yaxis Show</FormLabel>
-              <Checkbox
-                isChecked={chartYaxisLinesShow}
-                onChange={() => setChartYaxisLinesShow(!chartYaxisLinesShow)}
-              >
-                Show Lines Yaxis
-              </Checkbox>
-            </FormControl>
-          </GridItem>
+          <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
+            <GridItem>
+              <FormControl>
+                <FormLabel>Lines Xaxis Show</FormLabel>
+                <Checkbox
+                  isChecked={chartXaxisLinesShow}
+                  onChange={() => setChartXaxisLinesShow(!chartXaxisLinesShow)}
+                >
+                  Show Lines Xaxis
+                </Checkbox>
+              </FormControl>
+            </GridItem>
 
-          <GridItem>
-            <FormControl>
-              <FormLabel>Lines Color</FormLabel>
-              <Input
-                type="color"
-                value={chartLinesColor}
-                onChange={(e) => setChartLinesColor(e.target.value)}
-                w="30%"
-              />
-            </FormControl>
-          </GridItem>
+            <GridItem>
+              <FormControl>
+                <FormLabel>Lines Yaxis Show</FormLabel>
+                <Checkbox
+                  isChecked={chartYaxisLinesShow}
+                  onChange={() => setChartYaxisLinesShow(!chartYaxisLinesShow)}
+                >
+                  Show Lines Yaxis
+                </Checkbox>
+              </FormControl>
+            </GridItem>
 
-          <GridItem>
-            <FormControl>
-              <FormLabel>Label Font Size</FormLabel>
-              <Select
-                value={chartLabelFontSize}
-                onChange={(e) => setLabelFontSize(e.target.value)}
-              >
-                {fontSizeOptions.map((size) => (
-                  <option key={size} value={size}>
-                    {size}
-                  </option>
-                ))}
-              </Select>
-            </FormControl>
-          </GridItem>
+            <GridItem>
+              <FormControl>
+                <FormLabel>Lines Color</FormLabel>
+                <Input
+                  type="color"
+                  value={chartLinesColor}
+                  onChange={(e) => setChartLinesColor(e.target.value)}
+                  w="30%"
+                />
+              </FormControl>
+            </GridItem>
 
-          <GridItem>
-            <FormControl>
-              <FormLabel>Label Color</FormLabel>
-              <Input
-                type="color"
-                value={chartLabelColor}
-                onChange={(e) => setChartLabelColor(e.target.value)}
-                w="30%"
-              />
-            </FormControl>
-          </GridItem>
+            <GridItem>
+              <FormControl>
+                <FormLabel>Label Font Size</FormLabel>
+                <Select
+                  value={chartLabelFontSize}
+                  onChange={(e) => setLabelFontSize(e.target.value)}
+                >
+                  {fontSizeOptions.map((size) => (
+                    <option key={size} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+            </GridItem>
 
-        </Grid>
+            <GridItem>
+              <FormControl>
+                <FormLabel>Label Color</FormLabel>
+                <Input
+                  type="color"
+                  value={chartLabelColor}
+                  onChange={(e) => setChartLabelColor(e.target.value)}
+                  w="30%"
+                />
+              </FormControl>
+            </GridItem>
+
+          </Grid>
+
+        </Box>
       )}
 
       {showLegendSettings && (
@@ -680,22 +777,26 @@ export default function Default(props: {
       )}
 
       {showColorsSettings && (
-        <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-          {props.driverNames.map((driverName, index) => (
-            <FormControl key={index} style={{ flexBasis: '15%' }}>
-              <FormLabel>{driverName} Line</FormLabel>
-              <Input
-                type="color"
-                value={driverLineColors[index]}
-                onChange={(e) => {
-                  const newColors = [...driverLineColors];
-                  newColors[index] = e.target.value;
-                  setDriverLineColors(newColors);
-                }}
-                w="100%"
-              />
-            </FormControl>
-          ))}
+        <Box style={showColorsSettingsStyle}>
+
+
+          <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+            {props.driverNames.map((driverName, index) => (
+              <FormControl key={index} style={{ flexBasis: '15%' }}>
+                <FormLabel>{driverName} Line</FormLabel>
+                <Input
+                  type="color"
+                  value={driverLineColors[index]}
+                  onChange={(e) => {
+                    const newColors = [...driverLineColors];
+                    newColors[index] = e.target.value;
+                    setDriverLineColors(newColors);
+                  }}
+                  w="100%"
+                />
+              </FormControl>
+            ))}
+          </Box>
         </Box>
       )}
 
