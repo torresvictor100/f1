@@ -95,14 +95,59 @@ export default function Default(props: {
         color: chartTitleColor
       }
     },
-    tooltip: {
-      theme: 'dark-dual',
-      style: {
-        color: '#000',
+    fill: {
+      colors: undefined,
+      opacity: 100,
+      type: 'solid',
+      gradient: {
+          shade: 'dark',
+          type: "horizontal",
+          shadeIntensity: 60,
+          gradientToColors: undefined,
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [6, 50, 100],
+          colorStops: []
       },
-    },
-    dataLabels: {
-      enabled: false
+      image: {
+          src: [],
+          width: undefined,
+          height: undefined
+      },
+      pattern: {
+          style: 'verticalLines',
+          width: 6,
+          height: 6,
+          strokeWidth: 2,
+      },
+    },    
+    tooltip: {
+      enabled: true, //show ou nao
+      enabledOnSeries: undefined,
+      shared: true,
+      followCursor: false,
+      intersect: false,
+      inverseOrder: false,
+      custom: undefined,
+      fillSeriesColor: false,
+      theme: 'dark', //ou 'light'
+      style: {
+        fontSize: '15px',
+        fontFamily: undefined,
+      },
+      onDatasetHover: {
+        highlightDataSeries: false,
+      },
+      marker: {
+        show: true,
+      },
+      fixed: {
+        enabled: false, // auternativa
+        position: 'topRight',
+        offsetX: 0,
+        offsetY: 0,
+      },
     },
     stroke: {
       curve: 'smooth',
@@ -141,6 +186,66 @@ export default function Default(props: {
         },
       },
     },
+    dataLabels: {
+      enabled: true,
+      textAnchor: 'middle',
+      style: {
+        fontSize: '14px',
+        fontFamily: 'Helvetica, Arial, sans-serif',
+        fontWeight: 'bold',
+        colors: undefined
+      },
+      background: {
+        enabled: true,
+        foreColor: '#fff',
+        padding: 4,
+        borderRadius: 2,
+        borderWidth: 1,
+        borderColor: '#fff',
+        opacity: 0.9,
+        dropShadow: {
+          enabled: false,
+          top: 1,
+          left: 1,
+          blur: 1,
+          color: '#000',
+          opacity: 0.45
+        }
+      },
+      dropShadow: {
+        enabled: true,
+        top: 1,
+        left: 1,
+        blur: 1,
+        color: '#000',
+        opacity: 0.45
+      },
+      offsetY: -10, // Ajuste para posicionar acima do ponto (ajuste conforme necessário)
+      formatter: function (val: any) {
+        return val; // Pode precisar ajustar isso com base na sua estrutura de dados
+      }
+    },
+    markers: {
+      size: 6,
+      colors: undefined,
+      strokeColors: '#fff',
+      strokeWidth: 2,
+      strokeOpacity: 0.9,
+      strokeDashArray: 0,
+      fillOpacity: 1,
+      discrete: [],
+      shape: "circle",
+      radius: 2,
+      offsetX: 0,
+      offsetY: 0,
+      onClick: undefined,
+      onDblClick: undefined,
+      showNullDataPoints: true,
+      hover: {
+        size: undefined,
+        sizeOffset: 3
+      }
+  },
     legend: {
       show: true,
       showForSingleSeries: showLegend,
