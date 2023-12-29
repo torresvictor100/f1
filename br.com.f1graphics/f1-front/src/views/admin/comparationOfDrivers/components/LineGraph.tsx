@@ -515,7 +515,7 @@ export default function Default(props: {
 
       {showTitleBackGroundSettings && (
         <Box style={titleBackgroundStyle}>
-          <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4}>
+          <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4} color={'#1B2559'}>
             <GridItem>
               <FormControl>
                 <FormLabel>Title</FormLabel>
@@ -572,7 +572,7 @@ export default function Default(props: {
       )}
 
       {showYaxisSettings && (
-        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
+        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4} color={'#1B2559'}>
           <GridItem>
             <FormControl>
               <FormLabel>Yaxis Show</FormLabel>
@@ -657,8 +657,7 @@ export default function Default(props: {
       )}
 
       {showXaxisSettings && (
-        <Box style={showXaxisSettingsStyle} >
-
+        <Box style={showXaxisSettingsStyle} color={'#1B2559'}>
 
           <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
             <GridItem>
@@ -731,7 +730,7 @@ export default function Default(props: {
       )}
 
       {showLegendSettings && (
-        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
+        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4} color={'#1B2559'}>
 
           <GridItem>
             <FormControl>
@@ -777,8 +776,7 @@ export default function Default(props: {
       )}
 
       {showColorsSettings && (
-        <Box style={showColorsSettingsStyle}>
-
+        <Box style={showColorsSettingsStyle} color={'#1B2559'}>
 
           <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
             {props.driverNames.map((driverName, index) => (
@@ -801,8 +799,9 @@ export default function Default(props: {
       )}
 
       {showLayoutsSettings && (
-        <Box width="260px">
-          <label htmlFor="layoutSelect">Ready Layouts</label>
+        <Box width="260px" color={'#1B2559'}>
+          <label htmlFor="layoutSelect"></label>
+          <FormLabel>Ready Layouts</FormLabel>
           <Select id="layoutSelect" value={layoutSelect} onChange={handleLayoutChange}>
             <option value="f1GraphicsChartOptions">F1 Graphics</option>
             <option value="splashGoChartOptions">Splash/Go</option>
@@ -810,7 +809,7 @@ export default function Default(props: {
         </Box>
       )}
 
-      <Box minH='400px' minW='95%' mt='auto'>
+      <Box minH='400px' minW='95%' mt='auto' marginTop={'10px'}>
         {props.dataLoaded && <LineChart chartData={chartDataFullName} chartOptions={optionsLine} />}
       </Box>
     </>
