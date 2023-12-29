@@ -297,7 +297,9 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 			<Flex mt="10px">
 				<Box width="120px" color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
-					<button style={{ width: '100%' }} onClick={handleButtonClick}>Search</button>
+					<button style={{ width: '100%' }} onClick={handleButtonClick}>
+						{loading ? <Spinner /> : dataLoaded ? 'Reload' : 'Search'}
+					</button>
 				</Box>
 				<Box width="120px" ml="10px" color={textColor} fontSize="25px" textAlign="start" fontWeight="700" lineHeight="100%" borderWidth="2px" borderStyle="solid" borderColor={textColor} borderRadius="md" p="4" background="#f4f7fe">
 					<button style={{ width: '100%' }} onClick={handleCleanClick}>Clean</button>
@@ -306,9 +308,6 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
-					<Text color={textColor} fontSize='30px' textAlign='start' fontWeight='700' lineHeight='100%'>
-						{loading ? <Spinner /> : null}
-					</Text>
 					<LineGraph chartData={driverPointsList} chartOptions={defautOptionsLine} chartLabel={raceSeasonName} dataLoaded={dataLoaded} driverNames={driverNames} />
 				</Box>
 			</Flex>
