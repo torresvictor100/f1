@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import LineChart from 'components/charts/LineChart';
 import { f1GraphicsChartOptions } from './ChartOptions'
-import { splashAndGoChartOptions } from './ChartOptions'
+import { splashGoChartOptions } from './ChartOptions'
 
 import {
   DataGraphic,
@@ -28,27 +28,28 @@ export default function Default(props: {
   const [layoutSelect, setLayoutSelect] = useState<string>('F1GraphicsChartOptions');
   const [chartData, setChartData] = useState<DataGraphic[]>(props.chartData);
   const [chartDataFullName, setChartDataFullName] = useState<DataGraphic[]>([]);
-  const [chartTitle, setChartTitle] = useState('F1 Graphics');
-  const [chartYaxisTitle, setChartYaxisTitle] = useState('Drivers');
-  const [chartTitleColor, setChartTitleColor] = useState('#ee0000');
-  const [chartLabelColor, setChartLabelColor] = useState('#1B2559');
-  const [chartYaxisColor, setChartYaxisColor] = useState('#ee0000');
-  const [chartLinesColor, setChartLinesColor] = useState('#484D50');
-  const [legendLabelsColor, setLegendLabelsColor] = useState('#1B2559');
-  const [backgroundColor, setBackgroundColor] = useState('#fff');
-  const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState('#1B2559');
+  const [layoutsDefault, setLayoutsDefault] = useState<any>(f1GraphicsChartOptions);
+  const [chartTitle, setChartTitle] = useState(layoutsDefault.Title);
+  const [chartYaxisTitle, setChartYaxisTitle] = useState(layoutsDefault.YaxisTitle);
+  const [chartTitleColor, setChartTitleColor] = useState(layoutsDefault.TitleColor);
+  const [chartLabelColor, setChartLabelColor] = useState(layoutsDefault.LabelColor);
+  const [chartYaxisColor, setChartYaxisColor] = useState(layoutsDefault.YaxisColor);
+  const [chartLinesColor, setChartLinesColor] = useState(layoutsDefault.LinesColor);
+  const [legendLabelsColor, setLegendLabelsColor] = useState(layoutsDefault.LegendLabelsColor);
+  const [backgroundColor, setBackgroundColor] = useState(layoutsDefault.BackgroundColor);
+  const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState(layoutsDefault.YaxisLabelColor);
   const [driverLineColors, setDriverLineColors] = useState<string[]>(props.chartData.map(() => ''));
-  const [chartYaxisShow, setChartYaxisShow] = useState(true);
-  const [showLegend, setShowLegend] = useState(true);
-  const [chartYaxisLinesShow, setChartYaxisLinesShow] = useState(true);
+  const [chartYaxisShow, setChartYaxisShow] = useState(layoutsDefault.ChartYaxisShow);
+  const [showLegend, setShowLegend] = useState(layoutsDefault.ShowLegend);
+  const [chartYaxisLinesShow, setChartYaxisLinesShow] = useState(layoutsDefault.ChartYaxisLinesShow);
   const [chartXaxisLinesShow, setChartXaxisLinesShow] = useState(true);
-  const [titleFontSize, setTitleFontSize] = useState('20');
-  const [chartLabelFontSize, setLabelFontSize] = useState('13');
-  const [legendLabelFontSize, setLegendLabelFontSize] = useState('14');
-  const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState('16');
-  const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState('16');
+  const [titleFontSize, setTitleFontSize] = useState(layoutsDefault.TitleFontSize);
+  const [chartLabelFontSize, setLabelFontSize] = useState(layoutsDefault.LabelFontSize);
+  const [legendLabelFontSize, setLegendLabelFontSize] = useState(layoutsDefault.LegendLabelFontSize);
+  const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState(layoutsDefault.YaxisTitleFontSize);
+  const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState(layoutsDefault.YaxisLabelFontSize);
   const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
-  const [showTitleBackGroundSettings, setShowTitleBackGroundSettings] = useState(false);
+  const [showTitleBackGroundSettings, setShowTitleBackGroundSettings] = useState(layoutsDefault.ShowTitleBackGroundSettings);
   const [showYaxisSettings, setShowYaxisSettings] = useState(false);
   const [showXaxisSettings, setShowXaxisSettings] = useState(false);
   const [showLegendSettings, setShowLegendSettings] = useState(false);
@@ -238,13 +239,30 @@ export default function Default(props: {
 
     if (selectedLayout === 'f1GraphicsChartOptions') {
       setLayout(f1GraphicsChartOptions)
-    } else if (selectedLayout === 'splashAndGoChartOptions') {
-      setLayout(splashAndGoChartOptions)
+    } else if (selectedLayout === 'splashGoChartOptions') {
+      setLayout(splashGoChartOptions)
     }
   };
 
-  const setLayout = (f1GraphicsChartOptions:any) => {
-    setChartTitle(f1GraphicsChartOptions.Title);
+  const setLayout = (layouts: any) => {
+    setChartTitle(layouts.Title);
+    setChartYaxisTitle(layouts.YaxisTitle);
+    setChartTitleColor(layouts.TitleColor);
+    setChartLabelColor(layouts.LabelColor);
+    setBackgroundColor(layouts.BackgroundColor);
+    setChartYaxisColor(layouts.YaxisColor);
+    setChartLinesColor(layouts.LinesColor);
+    setLegendLabelsColor(layouts.LegendLabelsColor);
+    setChartYaxisLabelColor(layouts.YaxisLabelColor);
+    setTitleFontSize(layouts.TitleFontSize);
+    setLabelFontSize(layouts.LabelFontSize);
+    setLegendLabelFontSize(layouts.LegendLabelFontSize);
+    setChartYaxisTitleFontSize(layouts.YaxisTitleFontSize);
+    setChartYaxisLabelFontSize(layouts.YaxisLabelFontSize);
+    setChartYaxisShow(layouts.ChartYaxisShow);
+    setShowLegend(layouts.ShowLegend);
+    setChartYaxisLinesShow(layouts.ChartYaxisLinesShow);
+    setShowTitleBackGroundSettings(layouts.ShowTitleBackGroundSettings)
   }
 
   const handleClickShowYaxisConfig = () => {
@@ -293,7 +311,7 @@ export default function Default(props: {
       </Box>
 
       <Box display="flex" flexWrap="wrap" gap="10px" marginTop={'10px'}>
-      <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+        <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
           <button style={{ width: '100%' }} onClick={handleshowshowLayoutsSettings}>Layouts Settings</button>
         </Box>
       </Box>
@@ -578,12 +596,12 @@ export default function Default(props: {
 
       {showLayoutsSettings && (
         <Box width="260px">
-        <label htmlFor="layoutSelect">Ready Layouts</label>
-        <Select id="layoutSelect" value={layoutSelect} onChange={handleLayoutChange}>
-          <option value="f1GraphicsChartOptions">F1 Graphics</option>
-          <option value="splashAndGoChartOptions">Splash And Go</option>
-        </Select>
-      </Box>
+          <label htmlFor="layoutSelect">Ready Layouts</label>
+          <Select id="layoutSelect" value={layoutSelect} onChange={handleLayoutChange}>
+            <option value="f1GraphicsChartOptions">F1 Graphics</option>
+            <option value="splashGoChartOptions">Splash/Go</option>
+          </Select>
+        </Box>
       )}
 
       <Box minH='400px' minW='95%' mt='auto'>
