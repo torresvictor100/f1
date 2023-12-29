@@ -8,6 +8,10 @@ import {
   GridItem,
   Checkbox,
   Select,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb
 } from "@chakra-ui/react";
 import LineChart from 'components/charts/LineChart';
 import { f1GraphicsChartOptions } from './ChartOptions'
@@ -55,6 +59,7 @@ export default function Default(props: {
   const [showLegendSettings, setShowLegendSettings] = useState(false);
   const [showColorsSettings, setShowColorsSettings] = useState(false);
   const [showLayoutsSettings, setShowLayoutsSettings] = useState(false);
+  
 
 
   const updateLineColor = (index: number, color: string) => {
@@ -468,6 +473,7 @@ export default function Default(props: {
     setShowLayoutsSettings(!showLayoutsSettings);
   };
 
+
   return (
     <>
 
@@ -515,7 +521,7 @@ export default function Default(props: {
 
       {showTitleBackGroundSettings && (
         <Box style={titleBackgroundStyle}>
-          <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4} color={'#1B2559'}>
+          <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4} >
             <GridItem>
               <FormControl>
                 <FormLabel>Title</FormLabel>
@@ -812,6 +818,7 @@ export default function Default(props: {
       <Box minH='400px' minW='95%' mt='auto' marginTop={'10px'}>
         {props.dataLoaded && <LineChart chartData={chartDataFullName} chartOptions={optionsLine} />}
       </Box>
+
     </>
   );
 }
