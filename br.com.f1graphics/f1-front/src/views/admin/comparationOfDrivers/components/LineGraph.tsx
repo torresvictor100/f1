@@ -29,40 +29,55 @@ export default function Default(props: {
   const [chartData, setChartData] = useState<DataGraphic[]>(props.chartData);
   const [chartDataFullName, setChartDataFullName] = useState<DataGraphic[]>([]);
   const [layoutsDefault, setLayoutsDefault] = useState<any>(f1GraphicsChartOptions);
-  const [chartTitle, setChartTitle] = useState(layoutsDefault.Title);
-  const [chartYaxisTitle, setChartYaxisTitle] = useState(layoutsDefault.YaxisTitle);
-  const [chartTitleColor, setChartTitleColor] = useState(layoutsDefault.TitleColor);
-  const [chartLabelColor, setChartLabelColor] = useState(layoutsDefault.LabelColor);
-  const [chartYaxisColor, setChartYaxisColor] = useState(layoutsDefault.YaxisColor);
-  const [chartLinesColor, setChartLinesColor] = useState(layoutsDefault.LinesColor);
-  const [legendLabelsColor, setLegendLabelsColor] = useState(layoutsDefault.LegendLabelsColor);
-  const [backgroundColor, setBackgroundColor] = useState(layoutsDefault.BackgroundColor);
-  const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState(layoutsDefault.YaxisLabelColor);
-  const [driverLineColors, setDriverLineColors] = useState<string[]>(props.chartData.map(() => ''));
-  
-  //Tooltip
-  const [chartTooltipShow, setChartTooltipShow] = useState(layoutsDefault.ChartTooltipShow);
-  const [chartTooltipShowInTop, setChartTooltipShowInTop] = useState(layoutsDefault.chartTooltipShowInTop);
-  const [chartTooltipTheme, setChartTooltipTheme] = useState(layoutsDefault.ChartTooltipTheme);
-
-  const [chartYaxisShow, setChartYaxisShow] = useState(layoutsDefault.ChartYaxisShow);
-  const [showLegend, setShowLegend] = useState(layoutsDefault.ShowLegend);
-  const [chartYaxisLinesShow, setChartYaxisLinesShow] = useState(layoutsDefault.ChartYaxisLinesShow);
-  const [chartXaxisLinesShow, setChartXaxisLinesShow] = useState(true);
-  const [titleFontSize, setTitleFontSize] = useState(layoutsDefault.TitleFontSize);
-  const [chartLabelFontSize, setLabelFontSize] = useState(layoutsDefault.LabelFontSize);
-  const [legendLabelFontSize, setLegendLabelFontSize] = useState(layoutsDefault.LegendLabelFontSize);
-  const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState(layoutsDefault.YaxisTitleFontSize);
-  const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState(layoutsDefault.YaxisLabelFontSize);
   const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
 
+  //Title
+  const [chartTitle, setChartTitle] = useState(layoutsDefault.Title);
+  const [chartTitleColor, setChartTitleColor] = useState(layoutsDefault.TitleColor);
+  const [titleFontSize, setTitleFontSize] = useState(layoutsDefault.TitleFontSize);
+  //Background
+  const [backgroundColor, setBackgroundColor] = useState(layoutsDefault.BackgroundColor);
+  //Yaxis
+  const [chartYaxisShow, setChartYaxisShow] = useState(layoutsDefault.YaxisShow);
+  const [chartYaxisTitle, setChartYaxisTitle] = useState(layoutsDefault.YaxisTitle);
+  const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState(layoutsDefault.YaxisTitleFontSize);
+  const [chartYaxisColor, setChartYaxisColor] = useState(layoutsDefault.YaxisColor);
+  const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState(layoutsDefault.YaxisLabelFontSize);
+  const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState(layoutsDefault.YaxisLabelColor);
+  //Lines
+  const [chartXaxisLinesShow, setChartXaxisLinesShow] = useState(layoutsDefault.XaxisLinesShow);
+  const [chartYaxisLinesShow, setChartYaxisLinesShow] = useState(layoutsDefault.YaxisLinesShow);
+  const [chartLinesColor, setChartLinesColor] = useState(layoutsDefault.LinesColor);
+  //Label
+  const [chartLabelFontSize, setLabelFontSize] = useState(layoutsDefault.LabelFontSize);
+  const [chartLabelColor, setChartLabelColor] = useState(layoutsDefault.LabelColor);
+  //Legend
+  const [showLegend, setShowLegend] = useState(layoutsDefault.ShowLegend);
+  const [legendLabelsColor, setLegendLabelsColor] = useState(layoutsDefault.LegendLabelsColor);
+  const [legendLabelFontSize, setLegendLabelFontSize] = useState(layoutsDefault.LegendLabelFontSize);
+  //Colors
+  const [driverLineColors, setDriverLineColors] = useState<string[]>(props.chartData.map(() => ''));
+  //Tooltip
+  const [chartTooltipShow, setChartTooltipShow] = useState(layoutsDefault.TooltipShow);
+  const [chartTooltipShowInTop, setChartTooltipShowInTop] = useState(layoutsDefault.TooltipShowInTop);
+  const [chartTooltipTheme, setChartTooltipTheme] = useState(layoutsDefault.TooltipTheme);
+  //Settings
   const [showTitleBackGroundSettings, setShowTitleBackGroundSettings] = useState(false);
   const [showYaxisSettings, setShowYaxisSettings] = useState(false);
-  const [showXaxisSettings, setShowXaxisSettings] = useState(false);
+  const [showLinesLabelSettings, setShowLinesLabelSettings] = useState(false);
   const [showLegendSettings, setShowLegendSettings] = useState(false);
   const [showColorsSettings, setShowColorsSettings] = useState(false);
   const [showTooltipSettings, setShowTooltipSettings] = useState(false);
   const [showLayoutsSettings, setShowLayoutsSettings] = useState(false);
+
+  useEffect(() => {
+    const updatedChartData = props.chartData.map((data, index) => ({
+      ...data,
+      name: props.driverNames[index] || data.name,
+    }));
+    setChartData(updatedChartData);
+    setChartDataFullName(updatedChartData);
+  }, [props.chartData, props.driverNames]);
 
   const updateLineColor = (index: number, color: string) => {
     const newColors = [...driverLineColors];
@@ -332,21 +347,7 @@ export default function Default(props: {
     colors: driverLineColors.filter(color => color !== ''),
   };
 
-  useEffect(() => {
-    const updatedChartData = props.chartData.map((data, index) => ({
-      ...data,
-      name: props.driverNames[index] || data.name,
-    }));
-    setChartData(updatedChartData);
-    setChartDataFullName(updatedChartData);
-  }, [props.chartData, props.driverNames]);
-
-  const handleClickShowTitleBackGroundConfig = () => {
-
-    setShowTitleBackGroundSettings(!showTitleBackGroundSettings);
-
-  };
-
+  //StyleSettings
   const backgroundStyleTitleBackGroundSettings = showTitleBackGroundSettings
     ? {
       background: `linear-gradient(to right, #fff, #000})`,
@@ -361,7 +362,7 @@ export default function Default(props: {
     }
     : {};
 
-  const backgroundStyleshowXaxisSettings = showXaxisSettings
+  const backgroundStyleshowXaxisSettings = showLinesLabelSettings
     ? {
       background: `linear-gradient(to right, #fff, #000})`,
       boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)',
@@ -396,6 +397,7 @@ export default function Default(props: {
     }
     : {};
 
+  //BackgroundStyle
   const titleBackgroundStyle = showTitleBackGroundSettings
     ? {
       marginTop: '10px',
@@ -407,7 +409,7 @@ export default function Default(props: {
     }
     : {};
 
-  const showXaxisSettingsStyle = showXaxisSettings
+  const showLinesLabelSettingsStyle = showLinesLabelSettings
     ? {
       marginTop: '10px',
       marginBottom: '10px',
@@ -440,47 +442,49 @@ export default function Default(props: {
     }
     : {};
 
-  const handleLayoutChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedLayout = event.target.value;
-    setLayoutSelect(selectedLayout);
 
-    if (selectedLayout === 'f1GraphicsChartOptions') {
-      setLayout(f1GraphicsChartOptions)
-    } else if (selectedLayout === 'splashGoChartOptions') {
-      setLayout(splashGoChartOptions)
-    }
-  };
 
   const setLayout = (layouts: any) => {
+    //Title
     setChartTitle(layouts.Title);
-    setChartYaxisTitle(layouts.YaxisTitle);
     setChartTitleColor(layouts.TitleColor);
-    setChartLabelColor(layouts.LabelColor);
-    setBackgroundColor(layouts.BackgroundColor);
-    setChartYaxisColor(layouts.YaxisColor);
-    setChartLinesColor(layouts.LinesColor);
-    setLegendLabelsColor(layouts.LegendLabelsColor);
-    setChartYaxisLabelColor(layouts.YaxisLabelColor);
     setTitleFontSize(layouts.TitleFontSize);
-    setLabelFontSize(layouts.LabelFontSize);
-    setLegendLabelFontSize(layouts.LegendLabelFontSize);
+    //Background
+    setBackgroundColor(layouts.BackgroundColor);
+    //Yaxis
+    setChartYaxisShow(layouts.YaxisShow);
+    setChartYaxisTitle(layouts.YaxisTitle);
     setChartYaxisTitleFontSize(layouts.YaxisTitleFontSize);
+    setChartYaxisColor(layouts.YaxisColor);
     setChartYaxisLabelFontSize(layouts.YaxisLabelFontSize);
-    setChartYaxisShow(layouts.ChartYaxisShow);
+    setChartYaxisLabelColor(layouts.YaxisLabelColor);
+    //Lines
+    setChartYaxisLinesShow(layouts.YaxisLinesShow);
+    setChartXaxisLinesShow(layouts.XaxisLinesShow);
+    setChartLinesColor(layouts.LinesColor);
+    //Label
+    setLabelFontSize(layouts.LabelFontSize);
+    setChartLabelColor(layouts.LabelColor);
+    //Legend
     setShowLegend(layouts.ShowLegend);
-    setChartYaxisLinesShow(layouts.ChartYaxisLinesShow);
+    setLegendLabelsColor(layouts.LegendLabelsColor);
+    setLegendLabelFontSize(layouts.LegendLabelFontSize);
     //Tooltip
-    setChartTooltipShow(layouts.ChartTooltipShow)
-    setChartTooltipTheme(layouts.ChartTooltipTheme)
-    setChartTooltipShowInTop(layouts.ChartTooltipShowInTop)
+    setChartTooltipShow(layouts.TooltipShow)
+    setChartTooltipTheme(layouts.TooltipTheme)
+    setChartTooltipShowInTop(layouts.TooltipShowInTop)
   }
+
+  const handleClickShowTitleBackGroundConfig = () => {
+    setShowTitleBackGroundSettings(!showTitleBackGroundSettings);
+  };
 
   const handleClickShowYaxisConfig = () => {
     setShowYaxisSettings(!showYaxisSettings);
   };
 
-  const handleClickShowXaxisConfig = () => {
-    setShowXaxisSettings(!showXaxisSettings);
+  const handleClickShowLinesLabelConfig = () => {
+    setShowLinesLabelSettings(!showLinesLabelSettings);
   };
 
   const handleshowLegendConfig = () => {
@@ -497,6 +501,17 @@ export default function Default(props: {
 
   const handleShowTooltipSettings = () => {
     setShowTooltipSettings(!showTooltipSettings);
+  };
+
+  const handleLayoutChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedLayout = event.target.value;
+    setLayoutSelect(selectedLayout);
+
+    if (selectedLayout === 'f1GraphicsChartOptions') {
+      setLayout(f1GraphicsChartOptions)
+    } else if (selectedLayout === 'splashGoChartOptions') {
+      setLayout(splashGoChartOptions)
+    }
   };
 
 
@@ -517,7 +532,7 @@ export default function Default(props: {
 
         <Box style={backgroundStyleshowXaxisSettings}>
           <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
-            <button style={{ width: '100%' }} onClick={handleClickShowXaxisConfig}>Xaxis Settings</button>
+            <button style={{ width: '100%' }} onClick={handleClickShowLinesLabelConfig}>Lines and Label Settings</button>
           </Box>
         </Box>
 
@@ -691,8 +706,8 @@ export default function Default(props: {
         </Grid>
       )}
 
-      {showXaxisSettings && (
-        <Box style={showXaxisSettingsStyle} color={'#1B2559'}>
+      {showLinesLabelSettings && (
+        <Box style={showLinesLabelSettingsStyle} color={'#1B2559'}>
           <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
             <GridItem>
               <FormControl>
