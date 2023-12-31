@@ -45,26 +45,30 @@ class LineChart extends React.Component<ChartProps, ChartState> {
 
 		return (
 			<Box>
-
-				<Slider
-					min={0}
-					max={500}
-					value={parseInt(chartHeight)}
-					onChange={(value) => this.setState({ chartHeight: `${value}px` })}
-				>
-					<SliderTrack bg="#f4f7fe">
-						<SliderFilledTrack bg="#1B2559" />
-					</SliderTrack>
-					<SliderThumb boxSize={6} borderColor="#1B2559" />
-				</Slider>
-
-				<ReactApexChart
-					width={chartWidth}
-					height={chartHeight}
-					options={chartOptions}
-					series={chartData}
-					type="line"
-				/>
+				<Box>
+					<Box>
+						<Slider
+							min={0}
+							max={500}
+							value={parseInt(chartHeight)}
+							onChange={(value) => this.setState({ chartHeight: `${value}px` })}
+						>
+							<SliderTrack bg="#f4f7fe">
+								<SliderFilledTrack bg="#1B2559" />
+							</SliderTrack>
+							<SliderThumb boxSize={6} borderColor="#1B2559" />
+						</Slider>
+					</Box>
+					<Box>
+						<ReactApexChart
+							width={chartWidth}
+							height={chartHeight}
+							options={chartOptions}
+							series={chartData}
+							type="line"
+						/>
+					</Box>
+				</Box>
 
 				<Slider
 					min={0}
