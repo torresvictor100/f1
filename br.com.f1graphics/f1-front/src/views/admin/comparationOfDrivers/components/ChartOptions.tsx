@@ -16,6 +16,9 @@ export const f1GraphicsChartOptions: any = {
     ChartYaxisShow: true,
     ShowLegend: true,
     ChartYaxisLinesShow: true,
+    ChartTooltipShow: true,
+    ChartTooltipTheme: 'light',
+    chartTooltipShowInTop: false,
 };
 
 export const splashGoChartOptions: any = {
@@ -36,4 +39,7 @@ export const splashGoChartOptions: any = {
     ChartYaxisShow: true,
     ShowLegend: true,
     ChartYaxisLinesShow: true,
+    ChartTooltipShow: true,
+    ChartTooltipTheme: 'dark',
+    chartTooltipShowInTop: false,
 };

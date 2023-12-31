@@ -8,10 +8,6 @@ import {
   GridItem,
   Checkbox,
   Select,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb
 } from "@chakra-ui/react";
 import LineChart from 'components/charts/LineChart';
 import { f1GraphicsChartOptions } from './ChartOptions'
@@ -43,6 +39,12 @@ export default function Default(props: {
   const [backgroundColor, setBackgroundColor] = useState(layoutsDefault.BackgroundColor);
   const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState(layoutsDefault.YaxisLabelColor);
   const [driverLineColors, setDriverLineColors] = useState<string[]>(props.chartData.map(() => ''));
+  
+  //Tooltip
+  const [chartTooltipShow, setChartTooltipShow] = useState(layoutsDefault.ChartTooltipShow);
+  const [chartTooltipShowInTop, setChartTooltipShowInTop] = useState(layoutsDefault.chartTooltipShowInTop);
+  const [chartTooltipTheme, setChartTooltipTheme] = useState(layoutsDefault.ChartTooltipTheme);
+
   const [chartYaxisShow, setChartYaxisShow] = useState(layoutsDefault.ChartYaxisShow);
   const [showLegend, setShowLegend] = useState(layoutsDefault.ShowLegend);
   const [chartYaxisLinesShow, setChartYaxisLinesShow] = useState(layoutsDefault.ChartYaxisLinesShow);
@@ -53,14 +55,14 @@ export default function Default(props: {
   const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState(layoutsDefault.YaxisTitleFontSize);
   const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState(layoutsDefault.YaxisLabelFontSize);
   const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
+
   const [showTitleBackGroundSettings, setShowTitleBackGroundSettings] = useState(false);
   const [showYaxisSettings, setShowYaxisSettings] = useState(false);
   const [showXaxisSettings, setShowXaxisSettings] = useState(false);
   const [showLegendSettings, setShowLegendSettings] = useState(false);
   const [showColorsSettings, setShowColorsSettings] = useState(false);
+  const [showTooltipSettings, setShowTooltipSettings] = useState(false);
   const [showLayoutsSettings, setShowLayoutsSettings] = useState(false);
-  
-
 
   const updateLineColor = (index: number, color: string) => {
     const newColors = [...driverLineColors];
@@ -129,7 +131,7 @@ export default function Default(props: {
       },
     },
     tooltip: {
-      enabled: true, //show ou nao
+      enabled: chartTooltipShow,
       enabledOnSeries: undefined,
       shared: true,
       followCursor: false,
@@ -137,7 +139,7 @@ export default function Default(props: {
       inverseOrder: false,
       custom: undefined,
       fillSeriesColor: false,
-      theme: 'dark', //ou 'light'
+      theme: chartTooltipTheme,
       style: {
         fontSize: '15px',
         fontFamily: undefined,
@@ -149,7 +151,7 @@ export default function Default(props: {
         show: true,
       },
       fixed: {
-        enabled: false, // auternativa
+        enabled: chartTooltipShowInTop,
         position: 'topRight',
         offsetX: 0,
         offsetY: 0,
@@ -387,6 +389,13 @@ export default function Default(props: {
     }
     : {};
 
+  const backgroundTooltipStyleshowLayoutsSettings = showTooltipSettings
+    ? {
+      background: `linear-gradient(to right, #fff, #000})`,
+      boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.2)',
+    }
+    : {};
+
   const titleBackgroundStyle = showTitleBackGroundSettings
     ? {
       marginTop: '10px',
@@ -420,10 +429,20 @@ export default function Default(props: {
     }
     : {};
 
+  const showLayoutsSettingsStyle = showLayoutsSettings
+    ? {
+      marginTop: '10px',
+      marginBottom: '10px',
+      backgroundColor: '#f4f7fe',
+      padding: '10px',
+      borderRadius: '8px',
+      boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)',
+    }
+    : {};
+
   const handleLayoutChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedLayout = event.target.value;
     setLayoutSelect(selectedLayout);
-
 
     if (selectedLayout === 'f1GraphicsChartOptions') {
       setLayout(f1GraphicsChartOptions)
@@ -450,7 +469,10 @@ export default function Default(props: {
     setChartYaxisShow(layouts.ChartYaxisShow);
     setShowLegend(layouts.ShowLegend);
     setChartYaxisLinesShow(layouts.ChartYaxisLinesShow);
-    setShowTitleBackGroundSettings(layouts.ShowTitleBackGroundSettings)
+    //Tooltip
+    setChartTooltipShow(layouts.ChartTooltipShow)
+    setChartTooltipTheme(layouts.ChartTooltipTheme)
+    setChartTooltipShowInTop(layouts.ChartTooltipShowInTop)
   }
 
   const handleClickShowYaxisConfig = () => {
@@ -473,10 +495,13 @@ export default function Default(props: {
     setShowLayoutsSettings(!showLayoutsSettings);
   };
 
+  const handleShowTooltipSettings = () => {
+    setShowTooltipSettings(!showTooltipSettings);
+  };
+
 
   return (
     <>
-
       <Box display="flex" flexWrap="wrap" gap="10px" marginTop={'10px'}>
         <Box style={backgroundStyleTitleBackGroundSettings}>
           <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
@@ -509,8 +534,12 @@ export default function Default(props: {
         </Box>
       </Box>
 
-
       <Box display="flex" flexWrap="wrap" gap="10px" marginTop={'10px'}>
+        <Box style={backgroundTooltipStyleshowLayoutsSettings}>
+          <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
+            <button style={{ width: '100%' }} onClick={handleShowTooltipSettings}>Tooltip Settings</button>
+          </Box>
+        </Box>
         <Box style={backgroundStyleshowLayoutsSettings}>
           <Box width="260px" color={'#1B2559'} textAlign="start" fontWeight="50" lineHeight="1px" borderWidth="2px" borderStyle="solid" borderColor={'#1B2559'} borderRadius="md" p="4" background="#f4f7fe">
             <button style={{ width: '100%' }} onClick={handleshowshowLayoutsSettings}>Layouts Settings</button>
@@ -520,7 +549,7 @@ export default function Default(props: {
 
 
       {showTitleBackGroundSettings && (
-        <Box style={titleBackgroundStyle}>
+        <Box style={titleBackgroundStyle} color={'#1B2559'}>
           <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4} >
             <GridItem>
               <FormControl>
@@ -664,7 +693,6 @@ export default function Default(props: {
 
       {showXaxisSettings && (
         <Box style={showXaxisSettingsStyle} color={'#1B2559'}>
-
           <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
             <GridItem>
               <FormControl>
@@ -804,15 +832,62 @@ export default function Default(props: {
         </Box>
       )}
 
+      {showTooltipSettings && (
+        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4} color={'#1B2559'}>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Tooltip Show</FormLabel>
+              <Checkbox
+                isChecked={chartTooltipShow}
+                onChange={() => setChartTooltipShow(!chartTooltipShow)}
+              >
+                Tooltip Show
+              </Checkbox>
+            </FormControl>
+          </GridItem>
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Tooltip Theme</FormLabel>
+              <Select
+                value={chartTooltipTheme}
+                onChange={(e) => setChartTooltipTheme(e.target.value)}
+              >
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </Select>
+            </FormControl>
+          </GridItem>
+
+
+          <GridItem>
+            <FormControl>
+              <FormLabel>Tooltip Show Fixed in Top</FormLabel>
+              <Checkbox
+                isChecked={chartTooltipShowInTop}
+                onChange={() => setChartTooltipShowInTop(!chartTooltipShowInTop)}
+              >
+                Tooltip Show Fixed in Top
+              </Checkbox>
+            </FormControl>
+          </GridItem>
+
+        </Grid>
+      )}
+
       {showLayoutsSettings && (
-        <Box width="260px" color={'#1B2559'}>
-          <label htmlFor="layoutSelect"></label>
-          <FormLabel>Ready Layouts</FormLabel>
-          <Select id="layoutSelect" value={layoutSelect} onChange={handleLayoutChange}>
-            <option value="f1GraphicsChartOptions">F1 Graphics</option>
-            <option value="splashGoChartOptions">Splash/Go</option>
-          </Select>
+        <Box style={showLayoutsSettingsStyle}>
+          <Box width="260px" color={'#1B2559'} >
+            <label htmlFor="layoutSelect"></label>
+            <FormLabel>Ready Layouts</FormLabel>
+            <Select id="layoutSelect" value={layoutSelect} onChange={handleLayoutChange}>
+              <option value="f1GraphicsChartOptions">F1 Graphics</option>
+              <option value="splashGoChartOptions">Splash/Go</option>
+            </Select>
+          </Box>
         </Box>
+
       )}
 
       <Box minH='400px' minW='95%' mt='auto' marginTop={'10px'}>
