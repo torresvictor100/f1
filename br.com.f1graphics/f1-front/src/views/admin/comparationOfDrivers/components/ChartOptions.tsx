@@ -24,9 +24,9 @@ export const f1GraphicsChartOptions: any = {
     LegendLabelsColor: '#EE0000',
     LegendLabelFontSize: '14',
     //Tooltip
-    ChartTooltipShow: true,
-    ChartTooltipTheme: 'light',
-    chartTooltipShowInTop: false,
+    TooltipShow: true,
+    TooltipTheme: 'light',
+    TooltipShowInTop: false,
 };
 
 export const splashGoChartOptions: any = {
