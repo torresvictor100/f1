@@ -13,8 +13,8 @@ import routes from 'routes';
 export default function Dashboard(props: { [x: string]: any }) {
 	const { ...rest } = props;
 	// states and functions
-	const [ fixed ] = useState(false);
-	const [ toggleSidebar, setToggleSidebar ] = useState(false);
+	const [fixed] = useState(false);
+	const [toggleSidebar, setToggleSidebar] = useState(false);
 	// functions for changing the states from components
 	const getRoute = () => {
 		return window.location.pathname !== '/history/full-screen-maps';
@@ -65,6 +65,8 @@ export default function Dashboard(props: { [x: string]: any }) {
 					setToggleSidebar
 				}}>
 				<Sidebar routes={routes} display='none' {...rest} />
+				<Box display={{ sm: 'block', xl: 'none' }} style={{ paddingTop: '270px' }}>
+				</Box>
 				<Box
 					float='right'
 					minHeight='100vh'

@@ -197,7 +197,15 @@ export default function Default(props: {}) {
   }
 
   return (
+
     <Box pt={{ base: "80px", md: "80px" }}>
+      <Box display={{ sm: 'block', xl: 'none' }}>
+        <Text
+          color={"#1B2559"}
+        >
+          We recommend a resolution of at least 1200 pixels.
+        </Text>
+      </Box>
       <Text
         fontSize="2xl"
         fontWeight="bold"
