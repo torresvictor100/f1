@@ -1,0 +1,19 @@
+version: '3'
+services:
+  spring:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+
+  react:
+    image: node:14-alpine
+    ports:
+      - "3000:3000"
+    working_dir: /app/f1-front
+    command: npm start
+    volumes:
+      - ./f1-front:/app/f1-front
