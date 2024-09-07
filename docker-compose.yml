@@ -14,6 +14,6 @@ services:
     ports:
       - "3000:3000"
     working_dir: /app/f1-front
-    command: npm start
+    command: sh -c "npm install && npm start"
     volumes:
       - ./f1-front:/app/f1-front

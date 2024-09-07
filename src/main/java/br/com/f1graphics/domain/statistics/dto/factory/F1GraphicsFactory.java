@@ -4,7 +4,6 @@ import br.com.f1graphics.domain.statistics.dto.response.CircuitResponseDTO;
 import br.com.f1graphics.domain.statistics.dto.response.DriverPointsResponseDTO;
 import br.com.f1graphics.domain.statistics.dto.response.ListNamesRacesResponseDTO;
 import br.com.f1graphics.domain.statistics.dto.response.SeasonResponseDTO;
-import br.com.f1graphics.dto.response.*;
 import br.com.f1graphics.domain.statistics.dto.response.drive.DriverSeasonResponseDTO;
 import br.com.f1graphics.domain.statistics.dto.response.races.RaceResponseDTO;
 import br.com.f1graphics.domain.statistics.dto.response.races.RaceSeasonResponseDTO;
