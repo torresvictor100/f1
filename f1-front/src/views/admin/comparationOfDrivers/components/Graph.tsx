@@ -102,7 +102,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 		}
 	);
 	const [years, setYears] = useState<string[]>([]);
-	const [selectYears, setSelectYears] = useState<string>("2023");
+	const [selectYears, setSelectYears] = useState<string>("2024");
 	const [loading, setLoading] = useState(false);
 
 	const [urlSeason, setUrlSeason] = useState("Select the years and Drivers");
