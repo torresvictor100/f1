@@ -213,7 +213,7 @@ export default function Default(props: {}) {
         p="-0.5"
         color={"#1B2559"}
       >
-        Season 2023
+        Season 2024
       </Text>
       <SimpleGrid mb="50px" columns={{ base: 1, md: 2, lg: 4 }} gap="20px">
         <MiniStatisticsGrafic
